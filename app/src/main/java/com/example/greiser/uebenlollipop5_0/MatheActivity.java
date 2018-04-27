@@ -2,12 +2,14 @@ package com.example.greiser.uebenlollipop5_0;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,23 +43,19 @@ public class MatheActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mathe);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         progressBar = findViewById(R.id.progressBar);
+        progressBar.getProgressDrawable().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
         progressBar.setMax(countAufgaben * 2 );
         progressBar.setProgress(0);
+
         viewCurrentAufgabe = findViewById(R.id.aufgabe);
         viewCurrentAufgabe.setKeyListener(null);
         viewErgebnis = findViewById(R.id.ergebnis);
         viewErgebnis.requestFocus();
 
-        viewErgebnis.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-                    checkResult();
-                    return true;
-                }
-                return false;
-            }
-        });
+        createKeybord();
 
         for (int i =  0; i <= max; i++) {
             for (int k =  0; k <= max; k++) {
@@ -82,6 +80,116 @@ public class MatheActivity extends AppCompatActivity {
 //        });
     }
 
+    private void createKeybord() {
+        final Button button_0 = findViewById(R.id.button_0);
+        button_0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNumber(0);
+            }
+        });
+
+        final Button button_1 = findViewById(R.id.button_1);
+        button_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNumber(1);
+            }
+        });
+
+        final Button button_2 = findViewById(R.id.button_2);
+        button_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNumber(2);
+            }
+        });
+
+        final Button button_3 = findViewById(R.id.button_3);
+        button_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNumber(3);
+            }
+        });
+
+        final Button button_4 = findViewById(R.id.button_4);
+        button_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNumber(4);
+            }
+        });
+
+        final Button button_5 = findViewById(R.id.button_5);
+        button_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNumber(5);
+            }
+        });
+
+        final Button button_6 = findViewById(R.id.button_6);
+        button_6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNumber(6);
+            }
+        });
+
+        final Button button_7 = findViewById(R.id.button_7);
+        button_7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNumber(7);
+            }
+        });
+
+        final Button button_8 = findViewById(R.id.button_8);
+        button_8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNumber(8);
+            }
+        });
+
+        final Button button_9 = findViewById(R.id.button_9);
+        button_9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNumber(9);
+            }
+        });
+
+        final Button button_BACK = findViewById(R.id.button_back);
+        button_BACK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tmp = viewErgebnis.getText().toString();
+                if (tmp.length() != 0) {
+                    viewErgebnis.setText(tmp.subSequence(0, tmp.length() - 1));
+                    setCourser();
+
+                }
+            }
+        });
+
+        final Button button_OK = findViewById(R.id.button_OK);
+        button_OK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               checkResult();
+            }
+        });
+    }
+
+    private void addNumber(int number) {
+        viewErgebnis.setText(viewErgebnis.getText().toString()+ number);
+        setCourser();
+    }
+    private void setCourser() {
+        viewErgebnis.setSelection(viewErgebnis.getText().toString().length());
+    }
     private void chooseAufgabe() {
 
         if (plusCorrect < countAufgaben) {
