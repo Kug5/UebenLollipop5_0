@@ -42,7 +42,7 @@ public class MatheActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mathe);
 
         progressBar = findViewById(R.id.progressBar);
-        progressBar.setMax(max);
+        progressBar.setMax(countAufgaben * 2 );
         progressBar.setProgress(0);
         viewCurrentAufgabe = findViewById(R.id.aufgabe);
         viewCurrentAufgabe.setKeyListener(null);
