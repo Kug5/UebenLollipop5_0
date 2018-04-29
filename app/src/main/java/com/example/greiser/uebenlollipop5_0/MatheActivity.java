@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -65,6 +66,13 @@ public class MatheActivity extends AppCompatActivity {
         viewErgebnis.requestFocus();
 
         abakus = findViewById(R.id.abakus);
+        final ImageView help = findViewById(R.id.help);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abakus.setVisibility(View.VISIBLE);
+            }
+        });
 
         createKeybord();
         createAufgaben(level);
@@ -218,6 +226,8 @@ public class MatheActivity extends AppCompatActivity {
         viewErgebnis.setSelection(viewErgebnis.getText().toString().length());
     }
     private void chooseAufgabe() {
+
+        abakus.setVisibility(View.INVISIBLE);
 
         if (plusCorrect < countAufgaben) {
             int indexRandom = -1;
