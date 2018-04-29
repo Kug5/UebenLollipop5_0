@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_green_dark"
     android:orientation="vertical"
-    android:padding="50dp"
+    android:padding="25dp"
     tools:context=".MatheActivity">
 
     <ProgressBar
@@ -160,5 +160,13 @@
             android:textSize="36sp" />
 
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/abakus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:cursorVisible="false"
+        android:singleLine="false" />
 
 </LinearLayout>

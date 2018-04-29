@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -39,15 +40,26 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        final Button buttonMathe = findViewById(R.id.buttonMathe);
-        buttonMathe.setOnClickListener(new View.OnClickListener() {
+        final Button level_1 = findViewById(R.id.level_1);
+        level_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, MatheActivity.class));
+                Intent math = new Intent(MenuActivity.this, MatheActivity.class);
+                math.putExtra("level", 1);
+                startActivity(math);
+            }
+        });
+
+        final Button level_2 = findViewById(R.id.level_2);
+        level_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent math = new Intent(MenuActivity.this, MatheActivity.class);
+                math.putExtra("level", 2);
+                startActivity(math);
             }
         });
 

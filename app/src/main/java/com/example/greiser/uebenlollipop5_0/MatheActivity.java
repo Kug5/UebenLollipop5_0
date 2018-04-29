@@ -3,10 +3,12 @@ package com.example.greiser.uebenlollipop5_0;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -21,14 +23,17 @@ import java.util.Map;
 
 public class MatheActivity extends AppCompatActivity {
 
-    Map plus = new HashMap<String, Integer>();
-    Map minus = new HashMap<String, Integer>();
+    static final String kugel = "&#9679;";
+    static final String kugel_minus = "&#9152;";
+
+    Map plus = new HashMap<String, Task>();
+    Map minus = new HashMap<String, Task>();
 
     String currentAufgabe = null;
     String currentErgebnis = null;
 
     static int max = 20;
-    static int countAufgaben = 1;
+    static int countAufgaben = 5;
 
     EditText viewCurrentAufgabe = null;
     EditText viewErgebnis = null;
@@ -36,12 +41,16 @@ public class MatheActivity extends AppCompatActivity {
 
     int plusCorrect = 0;
     int minusCorrect = 0;
+    private EditText abakus;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mathe);
+
+        Intent myIntent = getIntent(); // gets the previously created intent
+        int level = myIntent.getIntExtra("level", -1);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -55,20 +64,10 @@ public class MatheActivity extends AppCompatActivity {
         viewErgebnis = findViewById(R.id.ergebnis);
         viewErgebnis.requestFocus();
 
+        abakus = findViewById(R.id.abakus);
+
         createKeybord();
-
-        for (int i =  0; i <= max; i++) {
-            for (int k =  0; k <= max; k++) {
-                if (i + k <= max) {
-                    plus.put(i + " + " + k + " = ", new Integer(i+k));
-                }
-
-                if (i - k >= 0) {
-                    minus.put(i + " - " + k + " = ", new Integer(i-k));
-                }
-            }
-        }
-
+        createAufgaben(level);
         chooseAufgabe();
 
 //        final Button buttonCheck = findViewById(R.id.buttonCheck);
@@ -78,6 +77,34 @@ public class MatheActivity extends AppCompatActivity {
 //                checkResult();
 //            }
 //        });
+    }
+
+    private void createAufgaben(int level) {
+        if (level == 1) {
+            for (int i =  0; i <= max; i++) {
+                for (int k =  0; k <= max; k++) {
+                    if (i + k <= max && (i < 10 || k < 10)) {
+                        plus.put(i + " + " + k + " = ", new Task (i, k, i+k));
+                    }
+
+                    if (i - k >= 0 && (i < 10 || k < 10)) {
+                        minus.put(i + " - " + k + " = ", new Task(i, k, i-k));
+                    }
+                }
+            }
+        } else {
+            for (int i =  0; i <= max; i++) {
+                for (int k =  0; k <= max; k++) {
+                    if (i + k <= max ) {
+                        plus.put(i + " + " + k + " = ", new Task (i, k,i+k));
+                    }
+
+                    if (i - k >= 0) {
+                        minus.put(i + " - " + k + " = ", new Task(i, k,i-k));
+                    }
+                }
+            }
+        }
     }
 
     private void createKeybord() {
@@ -199,7 +226,9 @@ public class MatheActivity extends AppCompatActivity {
             } while (indexRandom > plus.size() - 1 );
 
             currentAufgabe = plus.keySet().toArray()[indexRandom].toString();
-            currentErgebnis = plus.get(currentAufgabe).toString();
+            currentErgebnis = "" + ((Task)plus.get(currentAufgabe)).sum;
+            createAbakusPlus((Task)plus.get(currentAufgabe));
+            // abakusFive((Task)plus.get(currentAufgabe));
         } else {
             int indexRandom = -1;
             do {
@@ -207,10 +236,83 @@ public class MatheActivity extends AppCompatActivity {
             } while (indexRandom > minus.size() - 1 );
 
             currentAufgabe = minus.keySet().toArray()[indexRandom].toString();
-            currentErgebnis = minus.get(currentAufgabe).toString();
+            currentErgebnis = "" + ((Task)minus.get(currentAufgabe)).sum;
+            createAbakusMinus((Task)minus.get(currentAufgabe));
         }
 
         viewCurrentAufgabe.setText(currentAufgabe);
+    }
+
+    private void abakusFive(Task task) {
+
+        String result = "";
+
+        for(int i=1; i<= task.sum; i++) {
+            if (i <=5 || (i > 10 && i<=15)) {
+                result+="<font color='#FF0000'>" + kugel + "</font>";
+            } else if (i>5 && i<=10 || (i > 15)) {
+                result+="<font color='#0000FF'>" + kugel + "</font>";
+            }
+
+            if (i%10 == 0) {
+                result+="<br/>";
+            }
+        }
+
+        abakus.setText(Html.fromHtml(result));
+    }
+
+    private void createAbakusPlus(Task task) {
+
+        String forI = "";
+        String fork = "";
+
+        for (int i = 0; i< task.summand1; i++) {
+            forI+=kugel;
+            if (i == 9) {
+                forI+="<br/>";
+            }
+        }
+        int lineDiff = task.summand1 - 10;
+        if (lineDiff > 0) {
+            lineDiff-= 10;
+        }
+
+        for (int k = 0; k< task.summand2; k++) {
+            fork+=kugel;
+            if ( Math.abs(lineDiff) == k + 1) {
+                fork+="<br/>";
+            }
+        }
+
+        abakus.setText(Html.fromHtml("<font color='#FF0000'>" + forI + " </font> <font color='#0000FF' >"+ fork+ "</font>"));
+    }
+
+    private void createAbakusMinus (Task task) {
+        String forI = "";
+        String fork = "";
+
+        for (int i = 0; i< task.sum; i++) {
+            forI+=kugel;
+            if (i == 9) {
+                forI+="<br/>";
+            }
+        }
+
+        int lineDiff = task.sum - 10;
+        if (lineDiff > 0) {
+            lineDiff-= 10;
+        }
+
+        for (int k = 0; k< task.summand2; k++) {
+            fork+=kugel_minus;
+            if ( Math.abs(lineDiff) == k + 1) {
+                fork+="<br/>";
+            }
+
+        }
+
+        abakus.setText(Html.fromHtml("<font color='#FF0000'>" + forI + " </font> <font color='#FF0000' >"+ fork+ "</font>"));
     }
 
     private void checkResult () {
@@ -239,5 +341,18 @@ public class MatheActivity extends AppCompatActivity {
             }, 500);
         }
         viewErgebnis.setText("");
+    }
+
+    private class Task {
+
+        int summand1 = -1;
+        int summand2 = -1;
+        int sum = -1;
+
+        public Task(int i, int k, int i1) {
+            this.sum = i1;
+            this.summand1 = i;
+            this.summand2 = k;
+        }
     }
 }
