@@ -1,17 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_dark"
+    android:orientation="vertical"
     tools:context=".DeutschActivity">
 
-    <EditText
-        android:id="@+id/editText2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Deutsch" />
-</android.support.design.widget.CoordinatorLayout>
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/toSpeak"
+            android:layout_width="match_parent"
+            android:layout_height="134dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:singleLine="false"
+            android:text="Opa und Papa bauen eine Tür ein. Die Tür ist braun und soll vor Fliegen schüzten."
+            android:textSize="36sp" />
+
+        <ImageView
+            android:id="@+id/play"
+            android:layout_width="90dp"
+            android:layout_height="136dp"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_media_play" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/stimmt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_green_dark"
+            android:text="stimmt" />
+
+        <Button
+            android:id="@+id/falsch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_red_light"
+            android:text="falsch" />
+    </LinearLayout>
+
+</LinearLayout>

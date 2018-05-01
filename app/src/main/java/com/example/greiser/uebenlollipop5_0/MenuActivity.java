@@ -63,13 +63,13 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-//        final Button buttonDeutsch = findViewById(R.id.buttonDeutsch);
-//        buttonDeutsch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(MenuActivity.this, DeutschActivity.class));
-//            }
-//        });
+        final Button buttonDeutsch = findViewById(R.id.losDeutsch);
+        buttonDeutsch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuActivity.this, DeutschActivity.class));
+            }
+        });
     }
 
 }
