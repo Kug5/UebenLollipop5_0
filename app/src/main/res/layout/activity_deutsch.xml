@@ -21,15 +21,15 @@
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:singleLine="false"
-            android:text="Opa und Papa bauen eine Tür ein. Die Tür ist braun und soll vor Fliegen schüzten."
+            android:text="Opa und Papa haben eine Tür eingebaut. Die Tür ist braun und soll vor Fliegen schüzten."
             android:textSize="36sp" />
 
         <ImageView
             android:id="@+id/play"
-            android:layout_width="90dp"
-            android:layout_height="136dp"
+            android:layout_width="110dp"
+            android:layout_height="134dp"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_media_play" />
+            app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
 
     </LinearLayout>
 

@@ -3,21 +3,17 @@ package com.example.greiser.uebenlollipop5_0;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +30,7 @@ public class MatheActivity extends AppCompatActivity {
     String currentErgebnis = null;
 
     static int max = 20;
-    static int countAufgaben = 5;
+    static int countAufgaben = 10;
 
     EditText viewCurrentAufgabe = null;
     EditText viewErgebnis = null;
@@ -77,14 +73,6 @@ public class MatheActivity extends AppCompatActivity {
         createKeybord();
         createAufgaben(level);
         chooseAufgabe();
-
-//        final Button buttonCheck = findViewById(R.id.buttonCheck);
-//        buttonCheck.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                checkResult();
-//            }
-//        });
     }
 
     private void createAufgaben(int level) {
@@ -351,18 +339,5 @@ public class MatheActivity extends AppCompatActivity {
             }, 500);
         }
         viewErgebnis.setText("");
-    }
-
-    private class Task {
-
-        int summand1 = -1;
-        int summand2 = -1;
-        int sum = -1;
-
-        public Task(int i, int k, int i1) {
-            this.sum = i1;
-            this.summand1 = i;
-            this.summand2 = k;
-        }
     }
 }

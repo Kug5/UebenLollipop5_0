@@ -57,7 +57,7 @@ public class MenuActivity extends AppCompatActivity {
         level_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent math = new Intent(MenuActivity.this, MatheActivity.class);
+                Intent math = new Intent(MenuActivity.this, BlockMathActivity.class);
                 math.putExtra("level", 2);
                 startActivity(math);
             }
