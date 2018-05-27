@@ -1,10 +1,12 @@
 package com.example.greiser.uebenlollipop5_0;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -34,7 +36,6 @@ public class BlockMathActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_block_math);
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         b = new Map[4];
@@ -46,6 +47,8 @@ public class BlockMathActivity extends AppCompatActivity {
         currentInputFocus = ergebnisMap[0];
         setCourser();
     }
+
+
 
     private void createInputFields() {
         aufgabenMap = new EditText[16];
@@ -83,6 +86,10 @@ public class BlockMathActivity extends AppCompatActivity {
         ergebnisMap[13] = findViewById(R.id.ergebnis14);
         ergebnisMap[14] = findViewById(R.id.ergebnis15);
         ergebnisMap[15] = findViewById(R.id.ergebnis16);
+
+        for (int i=0; i<ergebnisMap.length; i++) {
+            ergebnisMap[i].setShowSoftInputOnFocus(false);
+        }
 
     }
 
@@ -131,6 +138,7 @@ public class BlockMathActivity extends AppCompatActivity {
         ergebnisMap[index].setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+
                 if (hasFocus) {
                     currentInputFocus = ergebnisMap[index];
                 } else {
@@ -145,6 +153,7 @@ public class BlockMathActivity extends AppCompatActivity {
         ergebnisMap[index_1].setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+
                 if (hasFocus) {
                     currentInputFocus = ergebnisMap[index_1];
                 } else {
@@ -158,6 +167,7 @@ public class BlockMathActivity extends AppCompatActivity {
         ergebnisMap[index_2].setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+
                 if (hasFocus) {
                     currentInputFocus = ergebnisMap[index_2];
                 } else {
@@ -168,6 +178,7 @@ public class BlockMathActivity extends AppCompatActivity {
         ergebnisMap[index_3].setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+
                 if (hasFocus) {
                     currentInputFocus = ergebnisMap[index_3];
                 } else {

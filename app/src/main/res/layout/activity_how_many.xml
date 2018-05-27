@@ -7,69 +7,99 @@
     android:background="@android:color/holo_green_dark"
     android:baselineAligned="false"
     android:gravity="center_vertical"
+    android:orientation="vertical"
     tools:context=".HowMany">
 
-    <Button
-        android:id="@+id/b5"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/wievielText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="5"
+        android:editable="false"
+        android:ems="10"
+        android:enabled="false"
+        android:filterTouchesWhenObscured="false"
+        android:focusable="auto"
+        android:hapticFeedbackEnabled="false"
+        android:inputType="textPersonName"
+        android:nestedScrollingEnabled="false"
+        android:saveEnabled="false"
+        android:selectAllOnFocus="false"
+        android:soundEffectsEnabled="false"
+        android:text="Wie viele Aufgaben? Wähle!"
+        android:textColor="@android:color/background_dark"
         android:textSize="36sp" />
 
-    <Button
-        android:id="@+id/b10"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="10"
-        android:textSize="36sp"/>
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/b15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="15"
-        android:textSize="36sp"/>
+        <Button
+            android:id="@+id/b5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="5"
+            android:textSize="36sp" />
 
-    <Button
-        android:id="@+id/b20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="20"
-        android:textSize="36sp"/>
+        <Button
+            android:id="@+id/b15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="15"
+            android:textSize="36sp" />
 
-    <Button
-        android:id="@+id/b30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="30"
-        android:textSize="36sp"/>
+        <Button
+            android:id="@+id/b10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="10"
+            android:textSize="36sp" />
 
-    <Button
-        android:id="@+id/b40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="40"
-        android:textSize="36sp"/>
+        <Button
+            android:id="@+id/b20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="20"
+            android:textSize="36sp" />
 
-    <Button
-        android:id="@+id/b50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="50"
-        android:textSize="36sp"/>
+        <Button
+            android:id="@+id/b30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="30"
+            android:textSize="36sp" />
 
-    <Button
-        android:id="@+id/b60"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="60"
-        android:textSize="36sp"/>
+        <Button
+            android:id="@+id/b40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="40"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/b50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="50"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/b60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="60"
+            android:textSize="36sp" />
+
+    </LinearLayout>
+
 </LinearLayout>

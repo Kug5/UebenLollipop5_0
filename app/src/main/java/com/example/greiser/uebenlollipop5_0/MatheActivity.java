@@ -1,5 +1,7 @@
 package com.example.greiser.uebenlollipop5_0;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -51,8 +54,6 @@ public class MatheActivity extends AppCompatActivity {
 
         this.countAufgaben = many;
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
         progressBar = findViewById(R.id.progressBar);
         progressBar.getProgressDrawable().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
         progressBar.setMax(countAufgaben * 2 );
@@ -61,7 +62,8 @@ public class MatheActivity extends AppCompatActivity {
         viewCurrentAufgabe = findViewById(R.id.aufgabe);
         viewCurrentAufgabe.setKeyListener(null);
         viewErgebnis = findViewById(R.id.ergebnis);
-        viewErgebnis.requestFocus();
+        viewErgebnis.setShowSoftInputOnFocus(false);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         abakus = findViewById(R.id.abakus);
         final ImageView help = findViewById(R.id.help);

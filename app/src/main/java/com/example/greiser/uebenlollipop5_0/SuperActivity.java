@@ -19,7 +19,7 @@ public class SuperActivity extends AppCompatActivity {
         backToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SuperActivity.this, DeutschActivity.class));
+                startActivity(new Intent(SuperActivity.this, MenuActivity.class));
             }
         });
     }

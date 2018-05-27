@@ -22,6 +22,8 @@ public class DeutschActivity extends AppCompatActivity {
     private List<Question> questions = new ArrayList<Question>();
     private Question currentQuestion;
     private EditText questionText;
+    static int counter = 0;
+    static final int howMany= 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class DeutschActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (currentQuestion.answer.rightIndex == 0) {
+                    counter++;
                     chooseTask();
                 }
             }
@@ -69,6 +72,7 @@ public class DeutschActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (currentQuestion.answer.rightIndex == 1) {
+                    counter++;
                     chooseTask();
                 }
             }
@@ -78,6 +82,11 @@ public class DeutschActivity extends AppCompatActivity {
     }
 
     private void chooseTask() {
+
+        if (howMany == counter) {
+            startActivity(new Intent(DeutschActivity.this, MenuActivity.class));
+        }
+
         int index = -1;
 
         do {

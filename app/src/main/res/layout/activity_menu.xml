@@ -5,6 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:gravity="center_vertical|center_horizontal"
     android:orientation="horizontal"
     tools:context=".MenuActivity">
@@ -12,12 +13,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:layout_weight="1"
         android:background="@android:color/holo_green_dark">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
 
@@ -25,10 +28,10 @@
                 android:id="@+id/mathe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="100dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:ems=" 15"
+                android:gravity="center"
                 android:inputType="textPersonName"
                 android:text="Mathe"
                 android:textSize="50sp" />
@@ -36,9 +39,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -68,12 +69,14 @@
         android:id="@+id/buttonDeutsch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:layout_weight="1"
         android:background="@android:color/holo_blue_dark">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:clickable="false"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
@@ -82,10 +85,10 @@
                 android:id="@+id/deutsch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="100dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:clickable="false"
+                android:gravity="center"
                 android:inputType="textPersonName"
                 android:linksClickable="false"
                 android:longClickable="false"
@@ -95,9 +98,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
