@@ -5,6 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical|center_horizontal"
     android:orientation="horizontal"
     tools:context=".MenuActivity">
 
@@ -17,6 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
 
             <EditText
@@ -46,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="25dp"
-                    android:text="Level 1"
+                    android:text="+ -"
                     android:textSize="36sp" />
 
                 <Button
@@ -55,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="25dp"
-                    android:text="Level 2"
+                    android:text="Block"
                     android:textSize="36sp" />
             </LinearLayout>
 
@@ -73,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="false"
+            android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
 
             <EditText

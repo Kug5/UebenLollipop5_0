@@ -30,7 +30,7 @@ public class MatheActivity extends AppCompatActivity {
     String currentErgebnis = null;
 
     static int max = 20;
-    static int countAufgaben = 10;
+    int countAufgaben;
 
     EditText viewCurrentAufgabe = null;
     EditText viewErgebnis = null;
@@ -47,7 +47,9 @@ public class MatheActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mathe);
 
         Intent myIntent = getIntent(); // gets the previously created intent
-        int level = myIntent.getIntExtra("level", -1);
+        int many = myIntent.getIntExtra("many", 0);
+
+        this.countAufgaben = many;
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -71,12 +73,12 @@ public class MatheActivity extends AppCompatActivity {
         });
 
         createKeybord();
-        createAufgaben(level);
+        createAufgaben();
         chooseAufgabe();
     }
 
-    private void createAufgaben(int level) {
-        if (level == 1) {
+    private void createAufgaben() {
+     //   if (level == 1) {
             for (int i =  0; i <= max; i++) {
                 for (int k =  0; k <= max; k++) {
                     if (i + k <= max && (i < 10 || k < 10)) {
@@ -88,19 +90,19 @@ public class MatheActivity extends AppCompatActivity {
                     }
                 }
             }
-        } else {
-            for (int i =  0; i <= max; i++) {
-                for (int k =  0; k <= max; k++) {
-                    if (i + k <= max ) {
-                        plus.put(i + " + " + k + " = ", new Task (i, k,i+k));
-                    }
-
-                    if (i - k >= 0) {
-                        minus.put(i + " - " + k + " = ", new Task(i, k,i-k));
-                    }
-                }
-            }
-        }
+//        } else {
+//            for (int i =  0; i <= max; i++) {
+//                for (int k =  0; k <= max; k++) {
+//                    if (i + k <= max ) {
+//                        plus.put(i + " + " + k + " = ", new Task (i, k,i+k));
+//                    }
+//
+//                    if (i - k >= 0) {
+//                        minus.put(i + " - " + k + " = ", new Task(i, k,i-k));
+//                    }
+//                }
+//            }
+//        }
     }
 
     private void createKeybord() {

@@ -23,8 +23,7 @@
         <activity android:name=".SuperActivity" />
         <activity android:name=".DeutschActivity" />
         <activity android:name=".BlockMathActivity" />
-
-
+        <activity android:name=".HowMany"></activity>
     </application>
 
 </manifest>
