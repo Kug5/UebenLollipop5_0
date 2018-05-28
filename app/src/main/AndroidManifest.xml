@@ -12,18 +12,19 @@
         android:windowSoftInputMode="stateAlwaysHidden">
         <activity
             android:name=".MenuActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MatheActivity" />
-        <activity android:name=".SuperActivity" />
-        <activity android:name=".DeutschActivity" />
-        <activity android:name=".BlockMathActivity" />
-        <activity android:name=".HowMany"></activity>
+        <activity android:name=".MatheActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".SuperActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".DeutschActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".BlockMathActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".HowMany" android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

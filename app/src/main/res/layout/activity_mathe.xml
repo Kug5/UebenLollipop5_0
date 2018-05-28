@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_green_dark"
-    android:gravity="fill_vertical"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="25dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     tools:context=".MatheActivity">
 
     <ProgressBar
@@ -15,38 +16,39 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="@android:dimen/app_icon_size"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:clickable="false"
         android:minHeight="250dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/aufgabe"
-            android:layout_width="283dp"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:ems="10"
             android:inputType="text"
+            android:paddingLeft="15dp"
             android:textSize="36sp" />
 
         <EditText
             android:id="@+id/ergebnis"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:ems="10"
             android:inputType="number"
             android:textSize="36sp" />
 
         <ImageView
             android:id="@+id/help"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_weight="1"
+            android:paddingRight="15dp"
             app:srcCompat="@android:drawable/ic_menu_help" />
 
 
@@ -56,10 +58,11 @@
 
     <EditText
         android:id="@+id/abakus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:cursorVisible="false"
+        android:gravity="left|center_vertical"
         android:singleLine="false" />
 
 </LinearLayout>

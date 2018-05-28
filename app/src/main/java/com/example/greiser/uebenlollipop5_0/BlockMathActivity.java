@@ -1,17 +1,14 @@
 package com.example.greiser.uebenlollipop5_0;
 
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -307,17 +304,22 @@ public class BlockMathActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
+                    boolean all = true;
                     for (int i = 0; i < 4; i++) {
                         Map<String, Task> whatever = b[i];
                         int counter = 0;
                         for (Task task : whatever.values()) {
-                            checkResult(ergebnisMap[ i * 4 + counter], task);
+                            boolean tmp = checkResult(ergebnisMap[ i * 4 + counter], task);
                             counter++;
+                            if (!tmp) {
+                                all = false;
+                            }
                         }
-
-
                     }
-                    // checkResult();
+                    if (all) {
+                        Intent finish = new Intent(BlockMathActivity.this, SuperActivity.class);
+                        startActivity(finish);
+                    }
                 }
             });
 

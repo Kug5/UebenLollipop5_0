@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/roundedbuttons"
-        android:text="&lt;&lt;"
+        android:text="&lt;"
         android:textSize="36sp" />
 
     <Button
