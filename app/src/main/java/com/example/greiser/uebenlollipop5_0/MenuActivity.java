@@ -43,20 +43,31 @@ public class MenuActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         mTextMessage = (TextView) findViewById(R.id.message);
 
-        final Button level_1 = findViewById(R.id.level_1);
-        level_1.setOnClickListener(new View.OnClickListener() {
+        final Button level_plusMinus = findViewById(R.id.level_plusMinus);
+        level_plusMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent math = new Intent(MenuActivity.this, HowMany.class);
-                startActivity(math);
+            Intent math = new Intent(MenuActivity.this, HowMany.class);
+            math.putExtra("operation", "plusminus");
+            startActivity(math);
             }
         });
 
-        final Button level_2 = findViewById(R.id.level_2);
-        level_2.setOnClickListener(new View.OnClickListener() {
+        final Button level_umkehr = findViewById(R.id.level_umkehr);
+        level_umkehr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent math = new Intent(MenuActivity.this, BlockMathActivity.class);
+            Intent math = new Intent(MenuActivity.this, BlockMathActivity.class);
+            startActivity(math);
+            }
+        });
+
+        final Button level_mult = findViewById(R.id.level_mult);
+        level_mult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent math = new Intent(MenuActivity.this, HowMany.class);
+                math.putExtra("operation", "mult");
                 startActivity(math);
             }
         });

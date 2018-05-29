@@ -51,8 +51,13 @@ public class MatheActivity extends AppCompatActivity {
 
         Intent myIntent = getIntent(); // gets the previously created intent
         int many = myIntent.getIntExtra("many", 0);
+        String operation = myIntent.getStringExtra("operation");
 
-        this.countAufgaben = many;
+        if (operation.equals("plusminus")) {
+            this.countAufgaben = many/2;
+        } else {
+            this.countAufgaben = many;
+        }
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.getProgressDrawable().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
@@ -66,6 +71,7 @@ public class MatheActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         abakus = findViewById(R.id.abakus);
+        abakus.setShowSoftInputOnFocus(false);
         final ImageView help = findViewById(R.id.help);
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,40 +80,42 @@ public class MatheActivity extends AppCompatActivity {
             }
         });
 
-        createKeybord();
-        createAufgaben();
-        chooseAufgabe();
+        createKeybord(operation);
+        createAufgaben(operation);
+        chooseAufgabe(operation);
     }
 
-    private void createAufgaben() {
-     //   if (level == 1) {
-            for (int i =  0; i <= max; i++) {
-                for (int k =  0; k <= max; k++) {
-                    if (i + k <= max && (i < 10 || k < 10)) {
-                        plus.put(i + " + " + k + " = ", new Task (i, k, i+k));
-                    }
+    private void createAufgaben(String operation) {
+        if (operation.equals("plusminus")) {
+            createPlusMinusAufgaben();
+        } else if (operation.equals("mult")) {
+            createMultAufgaben();
+        }
+    }
 
-                    if (i - k >= 0 && (i < 10 || k < 10)) {
-                        minus.put(i + " - " + k + " = ", new Task(i, k, i-k));
-                    }
+    private void createMultAufgaben () {
+        for (int i =  0; i <= 10; i++) {
+            for (int k =  1; k <= 10; k++) {
+                plus.put(i + " * " + k + " = ", new Task(i,k, i*k) );
+            }
+        }
+    }
+
+    private void createPlusMinusAufgaben () {
+        for (int i =  0; i <= max; i++) {
+            for (int k =  0; k <= max; k++) {
+                if (i + k <= max) {
+                    plus.put(i + " + " + k + " = ", new Task (i, k, i+k));
+                }
+
+                if (i - k >= 0) {
+                    minus.put(i + " - " + k + " = ", new Task(i, k, i-k));
                 }
             }
-//        } else {
-//            for (int i =  0; i <= max; i++) {
-//                for (int k =  0; k <= max; k++) {
-//                    if (i + k <= max ) {
-//                        plus.put(i + " + " + k + " = ", new Task (i, k,i+k));
-//                    }
-//
-//                    if (i - k >= 0) {
-//                        minus.put(i + " - " + k + " = ", new Task(i, k,i-k));
-//                    }
-//                }
-//            }
-//        }
+        }
     }
 
-    private void createKeybord() {
+    private void createKeybord(final String operation) {
         final Button button_0 = findViewById(R.id.button_0);
         button_0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,7 +213,7 @@ public class MatheActivity extends AppCompatActivity {
         button_OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               checkResult();
+               checkResult(operation);
             }
         });
     }
@@ -217,29 +225,39 @@ public class MatheActivity extends AppCompatActivity {
     private void setCourser() {
         viewErgebnis.setSelection(viewErgebnis.getText().toString().length());
     }
-    private void chooseAufgabe() {
+    private void chooseAufgabe(String operation) {
 
         abakus.setVisibility(View.INVISIBLE);
+        if (operation.equals("plusminus")) {
+            if (plusCorrect < countAufgaben) {
+                int indexRandom = -1;
+                do {
+                    indexRandom = (int) (Math.random() * plus.size());
+                } while (indexRandom > plus.size() - 1);
 
-        if (plusCorrect < countAufgaben) {
-            int indexRandom = -1;
-            do {
-                indexRandom = (int)(Math.random() * plus.size());
-            } while (indexRandom > plus.size() - 1 );
+                currentAufgabe = plus.keySet().toArray()[indexRandom].toString();
+                currentErgebnis = "" + ((Task) plus.get(currentAufgabe)).sum;
+                createAbakusPlus((Task) plus.get(currentAufgabe));
+                // abakusFive((Task)plus.get(currentAufgabe));
+            } else {
+                int indexRandom = -1;
+                do {
+                    indexRandom = (int) (Math.random() * minus.size());
+                } while (indexRandom > minus.size() - 1);
 
-            currentAufgabe = plus.keySet().toArray()[indexRandom].toString();
-            currentErgebnis = "" + ((Task)plus.get(currentAufgabe)).sum;
-            createAbakusPlus((Task)plus.get(currentAufgabe));
-            // abakusFive((Task)plus.get(currentAufgabe));
+                currentAufgabe = minus.keySet().toArray()[indexRandom].toString();
+                currentErgebnis = "" + ((Task) minus.get(currentAufgabe)).sum;
+                createAbakusMinus((Task) minus.get(currentAufgabe));
+            }
         } else {
             int indexRandom = -1;
             do {
-                indexRandom = (int)(Math.random() * minus.size());
-            } while (indexRandom > minus.size() - 1 );
+                indexRandom = (int) (Math.random() * plus.size());
+            } while (indexRandom > plus.size() - 1);
 
-            currentAufgabe = minus.keySet().toArray()[indexRandom].toString();
-            currentErgebnis = "" + ((Task)minus.get(currentAufgabe)).sum;
-            createAbakusMinus((Task)minus.get(currentAufgabe));
+            currentAufgabe = plus.keySet().toArray()[indexRandom].toString();
+            currentErgebnis = "" + ((Task) plus.get(currentAufgabe)).sum;
+            createAbakusPlus((Task) plus.get(currentAufgabe));
         }
 
         viewCurrentAufgabe.setText(currentAufgabe);
@@ -317,7 +335,7 @@ public class MatheActivity extends AppCompatActivity {
         abakus.setText(Html.fromHtml("<font color='#FF0000'>" + forI + " </font> <font color='#FF0000' >"+ fork+ "</font>"));
     }
 
-    private void checkResult () {
+    private void checkResult (String operation) {
         if (viewErgebnis.getText().toString().equals(currentErgebnis)) {
             if (plusCorrect < countAufgaben) {
                 plusCorrect++;
@@ -327,7 +345,7 @@ public class MatheActivity extends AppCompatActivity {
 
             progressBar.setProgress(plusCorrect + minusCorrect);
             if (plusCorrect < countAufgaben || minusCorrect < countAufgaben) {
-                chooseAufgabe();
+                chooseAufgabe(operation);
             } else {
                 startActivity(new Intent(MatheActivity.this, SuperActivity.class));
             }

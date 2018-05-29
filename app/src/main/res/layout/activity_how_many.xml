@@ -37,19 +37,19 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/b5"
+            android:id="@+id/b6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="5"
+            android:text="6"
             android:textSize="36sp" />
 
         <Button
-            android:id="@+id/b15"
+            android:id="@+id/b16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="15"
+            android:text="16"
             android:textSize="36sp" />
 
         <Button
