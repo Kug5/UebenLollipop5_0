@@ -16,6 +16,7 @@ public class HowMany extends AppCompatActivity {
 
         Intent myIntent = getIntent(); // gets the previously created intent
         final String operation = myIntent.getStringExtra("operation");
+        final int max = myIntent.getIntExtra("max", 0);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -23,63 +24,64 @@ public class HowMany extends AppCompatActivity {
         b6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMatheActivity(6, operation);
+                goToMatheActivity(6, operation, max);
             }
         });
         final Button b10 = findViewById(R.id.b10);
         b10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMatheActivity(10, operation);
+                goToMatheActivity(10, operation, max);
             }
         });
         final Button b16 = findViewById(R.id.b16);
         b16.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMatheActivity(16, operation);
+                goToMatheActivity(16, operation, max);
             }
         });
         final Button b20 = findViewById(R.id.b20);
         b20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMatheActivity(20, operation);
+                goToMatheActivity(20, operation, max);
             }
         });
         final Button b30 = findViewById(R.id.b30);
         b30.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMatheActivity(30, operation);
+                goToMatheActivity(30, operation, max);
             }
         });
         final Button b40 = findViewById(R.id.b40);
         b40.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMatheActivity(40, operation);
+                goToMatheActivity(40, operation, max);
             }
         });
         final Button b50 = findViewById(R.id.b50);
         b50.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMatheActivity(50, operation);
+                goToMatheActivity(50, operation, max);
             }
         });
         final Button b60 = findViewById(R.id.b60);
         b60.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMatheActivity(60, operation);
+                goToMatheActivity(60, operation, max);
             }
         });
     }
 
-    private void goToMatheActivity(int i, String operation) {
+    private void goToMatheActivity(int i, String operation, int max) {
         Intent math = new Intent(HowMany.this, MatheActivity.class);
         math.putExtra("many", i);
+        math.putExtra("max", max);
         math.putExtra("operation", operation);
         startActivity(math);
     }

@@ -43,12 +43,35 @@ public class MenuActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         mTextMessage = (TextView) findViewById(R.id.message);
 
-        final Button level_plusMinus = findViewById(R.id.level_plusMinus);
-        level_plusMinus.setOnClickListener(new View.OnClickListener() {
+        final Button level_plusMinus20 = findViewById(R.id.level_plusMinus20);
+        level_plusMinus20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             Intent math = new Intent(MenuActivity.this, HowMany.class);
             math.putExtra("operation", "plusminus");
+            math.putExtra("max", 20);
+            startActivity(math);
+            }
+        });
+
+        final Button level_plusMinus30 = findViewById(R.id.level_plusMinus30);
+        level_plusMinus30.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Intent math = new Intent(MenuActivity.this, HowMany.class);
+            math.putExtra("operation", "plusminus");
+            math.putExtra("max", 30);
+            startActivity(math);
+            }
+        });
+
+        final Button level_plusMinus100 = findViewById(R.id.level_plusMinus100);
+        level_plusMinus100.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Intent math = new Intent(MenuActivity.this, HowMany.class);
+            math.putExtra("operation", "plusminus");
+            math.putExtra("max", 100);
             startActivity(math);
             }
         });
@@ -68,6 +91,17 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent math = new Intent(MenuActivity.this, HowMany.class);
                 math.putExtra("operation", "mult");
+                math.putExtra("max", 10);
+                startActivity(math);
+            }
+        });
+        final Button level_multBig = findViewById(R.id.level_multBig);
+        level_multBig.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent math = new Intent(MenuActivity.this, MatheActivity.class);
+                math.putExtra("operation", "mult");
+                math.putExtra("max", 20);
                 startActivity(math);
             }
         });

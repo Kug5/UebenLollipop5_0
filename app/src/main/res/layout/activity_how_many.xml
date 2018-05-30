@@ -45,19 +45,19 @@
             android:textSize="36sp" />
 
         <Button
-            android:id="@+id/b16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="16"
-            android:textSize="36sp" />
-
-        <Button
             android:id="@+id/b10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="10"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/b16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="16"
             android:textSize="36sp" />
 
         <Button

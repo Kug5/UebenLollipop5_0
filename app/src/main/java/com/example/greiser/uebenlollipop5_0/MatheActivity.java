@@ -1,7 +1,5 @@
 package com.example.greiser.uebenlollipop5_0;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -12,19 +10,22 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MatheActivity extends AppCompatActivity {
 
     static final String kugel = "&#9679;";
     static final String kugel_minus = "&#9152;";
+    public static final String PLUSMINUS = "plusminus";
+    public static final String MULT = "mult";
 
     Map plus = new HashMap<String, Task>();
     Map minus = new HashMap<String, Task>();
@@ -32,8 +33,9 @@ public class MatheActivity extends AppCompatActivity {
     String currentAufgabe = null;
     String currentErgebnis = null;
 
-    static int max = 20;
+    int max;
     int countAufgaben;
+    String operation;
 
     EditText viewCurrentAufgabe = null;
     EditText viewErgebnis = null;
@@ -43,6 +45,9 @@ public class MatheActivity extends AppCompatActivity {
     int minusCorrect = 0;
     private EditText abakus;
 
+    private List<Integer> usedIndexPlus;
+    private List<Integer> usedIndexMinus;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +56,13 @@ public class MatheActivity extends AppCompatActivity {
 
         Intent myIntent = getIntent(); // gets the previously created intent
         int many = myIntent.getIntExtra("many", 0);
-        String operation = myIntent.getStringExtra("operation");
+        if (many == 0) {
+            many = 10;
+        }
+        this.operation = myIntent.getStringExtra("operation");
+        this.max = myIntent.getIntExtra("max", 0);
 
-        if (operation.equals("plusminus")) {
+        if (operation.equals(PLUSMINUS)) {
             this.countAufgaben = many/2;
         } else {
             this.countAufgaben = many;
@@ -61,7 +70,7 @@ public class MatheActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.getProgressDrawable().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
-        progressBar.setMax(countAufgaben * 2 );
+        progressBar.setMax(many);
         progressBar.setProgress(0);
 
         viewCurrentAufgabe = findViewById(R.id.aufgabe);
@@ -80,28 +89,45 @@ public class MatheActivity extends AppCompatActivity {
             }
         });
 
-        createKeybord(operation);
-        createAufgaben(operation);
-        chooseAufgabe(operation);
+        if (operation.equals(PLUSMINUS) && max == 10) {
+            help.setVisibility(View.VISIBLE);
+        }else {
+            help.setVisibility(View.INVISIBLE);
+        }
+
+        usedIndexPlus = new ArrayList<Integer>();
+
+        createKeybord();
+        createAufgaben();
+        chooseAufgabe();
     }
 
-    private void createAufgaben(String operation) {
-        if (operation.equals("plusminus")) {
+    private void createAufgaben() {
+
+        if (operation.equals(PLUSMINUS)) {
             createPlusMinusAufgaben();
-        } else if (operation.equals("mult")) {
+        } else if (operation.equals(MULT)) {
             createMultAufgaben();
         }
     }
 
     private void createMultAufgaben () {
-        for (int i =  0; i <= 10; i++) {
-            for (int k =  1; k <= 10; k++) {
-                plus.put(i + " * " + k + " = ", new Task(i,k, i*k) );
+
+        if (this.max == 10) {
+            for (int i = 0; i <= 10; i++) {
+                for (int k = 1; k <= 10; k++) {
+                    plus.put(i + " * " + k + " = ", new Task(i, k, i * k));
+                }
+            }
+        } else {
+            for (int i = 10; i <= 20; i++) {
+                plus.put(i + " * " + i + " = ", new Task(i, i, i * i));
             }
         }
     }
 
     private void createPlusMinusAufgaben () {
+
         for (int i =  0; i <= max; i++) {
             for (int k =  0; k <= max; k++) {
                 if (i + k <= max) {
@@ -115,7 +141,7 @@ public class MatheActivity extends AppCompatActivity {
         }
     }
 
-    private void createKeybord(final String operation) {
+    private void createKeybord() {
         final Button button_0 = findViewById(R.id.button_0);
         button_0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,7 +239,7 @@ public class MatheActivity extends AppCompatActivity {
         button_OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               checkResult(operation);
+               checkResult();
             }
         });
     }
@@ -225,25 +251,30 @@ public class MatheActivity extends AppCompatActivity {
     private void setCourser() {
         viewErgebnis.setSelection(viewErgebnis.getText().toString().length());
     }
-    private void chooseAufgabe(String operation) {
+    private void chooseAufgabe() {
 
         abakus.setVisibility(View.INVISIBLE);
-        if (operation.equals("plusminus")) {
+
+        if (operation.equals(PLUSMINUS)) {
             if (plusCorrect < countAufgaben) {
                 int indexRandom = -1;
                 do {
                     indexRandom = (int) (Math.random() * plus.size());
-                } while (indexRandom > plus.size() - 1);
+                } while (indexRandom > plus.size() - 1 || usedIndexPlus.contains(indexRandom));
+
+                usedIndexPlus.add(indexRandom);
 
                 currentAufgabe = plus.keySet().toArray()[indexRandom].toString();
                 currentErgebnis = "" + ((Task) plus.get(currentAufgabe)).sum;
                 createAbakusPlus((Task) plus.get(currentAufgabe));
-                // abakusFive((Task)plus.get(currentAufgabe));
             } else {
+
                 int indexRandom = -1;
                 do {
                     indexRandom = (int) (Math.random() * minus.size());
-                } while (indexRandom > minus.size() - 1);
+                } while (indexRandom > minus.size() - 1 || usedIndexMinus.contains(indexRandom));
+
+                usedIndexMinus.add(indexRandom);
 
                 currentAufgabe = minus.keySet().toArray()[indexRandom].toString();
                 currentErgebnis = "" + ((Task) minus.get(currentAufgabe)).sum;
@@ -253,33 +284,15 @@ public class MatheActivity extends AppCompatActivity {
             int indexRandom = -1;
             do {
                 indexRandom = (int) (Math.random() * plus.size());
-            } while (indexRandom > plus.size() - 1);
+            } while (indexRandom > plus.size() - 1 || usedIndexPlus.contains(indexRandom));
+
+            usedIndexPlus.add(indexRandom);
 
             currentAufgabe = plus.keySet().toArray()[indexRandom].toString();
             currentErgebnis = "" + ((Task) plus.get(currentAufgabe)).sum;
-            createAbakusPlus((Task) plus.get(currentAufgabe));
         }
 
         viewCurrentAufgabe.setText(currentAufgabe);
-    }
-
-    private void abakusFive(Task task) {
-
-        String result = "";
-
-        for(int i=1; i<= task.sum; i++) {
-            if (i <=5 || (i > 10 && i<=15)) {
-                result+="<font color='#FF0000'>" + kugel + "</font>";
-            } else if (i>5 && i<=10 || (i > 15)) {
-                result+="<font color='#0000FF'>" + kugel + "</font>";
-            }
-
-            if (i%10 == 0) {
-                result+="<br/>";
-            }
-        }
-
-        abakus.setText(Html.fromHtml(result));
     }
 
     private void createAbakusPlus(Task task) {
@@ -335,8 +348,11 @@ public class MatheActivity extends AppCompatActivity {
         abakus.setText(Html.fromHtml("<font color='#FF0000'>" + forI + " </font> <font color='#FF0000' >"+ fork+ "</font>"));
     }
 
-    private void checkResult (String operation) {
+    private void checkResult () {
         if (viewErgebnis.getText().toString().equals(currentErgebnis)) {
+
+            // deleteTask();
+
             if (plusCorrect < countAufgaben) {
                 plusCorrect++;
             } else {
@@ -344,8 +360,10 @@ public class MatheActivity extends AppCompatActivity {
             }
 
             progressBar.setProgress(plusCorrect + minusCorrect);
-            if (plusCorrect < countAufgaben || minusCorrect < countAufgaben) {
-                chooseAufgabe(operation);
+            if (operation.equals(PLUSMINUS) && (plusCorrect < countAufgaben || minusCorrect < countAufgaben)) {
+                chooseAufgabe();
+            } else if (operation.equals(MULT) && plusCorrect < countAufgaben) {
+                chooseAufgabe();
             } else {
                 startActivity(new Intent(MatheActivity.this, SuperActivity.class));
             }
