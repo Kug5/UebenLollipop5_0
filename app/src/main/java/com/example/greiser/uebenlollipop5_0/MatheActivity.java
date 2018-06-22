@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -15,10 +16,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public class MatheActivity extends AppCompatActivity {
 
@@ -26,27 +30,26 @@ public class MatheActivity extends AppCompatActivity {
     static final String kugel_minus = "&#9152;";
     public static final String PLUSMINUS = "plusminus";
     public static final String MULT = "mult";
-
-    Map plus = new HashMap<String, Task>();
-    Map minus = new HashMap<String, Task>();
+    public static final String BR = "<br/>";
 
     String currentAufgabe = null;
     String currentErgebnis = null;
 
     int max;
-    int countAufgaben;
+    int many;
     String operation;
 
-    EditText viewCurrentAufgabe = null;
-    EditText viewErgebnis = null;
+    EditText viewCurrentTask = null;
+    EditText viewResult = null;
     ProgressBar progressBar;
 
-    int plusCorrect = 0;
-    int minusCorrect = 0;
+    int counterCorrect = 0;
     private EditText abakus;
 
-    private List<Integer> usedIndexPlus;
-    private List<Integer> usedIndexMinus;
+    private List<Integer> usedIndex;
+    private StorageData storedData;
+    private long startTaskDate;
+    private List<BigTask> taskList;
 
 
     @Override
@@ -62,21 +65,17 @@ public class MatheActivity extends AppCompatActivity {
         this.operation = myIntent.getStringExtra("operation");
         this.max = myIntent.getIntExtra("max", 0);
 
-        if (operation.equals(PLUSMINUS)) {
-            this.countAufgaben = many/2;
-        } else {
-            this.countAufgaben = many;
-        }
+        this.many = many;
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.getProgressDrawable().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
         progressBar.setMax(many);
         progressBar.setProgress(0);
 
-        viewCurrentAufgabe = findViewById(R.id.aufgabe);
-        viewCurrentAufgabe.setKeyListener(null);
-        viewErgebnis = findViewById(R.id.ergebnis);
-        viewErgebnis.setShowSoftInputOnFocus(false);
+        viewCurrentTask = findViewById(R.id.aufgabe);
+        viewCurrentTask.setKeyListener(null);
+        viewResult = findViewById(R.id.ergebnis);
+        viewResult.setShowSoftInputOnFocus(false);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         abakus = findViewById(R.id.abakus);
@@ -89,53 +88,106 @@ public class MatheActivity extends AppCompatActivity {
             }
         });
 
-        if (operation.equals(PLUSMINUS) && max == 10) {
+        if (operation.equals(PLUSMINUS)) {
             help.setVisibility(View.VISIBLE);
         }else {
             help.setVisibility(View.INVISIBLE);
         }
 
-        usedIndexPlus = new ArrayList<Integer>();
+        usedIndex = new ArrayList<Integer>();
 
         createKeybord();
-        createAufgaben();
-        chooseAufgabe();
+
+        File storageFile = getStorageFile(this.operation, this.max);
+        try {
+            storedData = getStoredData(storageFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("Error", e.getMessage());
+            storedData = new StorageData();
+            createTasks();
+        } finally {
+            if (storedData.getCounter()%4 == 0 && storedData.getStep2().size() >= this.many) {
+                taskList = storedData.getStep2();
+            } else if (storedData.getStep1().size() >= this.many){
+                taskList = storedData.getStep1();
+            } else if (storedData.getStep2().size() >= this.many){
+                taskList = storedData.getStep2();
+            } else { // worst case :(
+                taskList.addAll(storedData.getStep1());
+                taskList.addAll(storedData.getStep2());
+            }
+        }
+
+        chooseTask();
     }
 
-    private void createAufgaben() {
+    private StorageData getStoredData(File storage) throws Exception {
+        BufferedReader bufferIn = new BufferedReader(new FileReader(storage));
+        StorageData sd = new StorageData();
+        String line  = bufferIn.readLine();
+        if(line == null) {
+            throw new Exception("empty file");
+        }
+        sd.setDate(Long.parseLong(line));
+        line = bufferIn.readLine();
+        sd.setCounter(Integer.parseInt(line));
+        line = bufferIn.readLine();
+        String[] steps = line.split(":");
+        if (steps.length == 2) {
+            sd.setS1(Integer.parseInt(steps[0]));
+            sd.setS2(Integer.parseInt(steps[1]));
+        }
+        line = bufferIn.readLine();
+        while (line != null) {
+            String [] taskSplit = line.split(",");
+            sd.setTask(taskSplit[0], Integer.parseInt(taskSplit[1]), Integer.parseInt(taskSplit[2]), Integer.parseInt(taskSplit[3]), Boolean.getBoolean(taskSplit[4]));
+            line = bufferIn.readLine();
+        }
+        bufferIn.close();
+
+        return sd;
+    }
+
+    private File getStorageFile(String operation, int max) {
+        ExternalStorage es = new ExternalStorage();
+        return es.getPrivateDocumentsStorageFile(getApplicationContext(), operation,max);
+    }
+
+    private void createTasks() {
 
         if (operation.equals(PLUSMINUS)) {
-            createPlusMinusAufgaben();
+            createPlusMinusTasks();
         } else if (operation.equals(MULT)) {
-            createMultAufgaben();
+            createMultTasks();
         }
     }
 
-    private void createMultAufgaben () {
+    private void createMultTasks() {
 
         if (this.max == 10) {
             for (int i = 0; i <= 10; i++) {
                 for (int k = 1; k <= 10; k++) {
-                    plus.put(i + " * " + k + " = ", new Task(i, k, i * k));
+                    storedData.setTask(i + " * " + k + " = ", i, k, i*k, false);
                 }
             }
         } else {
             for (int i = 10; i <= 20; i++) {
-                plus.put(i + " * " + i + " = ", new Task(i, i, i * i));
+                storedData.setTask(i + " * " + i + " = ", i, i, i*i, false);
             }
         }
     }
 
-    private void createPlusMinusAufgaben () {
+    private void createPlusMinusTasks() {
 
         for (int i =  0; i <= max; i++) {
             for (int k =  0; k <= max; k++) {
                 if (i + k <= max) {
-                    plus.put(i + " + " + k + " = ", new Task (i, k, i+k));
+                    storedData.setTask(i + " + " + k + " = ", i, k, i+k, false);
                 }
 
                 if (i - k >= 0) {
-                    minus.put(i + " - " + k + " = ", new Task(i, k, i-k));
+                    storedData.setTask(i + " - " + k + " = ", i, k, i-k, false);
                 }
             }
         }
@@ -226,9 +278,9 @@ public class MatheActivity extends AppCompatActivity {
         button_BACK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tmp = viewErgebnis.getText().toString();
+                String tmp = viewResult.getText().toString();
                 if (tmp.length() != 0) {
-                    viewErgebnis.setText(tmp.subSequence(0, tmp.length() - 1));
+                    viewResult.setText(tmp.subSequence(0, tmp.length() - 1));
                     setCourser();
 
                 }
@@ -245,102 +297,83 @@ public class MatheActivity extends AppCompatActivity {
     }
 
     private void addNumber(int number) {
-        viewErgebnis.setText(viewErgebnis.getText().toString()+ number);
+        viewResult.setText(new StringBuilder().append(viewResult.getText().toString()).append(number).toString());
         setCourser();
     }
     private void setCourser() {
-        viewErgebnis.setSelection(viewErgebnis.getText().toString().length());
+        viewResult.setSelection(viewResult.getText().toString().length());
     }
-    private void chooseAufgabe() {
+    private void chooseTask() {
 
         abakus.setVisibility(View.INVISIBLE);
 
-        if (operation.equals(PLUSMINUS)) {
-            if (plusCorrect < countAufgaben) {
-                int indexRandom = -1;
-                do {
-                    indexRandom = (int) (Math.random() * plus.size());
-                } while (indexRandom > plus.size() - 1 || usedIndexPlus.contains(indexRandom));
+        int indexRandom;
+        do {
+            indexRandom = (int) (Math.random() * taskList.size());
+        } while (indexRandom > taskList.size() - 1 || usedIndex.contains(indexRandom));
 
-                usedIndexPlus.add(indexRandom);
+        usedIndex.add(indexRandom);
 
-                currentAufgabe = plus.keySet().toArray()[indexRandom].toString();
-                currentErgebnis = "" + ((Task) plus.get(currentAufgabe)).sum;
-                createAbakusPlus((Task) plus.get(currentAufgabe));
-            } else {
+        currentAufgabe = taskList.get(indexRandom).displayTask;
+        currentErgebnis = "" + taskList.get(indexRandom).result;
 
-                int indexRandom = -1;
-                do {
-                    indexRandom = (int) (Math.random() * minus.size());
-                } while (indexRandom > minus.size() - 1 || usedIndexMinus.contains(indexRandom));
-
-                usedIndexMinus.add(indexRandom);
-
-                currentAufgabe = minus.keySet().toArray()[indexRandom].toString();
-                currentErgebnis = "" + ((Task) minus.get(currentAufgabe)).sum;
-                createAbakusMinus((Task) minus.get(currentAufgabe));
-            }
-        } else {
-            int indexRandom = -1;
-            do {
-                indexRandom = (int) (Math.random() * plus.size());
-            } while (indexRandom > plus.size() - 1 || usedIndexPlus.contains(indexRandom));
-
-            usedIndexPlus.add(indexRandom);
-
-            currentAufgabe = plus.keySet().toArray()[indexRandom].toString();
-            currentErgebnis = "" + ((Task) plus.get(currentAufgabe)).sum;
+        if (operation.equals(PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" + ")) {
+            createAbakusPlus(taskList.get(indexRandom));
+        } else if (operation.equals(PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" - ")) {
+            createAbakusMinus(taskList.get(indexRandom));
         }
 
-        viewCurrentAufgabe.setText(currentAufgabe);
+        startTaskDate = new Date().getTime();
+        viewCurrentTask.setText(currentAufgabe);
     }
 
-    private void createAbakusPlus(Task task) {
+    private void createAbakusPlus(BigTask task) {
 
-        String forI = "";
-        String fork = "";
+        StringBuilder forI = new StringBuilder();
+        StringBuilder fork = new StringBuilder();
 
-        for (int i = 0; i< task.summand1; i++) {
-            forI+=kugel;
-            if (i == 9) {
-                forI+="<br/>";
+        int countKugelI = 0;
+        int countKugelK = 0;
+
+        for (int i = 0; i< task.i; i++) {
+            forI.append(kugel);
+            countKugelI++;
+            if (countKugelI % 10 == 0) {
+                forI.append(BR);
             }
         }
-        int lineDiff = task.summand1 - 10;
-        if (lineDiff > 0) {
-            lineDiff-= 10;
-        }
 
-        for (int k = 0; k< task.summand2; k++) {
-            fork+=kugel;
-            if ( Math.abs(lineDiff) == k + 1) {
-                fork+="<br/>";
+        for (int k = 0; k< task.j; k++) {
+            fork.append(kugel);
+            countKugelK++;
+            if ( (countKugelI + countKugelK) % 10 == 0 ) {
+                fork.append(BR);
             }
         }
 
         abakus.setText(Html.fromHtml("<font color='#FF0000'>" + forI + " </font> <font color='#0000FF' >"+ fork+ "</font>"));
     }
 
-    private void createAbakusMinus (Task task) {
-        String forI = "";
-        String fork = "";
+    private void createAbakusMinus (BigTask task) {
+        StringBuilder forI = new StringBuilder();
+        StringBuilder fork = new StringBuilder();
 
-        for (int i = 0; i< task.sum; i++) {
-            forI+=kugel;
-            if (i == 9) {
-                forI+="<br/>";
+        int countKugelI = 0;
+        int countKugelK = 0;
+
+        for (int i = 0; i< task.result; i++) {
+            forI.append(kugel);
+            countKugelI++;
+            if (countKugelI % 10 == 0) {
+                forI.append(BR);
             }
         }
 
-        int lineDiff = task.sum - 10;
-        if (lineDiff > 0) {
-            lineDiff-= 10;
-        }
-
-        for (int k = 0; k< task.summand2; k++) {
-            fork+=kugel_minus;
-            if ( Math.abs(lineDiff) == k + 1) {
-                fork+="<br/>";
+        for (int k = 0; k< task.j; k++) {
+            fork.append(kugel_minus);
+            countKugelK++;
+            if ( (countKugelI + countKugelK) % 10 == 0 ) {
+                fork.append(BR);
             }
 
         }
@@ -349,35 +382,47 @@ public class MatheActivity extends AppCompatActivity {
     }
 
     private void checkResult () {
-        if (viewErgebnis.getText().toString().equals(currentErgebnis)) {
 
-            // deleteTask();
+        int tmpIndex = usedIndex.get(usedIndex.size() - 1 );
 
-            if (plusCorrect < countAufgaben) {
-                plusCorrect++;
-            } else {
-                minusCorrect++;
+        if (viewResult.getText().toString().equals(currentErgebnis)) {
+
+            long duration = new Date().getTime() - startTaskDate;
+            counterCorrect++;
+
+            if (readyForStep2(duration)) {
+                storedData.moveToStep2(tmpIndex, currentAufgabe);
             }
 
-            progressBar.setProgress(plusCorrect + minusCorrect);
-            if (operation.equals(PLUSMINUS) && (plusCorrect < countAufgaben || minusCorrect < countAufgaben)) {
-                chooseAufgabe();
-            } else if (operation.equals(MULT) && plusCorrect < countAufgaben) {
-                chooseAufgabe();
+            progressBar.setProgress(counterCorrect);
+            if (counterCorrect < many) {
+                chooseTask();
             } else {
-                startActivity(new Intent(MatheActivity.this, SuperActivity.class));
+                ExternalStorage es = new ExternalStorage();
+                try {
+                    es.store(getApplicationContext(), storedData, operation, max);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    startActivity(new Intent(MatheActivity.this, SuperActivity.class));
+                }
             }
         } else {
-            final Drawable background = viewErgebnis.getBackground();
-            viewErgebnis.setBackgroundColor(Color.RED);
+            storedData.backToStep1(tmpIndex, currentAufgabe);
+            final Drawable background = viewResult.getBackground();
+            viewResult.setBackgroundColor(Color.RED);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    viewErgebnis.setBackground(background);
+                    viewResult.setBackground(background);
                 }
             }, 500);
         }
-        viewErgebnis.setText("");
+        viewResult.setText("");
+    }
+
+    private boolean readyForStep2(long duration) {
+         return duration < 5000;
     }
 }

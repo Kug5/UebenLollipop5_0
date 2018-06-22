@@ -87,7 +87,6 @@ public class BlockMathActivity extends AppCompatActivity {
         for (int i=0; i<ergebnisMap.length; i++) {
             ergebnisMap[i].setShowSoftInputOnFocus(false);
         }
-
     }
 
     private void createTasks() {
@@ -196,7 +195,7 @@ public class BlockMathActivity extends AppCompatActivity {
             return false;
         }
 
-        if (editText.getText().toString().equals("" + task.sum)) {
+        if (editText.getText().toString().equals("" + task.result)) {
             editText.setBackgroundColor(right);
             return true;
         } else {
