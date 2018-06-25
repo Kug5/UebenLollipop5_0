@@ -46,13 +46,13 @@ public class NameActivity extends AppCompatActivity {
                     partForButtons.addView(buttonName);
                 }
             } else {
-                findViewById(R.id.werIstDa).setVisibility(View.INVISIBLE);
-                partForButtons.setVisibility(View.INVISIBLE);
+                findViewById(R.id.werIstDa).setVisibility(View.GONE);
+                partForButtons.setVisibility(View.GONE);
             }
 
         } catch (Exception e) {
-            findViewById(R.id.werIstDa).setVisibility(View.INVISIBLE);
-            partForButtons.setVisibility(View.INVISIBLE);
+            findViewById(R.id.werIstDa).setVisibility(View.GONE);
+            partForButtons.setVisibility(View.GONE);
         }
 
         final EditText inputName = findViewById(R.id.inputName);
