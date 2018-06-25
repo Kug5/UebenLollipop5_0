@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +38,7 @@ public class MatheActivity extends AppCompatActivity {
     int max;
     int many;
     String operation;
+    String name;
 
     EditText viewCurrentTask = null;
     EditText viewResult = null;
@@ -64,6 +65,8 @@ public class MatheActivity extends AppCompatActivity {
         }
         this.operation = myIntent.getStringExtra("operation");
         this.max = myIntent.getIntExtra("max", 0);
+
+        this.name = myIntent.getStringExtra("name");
 
         this.many = many;
 
@@ -133,15 +136,9 @@ public class MatheActivity extends AppCompatActivity {
         line = bufferIn.readLine();
         sd.setCounter(Integer.parseInt(line));
         line = bufferIn.readLine();
-        String[] steps = line.split(":");
-        if (steps.length == 2) {
-            sd.setS1(Integer.parseInt(steps[0]));
-            sd.setS2(Integer.parseInt(steps[1]));
-        }
-        line = bufferIn.readLine();
         while (line != null) {
             String [] taskSplit = line.split(",");
-            sd.setTask(taskSplit[0], Integer.parseInt(taskSplit[1]), Integer.parseInt(taskSplit[2]), Integer.parseInt(taskSplit[3]), Boolean.getBoolean(taskSplit[4]));
+            sd.setTask(taskSplit[0], Integer.parseInt(taskSplit[1]), Integer.parseInt(taskSplit[2]), Integer.parseInt(taskSplit[3]), Boolean.parseBoolean(taskSplit[4]));
             line = bufferIn.readLine();
         }
         bufferIn.close();
@@ -151,7 +148,7 @@ public class MatheActivity extends AppCompatActivity {
 
     private File getStorageFile(String operation, int max) {
         ExternalStorage es = new ExternalStorage();
-        return es.getPrivateDocumentsStorageFile(getApplicationContext(), operation,max);
+        return es.getPrivateDocumentsStorageFile(getApplicationContext(), operation,max, name);
     }
 
     private void createTasks() {
@@ -323,8 +320,8 @@ public class MatheActivity extends AppCompatActivity {
             createAbakusMinus(taskList.get(indexRandom));
         }
 
-        startTaskDate = new Date().getTime();
         viewCurrentTask.setText(currentAufgabe);
+        startTaskDate = new Date().getTime();
     }
 
     private void createAbakusPlus(BigTask task) {
@@ -390,8 +387,9 @@ public class MatheActivity extends AppCompatActivity {
             long duration = new Date().getTime() - startTaskDate;
             counterCorrect++;
 
+            // Wenn die Frage erst falsch beantwortet wurde, gehe ich davon aus, dass die duration zu groß ist, andern Falls hat der User Glück gehabt und die Antwort wird in Step 2 verschoben :)
             if (readyForStep2(duration)) {
-                storedData.moveToStep2(tmpIndex, currentAufgabe);
+                taskList.get(tmpIndex).ready = true;
             }
 
             progressBar.setProgress(counterCorrect);
@@ -400,7 +398,7 @@ public class MatheActivity extends AppCompatActivity {
             } else {
                 ExternalStorage es = new ExternalStorage();
                 try {
-                    es.store(getApplicationContext(), storedData, operation, max);
+                    es.store(getApplicationContext(), storedData, operation, max, name);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
@@ -408,7 +406,7 @@ public class MatheActivity extends AppCompatActivity {
                 }
             }
         } else {
-            storedData.backToStep1(tmpIndex, currentAufgabe);
+            taskList.get(tmpIndex).ready = false;
             final Drawable background = viewResult.getBackground();
             viewResult.setBackgroundColor(Color.RED);
             Handler handler = new Handler();
