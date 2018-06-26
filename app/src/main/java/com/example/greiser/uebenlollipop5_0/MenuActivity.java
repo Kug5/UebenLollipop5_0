@@ -16,18 +16,13 @@ public class MenuActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        Intent myIntent = getIntent(); // gets the previously created intent
-        final String name = myIntent.getStringExtra("name");
-
         final Button level_plusMinus20 = findViewById(R.id.level_plusMinus20);
         level_plusMinus20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent math = new Intent(MenuActivity.this, HowMany.class);
-            math.putExtra("operation", "plusminus");
-            math.putExtra("max", 20);
-            math.putExtra("name", name);
-            startActivity(math);
+            setOperationPlusMinus();
+            setMax(20);
+            startActivity(new Intent(MenuActivity.this, HowMany.class));
             }
         });
 
@@ -35,11 +30,9 @@ public class MenuActivity extends AppCompatActivity {
         level_plusMinus30.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent math = new Intent(MenuActivity.this, HowMany.class);
-            math.putExtra("operation", "plusminus");
-            math.putExtra("max", 30);
-            math.putExtra("name", name);
-            startActivity(math);
+            setOperationPlusMinus();
+            setMax(30);
+            startActivity(new Intent(MenuActivity.this, HowMany.class));
             }
         });
 
@@ -47,11 +40,9 @@ public class MenuActivity extends AppCompatActivity {
         level_plusMinus100.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent math = new Intent(MenuActivity.this, HowMany.class);
-            math.putExtra("operation", "plusminus");
-            math.putExtra("max", 100);
-            math.putExtra("name", name);
-            startActivity(math);
+            setOperationPlusMinus();
+            setMax(100);
+            startActivity(new Intent(MenuActivity.this, HowMany.class));
             }
         });
 
@@ -59,8 +50,7 @@ public class MenuActivity extends AppCompatActivity {
         level_umkehr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent math = new Intent(MenuActivity.this, BlockMathActivity.class);
-            startActivity(math);
+            startActivity( new Intent(MenuActivity.this, BlockMathActivity.class));
             }
         });
 
@@ -68,22 +58,18 @@ public class MenuActivity extends AppCompatActivity {
         level_mult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent math = new Intent(MenuActivity.this, HowMany.class);
-                math.putExtra("operation", "mult");
-                math.putExtra("max", 10);
-                math.putExtra("name", name);
-                startActivity(math);
+            setOperationMult();
+            setMax(10);
+            startActivity(new Intent(MenuActivity.this, HowMany.class));
             }
         });
         final Button level_multBig = findViewById(R.id.level_multBig);
         level_multBig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent math = new Intent(MenuActivity.this, MatheActivity.class);
-                math.putExtra("operation", "mult");
-                math.putExtra("max", 20);
-                math.putExtra("name", name);
-                startActivity(math);
+            setOperationMult();
+            setMax(20);
+            startActivity(new Intent(MenuActivity.this, MatheActivity.class));
             }
         });
 
@@ -91,9 +77,20 @@ public class MenuActivity extends AppCompatActivity {
         buttonDeutsch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, DeutschActivity.class));
+            startActivity(new Intent(MenuActivity.this, DeutschActivity.class));
             }
         });
+    }
+
+    private void setOperationPlusMinus() {
+        ((Ueben)getApplication()).setOperation(Ueben.OPEARATION_PLUSMINUS);
+    }
+    private void setOperationMult() {
+        ((Ueben)getApplication()).setOperation(Ueben.OPEARATION_MULT);
+    }
+
+    private void setMax (int max) {
+        ((Ueben)getApplication()).setMax(max);
     }
 
 }

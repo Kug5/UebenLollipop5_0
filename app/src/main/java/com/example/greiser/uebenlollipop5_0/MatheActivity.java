@@ -28,8 +28,6 @@ public class MatheActivity extends AppCompatActivity {
 
     static final String kugel = "&#9679;";
     static final String kugel_minus = "&#9152;";
-    public static final String PLUSMINUS = "plusminus";
-    public static final String MULT = "mult";
     public static final String BR = "<br/>";
 
     String currentAufgabe = null;
@@ -58,16 +56,14 @@ public class MatheActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mathe);
 
-        Intent myIntent = getIntent(); // gets the previously created intent
-        int many = myIntent.getIntExtra("many", 0);
+        this.name =  ((Ueben) getApplication()).getUsername();
+        this.operation = ((Ueben) getApplication()).getOperation();
+        this.max = ((Ueben) getApplication()).getMax();
+
+        int many = ((Ueben) getApplication()).getMany();
         if (many == 0) {
             many = 10;
         }
-        this.operation = myIntent.getStringExtra("operation");
-        this.max = myIntent.getIntExtra("max", 0);
-
-        this.name = myIntent.getStringExtra("name");
-
         this.many = many;
 
         progressBar = findViewById(R.id.progressBar);
@@ -91,7 +87,7 @@ public class MatheActivity extends AppCompatActivity {
             }
         });
 
-        if (operation.equals(PLUSMINUS)) {
+        if (operation.equals(Ueben.OPEARATION_PLUSMINUS)) {
             help.setVisibility(View.VISIBLE);
         }else {
             help.setVisibility(View.INVISIBLE);
@@ -153,9 +149,9 @@ public class MatheActivity extends AppCompatActivity {
 
     private void createTasks() {
 
-        if (operation.equals(PLUSMINUS)) {
+        if (operation.equals(Ueben.OPEARATION_PLUSMINUS)) {
             createPlusMinusTasks();
-        } else if (operation.equals(MULT)) {
+        } else if (operation.equals(Ueben.OPEARATION_MULT)) {
             createMultTasks();
         }
     }
@@ -314,9 +310,9 @@ public class MatheActivity extends AppCompatActivity {
         currentAufgabe = taskList.get(indexRandom).displayTask;
         currentErgebnis = "" + taskList.get(indexRandom).result;
 
-        if (operation.equals(PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" + ")) {
+        if (operation.equals(Ueben.OPEARATION_PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" + ")) {
             createAbakusPlus(taskList.get(indexRandom));
-        } else if (operation.equals(PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" - ")) {
+        } else if (operation.equals(Ueben.OPEARATION_PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" - ")) {
             createAbakusMinus(taskList.get(indexRandom));
         }
 

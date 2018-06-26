@@ -96,10 +96,13 @@ public class NameActivity extends AppCompatActivity {
         buttonName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent menu = new Intent(NameActivity.this, MenuActivity.class);
-            menu.putExtra("name", name);
-            startActivity(menu);
+
+                ((Ueben) getApplication()).setUsername(name);
+
+                Intent menu = new Intent(NameActivity.this, MenuActivity.class);
+                startActivity(menu);
             }
+
         });
         return buttonName;
     }
@@ -120,4 +123,5 @@ public class NameActivity extends AppCompatActivity {
         return line.split(",");
 
     }
+
 }
