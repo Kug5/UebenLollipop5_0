@@ -102,4 +102,13 @@ public class ExternalStorage {
     private String getFileNameListOfNames() {
         return "listOfNames.txt";
     }
+
+    public File getFileSettings(String name, Context context) {
+       return new File(context.getExternalFilesDir(
+                Environment.DIRECTORY_DOCUMENTS), getFileNameSettings(name));
+    }
+
+    private String getFileNameSettings(String name) {
+        return "settings_"+name+".txt";
+    }
 }

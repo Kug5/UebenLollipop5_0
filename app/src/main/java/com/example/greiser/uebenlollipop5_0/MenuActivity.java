@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -80,6 +81,15 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(new Intent(MenuActivity.this, DeutschActivity.class));
             }
         });
+
+        final ImageButton settings = findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuActivity.this, SettingsActivity.class));
+            }
+        });
+
     }
 
     private void setOperationPlusMinus() {

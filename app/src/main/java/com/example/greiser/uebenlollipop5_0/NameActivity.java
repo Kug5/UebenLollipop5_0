@@ -24,6 +24,7 @@ public class NameActivity extends AppCompatActivity {
 
     public static final int padding = 10;
     String[] _names;
+    private ExternalStorage es;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class NameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_name);
 
         final LinearLayout partForButtons = findViewById(R.id.partForButtons);
-        final ExternalStorage es = new ExternalStorage();
+        this.es = new ExternalStorage();
         File file = es.getFileListOfNames(getApplicationContext());
 
         try {
@@ -58,15 +59,13 @@ public class NameActivity extends AppCompatActivity {
         final EditText inputName = findViewById(R.id.inputName);
         inputName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
                     partForButtons.addView(createButton(inputName.getText().toString()));
                     partForButtons.setVisibility(View.VISIBLE);
                     try {
                         es.storeNames(getApplicationContext(), _names, inputName.getText().toString());
                     } catch (IOException e) {
                         e.printStackTrace();
-                    } finally {
-                        startActivity(new Intent(NameActivity.this, MenuActivity.class));
                     }
                     inputName.setText("");
                 }
@@ -74,10 +73,6 @@ public class NameActivity extends AppCompatActivity {
             }
         });
 
-
-    }
-
-    private void storeNames(String s) {
 
     }
 
@@ -96,21 +91,38 @@ public class NameActivity extends AppCompatActivity {
         buttonName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ((Ueben) getApplication()).setUsername(name);
-
-                Intent menu = new Intent(NameActivity.this, MenuActivity.class);
-                startActivity(menu);
+            ((Ueben) getApplication()).setUsername(name);
+                ((Ueben)getApplication()).setUsersettings(loadUserSettings(name));
+            Intent menu = new Intent(NameActivity.this, MenuActivity.class);
+            startActivity(menu);
             }
 
         });
         return buttonName;
     }
 
+    private UserSetting loadUserSettings(String name) {
+        File file = es.getFileSettings(name, getApplicationContext());
+        UserSetting settings;
+        try {
+            settings = getSettings(file);
+        } catch (Exception e) {
+            settings = new UserSetting();
+            e.printStackTrace();
+        }
+
+        return settings;
+    }
+
+    private UserSetting getSettings(File file) throws Exception {
+
+        BufferedReader bufferIn = new BufferedReader(new FileReader(file));
+
+        return new UserSetting();
+    }
+
     private String[] getNames(File file) throws Exception {
 
-//        String [] returnValue = {"Sabine", "Henri"};
-//        return returnValue;
         BufferedReader bufferIn = new BufferedReader(new FileReader(file));
         List<String> names = new ArrayList<String>();
 

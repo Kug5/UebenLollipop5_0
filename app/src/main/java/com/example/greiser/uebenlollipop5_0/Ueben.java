@@ -11,6 +11,7 @@ public class Ueben extends Application {
     private String operation;
     private int max;
     private int many;
+    private UserSetting usersettings;
 
     public String getUsername() {
         return username;
@@ -42,5 +43,13 @@ public class Ueben extends Application {
 
     public void setMax(int max) {
         this.max = max;
+    }
+
+    public void setUsersettings(UserSetting usersettings) {
+        this.usersettings = usersettings;
+    }
+
+    public UserSetting getUsersettings() {
+        return usersettings;
     }
 }
