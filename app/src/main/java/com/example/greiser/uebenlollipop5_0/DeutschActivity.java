@@ -2,9 +2,9 @@ package com.example.greiser.uebenlollipop5_0;
 
 import android.content.Intent;
 import android.media.AudioManager;
+import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -106,6 +106,26 @@ public class DeutschActivity extends AppCompatActivity {
         questions.add(new Question("Alle Autos sind lila", new Answer(tmp, 1)));
         questions.add(new Question("Wale schwimmen im Meer", new Answer(tmp, 0)));
         questions.add(new Question("Baden kann ich nur im See", new Answer(tmp, 1)));
+        questions.add(new Question("Die Sonne ust gelb", new Answer(tmp, 0)));
+        questions.add(new Question("Die Vögel pfeifen ein Lied", new Answer(tmp, 0)));
+        questions.add(new Question("Die Wolken sind rosa", new Answer(tmp, 1)));
+        questions.add(new Question("Der Tiger ist gefährlich", new Answer(tmp, 0)));
+        questions.add(new Question("Das Eichhörnchen lebt im Wasser", new Answer(tmp, 1)));
+        questions.add(new Question("Die Bienen summen in der Luft", new Answer(tmp, 0)));
+        questions.add(new Question("Kinder sind groß", new Answer(tmp, 1)));
+        questions.add(new Question("Erdbeereis schmeckt salzig", new Answer(tmp, 1)));
+        questions.add(new Question("Das Auto parkt in der Garage", new Answer(tmp, 0)));
+        questions.add(new Question("Der Lehrer kann nicht lesen", new Answer(tmp, 1)));
+        questions.add(new Question("Das Auto kann fliegen", new Answer(tmp, 1)));
+        questions.add(new Question("Gemüse ist ungesund", new Answer(tmp, 1)));
+        questions.add(new Question("Sport ist gefährlich", new Answer(tmp, 1)));
+        questions.add(new Question("Pferde können wiehern", new Answer(tmp, 0)));
+        questions.add(new Question("Katzen können sprechen", new Answer(tmp, 1)));
+        questions.add(new Question("Ein Viereck ist rund", new Answer(tmp, 1)));
+        questions.add(new Question("Am Sonntag haben die Geschäfte geschlossen", new Answer(tmp, 0)));
+        questions.add(new Question("Eine Woche hat 7 Tage", new Answer(tmp, 0)));
+        questions.add(new Question("Zähne putzen ist wichtig", new Answer(tmp, 0)));
+        questions.add(new Question("Im Sommer gehen wir ins Freibad (Schwimmbad)", new Answer(tmp, 0)));
     }
 
     private class Answer {
