@@ -90,7 +90,7 @@ public class MatheActivity extends AppCompatActivity {
             }
         });
 
-        if (operation.equals(Ueben.OPEARATION_PLUSMINUS)) {
+        if (operation.equals(Ueben.OPERATION_PLUSMINUS)) {
             help.setVisibility(View.VISIBLE);
         }else {
             help.setVisibility(View.INVISIBLE);
@@ -116,38 +116,38 @@ public class MatheActivity extends AppCompatActivity {
                 if (counter != 3 && counter != 6 && counter != 8) {
                     taskList = storedData.getStep1();
                     if (taskList.size() < this.many) {
-                        taskList.addAll(storedData.getStep2());
+                        taskList.addAll(getXFromBox2(many - taskList.size()));
                     }
                     if (taskList.size() < this.many) {
-                        taskList.addAll(storedData.getStep3());
+                        taskList.addAll(getXFromBox3(many - taskList.size()));
                     }
                 } else if (counter == 8) {
                     taskList = storedData.getStep3();
                     if (taskList.size() < this.many) {
-                        taskList.addAll(storedData.getStep2());
+                        taskList.addAll(getXFromBox2(many - taskList.size()));
                     }
                     if (taskList.size() < this.many) {
-                        taskList.addAll(storedData.getStep1());
+                        taskList.addAll(getXFromBox1(many - taskList.size()));
                     }
                 } else {
                     taskList = storedData.getStep2();
                     if (taskList.size() < this.many) {
-                        taskList.addAll(storedData.getStep3());
+                        taskList.addAll(getXFromBox3(many - taskList.size()));
                     }
                     if (taskList.size() < this.many) {
-                        taskList.addAll(storedData.getStep1());
+                        taskList.addAll(getXFromBox1(many - taskList.size()));
                     }
                 }
             } else if (application.getUsersettings().getCountBoxes() == 2) {
                 if (counter == 3 || counter == 7 || counter == 8) {
                     taskList = storedData.getStep2();
                     if (taskList.size() < this.many) {
-                        taskList.addAll(storedData.getStep1());
+                        taskList.addAll(getXFromBox1(many - taskList.size()));
                     }
                 } else {
                     taskList = storedData.getStep1();
                     if (taskList.size() < this.many) {
-                        taskList.addAll(storedData.getStep2());
+                        taskList.addAll(getXFromBox2(many - taskList.size()));
                     }
                 }
             } else {
@@ -155,25 +155,86 @@ public class MatheActivity extends AppCompatActivity {
                 taskList.addAll(storedData.getStep2());
                 taskList.addAll(storedData.getStep3());
             }
-
-
-
-
-//            // old
-//            if (storedData.getCounter()%4 == 0 && storedData.getStep2().size() >= this.many) {
-//                taskList = storedData.getStep2();
-//            } else if (storedData.getStep1().size() >= this.many){
-//                taskList = storedData.getStep1();
-//            } else if (storedData.getStep2().size() >= this.many){
-//                taskList = storedData.getStep2();
-//            } else { // worst case :(
-//                taskList.addAll(storedData.getStep1());
-//                taskList.addAll(storedData.getStep2());
-//                taskList.addAll(storedData.getStep3());
-//            }
         }
 
         chooseTask();
+    }
+
+    private List<BigTask> getXFromBox2(int count) {
+
+        ArrayList<BigTask> returnValue = new ArrayList<>();
+
+        if (count <= 0 || storedData.getStep2() == null || storedData.getStep2().size() == 0) {
+            return returnValue;
+        }
+
+        if (storedData.getStep2().size() <= count) {
+            returnValue.addAll(storedData.getStep2());
+            return returnValue;
+        }
+
+        int indexRandom;
+        List<Integer> tmpIndexes = new ArrayList<>();
+        do {
+            indexRandom = (int) (Math.random() * storedData.getStep2().size());
+            if (!tmpIndexes.contains(indexRandom)) {
+                returnValue.add(storedData.getStep2().get(indexRandom));
+                tmpIndexes.add(indexRandom);
+            }
+        } while (returnValue.size() < count);
+
+        return returnValue;
+
+    }
+
+    private List<BigTask> getXFromBox3(int count) {
+        ArrayList<BigTask> returnValue = new ArrayList<>();
+
+        if (count <= 0 || storedData.getStep3() == null || storedData.getStep3().size() == 0) {
+            return returnValue;
+        }
+
+        if (storedData.getStep3().size() <= count) {
+            returnValue.addAll(storedData.getStep3());
+            return returnValue;
+        }
+
+        int indexRandom;
+        List<Integer> tmpIndexes = new ArrayList<>();
+        do {
+            indexRandom = (int) (Math.random() * storedData.getStep3().size());
+            if (!tmpIndexes.contains(indexRandom)) {
+                returnValue.add(storedData.getStep3().get(indexRandom));
+                tmpIndexes.add(indexRandom);
+            }
+        } while (returnValue.size() < count);
+
+        return returnValue;
+    }
+
+    private List<BigTask> getXFromBox1(int count) {
+        ArrayList<BigTask> returnValue = new ArrayList<>();
+
+        if (count <= 0 || storedData.getStep1() == null || storedData.getStep1().size() == 0) {
+            return returnValue;
+        }
+
+        if (storedData.getStep1().size() <= count) {
+            returnValue.addAll(storedData.getStep1());
+            return returnValue;
+        }
+
+        int indexRandom;
+        List<Integer> tmpIndexes = new ArrayList<>();
+        do {
+            indexRandom = (int) (Math.random() * storedData.getStep1().size());
+            if (!tmpIndexes.contains(indexRandom)) {
+                returnValue.add(storedData.getStep1().get(indexRandom));
+                tmpIndexes.add(indexRandom);
+            }
+        } while (returnValue.size() < count);
+
+        return returnValue;
     }
 
     private StorageData getStoredData(File storage) throws Exception {
@@ -204,10 +265,24 @@ public class MatheActivity extends AppCompatActivity {
 
     private void createTasks() {
 
-        if (operation.equals(Ueben.OPEARATION_PLUSMINUS)) {
+        if (operation.equals(Ueben.OPERATION_PLUSMINUS)) {
             createPlusMinusTasks();
-        } else if (operation.equals(Ueben.OPEARATION_MULT)) {
+        } else if (operation.equals(Ueben.OPERATION_MULT)) {
             createMultTasks();
+        } else if (operation.equals(Ueben.OPERATION_DIVIDE)) {
+            createDivideTasks();
+        }
+    }
+
+    private void createDivideTasks() {
+        if (this.max == 100) {
+            for (int i = 100; i >= 0; i--) {
+                for (int k = 10; k > 0; k--) {
+                    if (i%k == 0 && (i/k) <= 10) {
+                        storedData.setTask(i + " : " + k + " = ", i, k, (i/k) , 1);
+                    }
+                }
+            }
         }
     }
 
@@ -365,9 +440,9 @@ public class MatheActivity extends AppCompatActivity {
         currentAufgabe = taskList.get(indexRandom).displayTask;
         currentErgebnis = "" + taskList.get(indexRandom).result;
 
-        if (operation.equals(Ueben.OPEARATION_PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" + ")) {
+        if (operation.equals(Ueben.OPERATION_PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" + ")) {
             createAbakusPlus(taskList.get(indexRandom));
-        } else if (operation.equals(Ueben.OPEARATION_PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" - ")) {
+        } else if (operation.equals(Ueben.OPERATION_PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" - ")) {
             createAbakusMinus(taskList.get(indexRandom));
         }
 
@@ -439,7 +514,7 @@ public class MatheActivity extends AppCompatActivity {
             counterCorrect++;
 
             // Wenn die Frage erst falsch beantwortet wurde, gehe ich davon aus, dass die duration zu groß ist,
-            // andern Falls hat der User Glück gehabt und die Antwort wird in die nächste Box verschoben :)
+            // andern Falls hat der User Glück gehabt und die Antwort wird in die Box 2 verschoben :)
             if (readyForNextStep(duration)) {
                 int maxBoxes = application.getUsersettings().getCountBoxes();
                 if (taskList.get(tmpIndex).box < maxBoxes) {

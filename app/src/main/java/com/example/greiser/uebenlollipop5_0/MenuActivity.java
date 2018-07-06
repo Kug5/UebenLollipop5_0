@@ -64,6 +64,17 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(new Intent(MenuActivity.this, HowMany.class));
             }
         });
+
+        final Button level_divide = findViewById(R.id.level_divide);
+        level_divide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            setOperationDivide();
+            setMax(100);
+            startActivity(new Intent(MenuActivity.this, HowMany.class));
+            }
+        });
+
         final Button level_multBig = findViewById(R.id.level_multBig);
         level_multBig.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,10 +104,13 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void setOperationPlusMinus() {
-        ((Ueben)getApplication()).setOperation(Ueben.OPEARATION_PLUSMINUS);
+        ((Ueben)getApplication()).setOperation(Ueben.OPERATION_PLUSMINUS);
     }
     private void setOperationMult() {
-        ((Ueben)getApplication()).setOperation(Ueben.OPEARATION_MULT);
+        ((Ueben)getApplication()).setOperation(Ueben.OPERATION_MULT);
+    }
+    private void setOperationDivide() {
+        ((Ueben)getApplication()).setOperation(Ueben.OPERATION_DIVIDE);
     }
 
     private void setMax (int max) {

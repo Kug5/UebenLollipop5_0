@@ -4,8 +4,9 @@ import android.app.Application;
 
 public class Ueben extends Application {
 
-    public static final String OPEARATION_PLUSMINUS = "plusminus";
-    public static final String OPEARATION_MULT = "mult";
+    public static final String OPERATION_PLUSMINUS = "plusminus";
+    public static final String OPERATION_MULT = "mult";
+    public static final String OPERATION_DIVIDE = "divide";
 
     private String username;
     private String operation;

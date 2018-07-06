@@ -35,6 +35,9 @@ class StorageData {
         if(step2 == null) {
             this.step2 = new ArrayList<>();
         }
+        if(step3 == null) {
+            this.step3 = new ArrayList<>();
+        }
 
         if (box == 2) {
             step2.add(new BigTask(displayTask, i, j, result, box));

@@ -2,6 +2,7 @@ package com.example.greiser.uebenlollipop5_0;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -49,8 +50,14 @@ public class ExternalStorage {
         bw.newLine();
 
         List<BigTask> newList = new ArrayList<BigTask>(storedData.getStep1());
-        newList.addAll(storedData.getStep2());
-        newList.addAll(storedData.getStep3());
+        addAll_noDuplicats(newList, storedData.getStep2());
+        addAll_noDuplicats(newList, storedData.getStep3());
+//        newList.addAll(storedData.getStep2());
+//        newList.addAll(storedData.getStep3());
+
+        if (newList.size() > 462) {
+            Log.println(Log.WARN, "debug", "zu viele Aufgaben");
+        }
 
         for (BigTask bt: newList) {
             bw.write(getStringBigTask(bt));
@@ -59,6 +66,20 @@ public class ExternalStorage {
 
         bw.flush();
         bw.close();
+    }
+
+    private void addAll_noDuplicats(List<BigTask> into, List<BigTask> toAdd) {
+        for (BigTask taskInToAdd: toAdd) {
+            int index = into.indexOf(taskInToAdd);
+            if (index > -1) {
+                BigTask tmp = into.get(index);
+                if (tmp.box < taskInToAdd.box) {
+                    tmp.box = taskInToAdd.box;
+                }
+            } else {
+                into.add(taskInToAdd);
+            }
+        }
     }
 
     private String getStringBigTask(BigTask bt) {
