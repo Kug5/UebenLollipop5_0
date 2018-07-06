@@ -25,11 +25,14 @@ public class NameActivity extends AppCompatActivity {
     public static final int padding = 10;
     String[] _names;
     private ExternalStorage es;
+    private Ueben application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name);
+
+        application = ((Ueben) getApplication());
 
         final LinearLayout partForButtons = findViewById(R.id.partForButtons);
         this.es = new ExternalStorage();
@@ -91,8 +94,8 @@ public class NameActivity extends AppCompatActivity {
         buttonName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            ((Ueben) getApplication()).setUsername(name);
-                ((Ueben)getApplication()).setUsersettings(loadUserSettings(name));
+                application.setUsername(name);
+                application.setUsersettings(loadUserSettings(name));
             Intent menu = new Intent(NameActivity.this, MenuActivity.class);
             startActivity(menu);
             }
@@ -116,9 +119,14 @@ public class NameActivity extends AppCompatActivity {
 
     private UserSetting getSettings(File file) throws Exception {
 
+        UserSetting returnValue = new UserSetting();
         BufferedReader bufferIn = new BufferedReader(new FileReader(file));
+        String line  = bufferIn.readLine(); // countBoxes
+        if (line != null && line.contains("countBoxes:")) {
+            returnValue.setCountBoxes(Integer.parseInt(line.split(":")[1]));
+        }
 
-        return new UserSetting();
+        return returnValue;
     }
 
     private String[] getNames(File file) throws Exception {

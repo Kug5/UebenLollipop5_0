@@ -7,7 +7,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ExternalStorage {
 
@@ -45,11 +47,12 @@ public class ExternalStorage {
         bw.newLine();
         bw.write("" + storedData.getCounter());
         bw.newLine();
-        for (BigTask bt: storedData.getStep1()) {
-            bw.write(getStringBigTask(bt));
-            bw.newLine();
-        }
-        for (BigTask bt: storedData.getStep2()) {
+
+        List<BigTask> newList = new ArrayList<BigTask>(storedData.getStep1());
+        newList.addAll(storedData.getStep2());
+        newList.addAll(storedData.getStep3());
+
+        for (BigTask bt: newList) {
             bw.write(getStringBigTask(bt));
             bw.newLine();
         }
@@ -59,7 +62,7 @@ public class ExternalStorage {
     }
 
     private String getStringBigTask(BigTask bt) {
-        return bt.displayTask+","+bt.i+","+bt.j+","+bt.result+","+bt.ready;
+        return bt.displayTask+","+bt.i+","+bt.j+","+bt.result+","+bt.box;
     }
 
     private String getFileName(String operation, int max, String name) {
@@ -110,5 +113,21 @@ public class ExternalStorage {
 
     private String getFileNameSettings(String name) {
         return "settings_"+name+".txt";
+    }
+
+    public void storeSettings(Context context, UserSetting usersettings, String name) throws IOException {
+
+        if(!isExternalStorageWritable()) {
+            return;
+        }
+
+        File file = new File(context.getExternalFilesDir(
+                Environment.DIRECTORY_DOCUMENTS), getFileNameSettings(name));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+
+        bw.write("countBoxes:" + usersettings.getCountBoxes());
+        bw.flush();
+        bw.close();
+
     }
 }

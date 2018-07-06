@@ -6,13 +6,13 @@ class BigTask {
     int i;
     int j;
     int result;
-    boolean ready;
+    int box;
 
-    BigTask (String displayTask, int i, int j, int result, boolean ready) {
+    BigTask (String displayTask, int i, int j, int result, int box) {
         this.displayTask = displayTask;
         this.i = i;
         this.j = j;
         this.result = result;
-        this.ready = ready;
+        this.box = box;
     }
 }

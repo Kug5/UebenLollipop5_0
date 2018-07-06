@@ -2,8 +2,8 @@ package com.example.greiser.uebenlollipop5_0;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,17 +16,15 @@ public class BlockMathActivity extends AppCompatActivity {
 
 
     Map<String, Task> b1 = new LinkedHashMap<String, Task>();
-    Map<String, Task> b2 = new LinkedHashMap<String, Task>();
-    Map<String, Task> b3 = new LinkedHashMap<String, Task>();
-    Map<String, Task> b4 = new LinkedHashMap<String, Task>();
-    private EditText[] aufgabenMap;
-    private EditText[] ergebnisMap;
+
+    private EditText[] taskMap;
+    private EditText[] resultMap;
 
     public EditText currentInputFocus;
     private Map[] b;
 
-    private int right = Color.GREEN;
-    private int wrong = Color.RED;
+    private static int wrong = Color.RED;
+    private static int right = Color.GREEN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,51 +39,51 @@ public class BlockMathActivity extends AppCompatActivity {
         createKeyboard();
         createTasks();
 
-        currentInputFocus = ergebnisMap[0];
+        currentInputFocus = resultMap[0];
         setCourser();
     }
 
 
 
     private void createInputFields() {
-        aufgabenMap = new EditText[16];
-        aufgabenMap[0] = findViewById(R.id.aufgabe01);
-        aufgabenMap[1] = findViewById(R.id.aufgabe02);
-        aufgabenMap[2] = findViewById(R.id.aufgabe03);
-        aufgabenMap[3] = findViewById(R.id.aufgabe04);
-        aufgabenMap[4] = findViewById(R.id.aufgabe05);
-        aufgabenMap[5] = findViewById(R.id.aufgabe06);
-        aufgabenMap[6] = findViewById(R.id.aufgabe07);
-        aufgabenMap[7] = findViewById(R.id.aufgabe08);
-        aufgabenMap[8] = findViewById(R.id.aufgabe09);
-        aufgabenMap[9] = findViewById(R.id.aufgabe10);
-        aufgabenMap[10] = findViewById(R.id.aufgabe11);
-        aufgabenMap[11] = findViewById(R.id.aufgabe12);
-        aufgabenMap[12] = findViewById(R.id.aufgabe13);
-        aufgabenMap[13] = findViewById(R.id.aufgabe14);
-        aufgabenMap[14] = findViewById(R.id.aufgabe15);
-        aufgabenMap[15] = findViewById(R.id.aufgabe16);
+        taskMap = new EditText[16];
+        taskMap[0] = findViewById(R.id.aufgabe01);
+        taskMap[1] = findViewById(R.id.aufgabe02);
+        taskMap[2] = findViewById(R.id.aufgabe03);
+        taskMap[3] = findViewById(R.id.aufgabe04);
+        taskMap[4] = findViewById(R.id.aufgabe05);
+        taskMap[5] = findViewById(R.id.aufgabe06);
+        taskMap[6] = findViewById(R.id.aufgabe07);
+        taskMap[7] = findViewById(R.id.aufgabe08);
+        taskMap[8] = findViewById(R.id.aufgabe09);
+        taskMap[9] = findViewById(R.id.aufgabe10);
+        taskMap[10] = findViewById(R.id.aufgabe11);
+        taskMap[11] = findViewById(R.id.aufgabe12);
+        taskMap[12] = findViewById(R.id.aufgabe13);
+        taskMap[13] = findViewById(R.id.aufgabe14);
+        taskMap[14] = findViewById(R.id.aufgabe15);
+        taskMap[15] = findViewById(R.id.aufgabe16);
 
-        ergebnisMap = new EditText[16];
-        ergebnisMap[0] = findViewById(R.id.ergebnis01);
-        ergebnisMap[1] = findViewById(R.id.ergebnis02);
-        ergebnisMap[2] = findViewById(R.id.ergebnis03);
-        ergebnisMap[3] = findViewById(R.id.ergebnis04);
-        ergebnisMap[4] = findViewById(R.id.ergebnis05);
-        ergebnisMap[5] = findViewById(R.id.ergebnis06);
-        ergebnisMap[6] = findViewById(R.id.ergebnis07);
-        ergebnisMap[7] = findViewById(R.id.ergebnis08);
-        ergebnisMap[8] = findViewById(R.id.ergebnis09);
-        ergebnisMap[9] = findViewById(R.id.ergebnis10);
-        ergebnisMap[10] = findViewById(R.id.ergebnis11);
-        ergebnisMap[11] = findViewById(R.id.ergebnis12);
-        ergebnisMap[12] = findViewById(R.id.ergebnis13);
-        ergebnisMap[13] = findViewById(R.id.ergebnis14);
-        ergebnisMap[14] = findViewById(R.id.ergebnis15);
-        ergebnisMap[15] = findViewById(R.id.ergebnis16);
+        resultMap = new EditText[16];
+        resultMap[0] = findViewById(R.id.ergebnis01);
+        resultMap[1] = findViewById(R.id.ergebnis02);
+        resultMap[2] = findViewById(R.id.ergebnis03);
+        resultMap[3] = findViewById(R.id.ergebnis04);
+        resultMap[4] = findViewById(R.id.ergebnis05);
+        resultMap[5] = findViewById(R.id.ergebnis06);
+        resultMap[6] = findViewById(R.id.ergebnis07);
+        resultMap[7] = findViewById(R.id.ergebnis08);
+        resultMap[8] = findViewById(R.id.ergebnis09);
+        resultMap[9] = findViewById(R.id.ergebnis10);
+        resultMap[10] = findViewById(R.id.ergebnis11);
+        resultMap[11] = findViewById(R.id.ergebnis12);
+        resultMap[12] = findViewById(R.id.ergebnis13);
+        resultMap[13] = findViewById(R.id.ergebnis14);
+        resultMap[14] = findViewById(R.id.ergebnis15);
+        resultMap[15] = findViewById(R.id.ergebnis16);
 
-        for (int i=0; i<ergebnisMap.length; i++) {
-            ergebnisMap[i].setShowSoftInputOnFocus(false);
+        for (EditText aResultMap : resultMap) {
+            aResultMap.setShowSoftInputOnFocus(false);
         }
     }
 
@@ -126,59 +124,59 @@ public class BlockMathActivity extends AppCompatActivity {
         b[block].put(ts3, t3);
         b[block].put(ts4, t4);
 
-        aufgabenMap[index].setText(ts1);
-        aufgabenMap[index_1].setText(ts2);
-        aufgabenMap[index_2].setText(ts3);
-        aufgabenMap[index_3].setText(ts4);
+        taskMap[index].setText(ts1);
+        taskMap[index_1].setText(ts2);
+        taskMap[index_2].setText(ts3);
+        taskMap[index_3].setText(ts4);
 
-        ergebnisMap[index].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        resultMap[index].setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 
                 if (hasFocus) {
-                    currentInputFocus = ergebnisMap[index];
+                    currentInputFocus = resultMap[index];
                 } else {
-                    boolean right = checkResult (ergebnisMap[index], t1);
+                    boolean right = checkResult (resultMap[index], t1);
                     if (right) {
-                        replaceQuestionMark(aufgabenMap[index_2], aufgabenMap[index_3], (summand1 + summand2));
+                        replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
                     }
                 }
             }
         });
 
-        ergebnisMap[index_1].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        resultMap[index_1].setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 
                 if (hasFocus) {
-                    currentInputFocus = ergebnisMap[index_1];
+                    currentInputFocus = resultMap[index_1];
                 } else {
-                    boolean right = checkResult (ergebnisMap[index_1], t2);
+                    boolean right = checkResult (resultMap[index_1], t2);
                     if (right) {
-                        replaceQuestionMark(aufgabenMap[index_2], aufgabenMap[index_3], (summand1 + summand2));
+                        replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
                     }
                 }
             }
         });
-        ergebnisMap[index_2].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        resultMap[index_2].setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 
                 if (hasFocus) {
-                    currentInputFocus = ergebnisMap[index_2];
+                    currentInputFocus = resultMap[index_2];
                 } else {
-                    checkResult (ergebnisMap[index_2], t3);
+                    checkResult (resultMap[index_2], t3);
                 }
             }
         });
-        ergebnisMap[index_3].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        resultMap[index_3].setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 
                 if (hasFocus) {
-                    currentInputFocus = ergebnisMap[index_3];
+                    currentInputFocus = resultMap[index_3];
                 } else {
-                    checkResult (ergebnisMap[index_3], t4);
+                    checkResult (resultMap[index_3], t4);
                 }
             }
         });
@@ -308,7 +306,7 @@ public class BlockMathActivity extends AppCompatActivity {
                         Map<String, Task> whatever = b[i];
                         int counter = 0;
                         for (Task task : whatever.values()) {
-                            boolean tmp = checkResult(ergebnisMap[ i * 4 + counter], task);
+                            boolean tmp = checkResult(resultMap[ i * 4 + counter], task);
                             counter++;
                             if (!tmp) {
                                 all = false;

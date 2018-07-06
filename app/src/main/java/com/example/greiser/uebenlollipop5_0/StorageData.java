@@ -10,6 +10,7 @@ class StorageData {
 
     private List<BigTask> step1;
     private List<BigTask> step2;
+    private List<BigTask> step3;
 
     public void setDate(long date) {
         this.date = date;
@@ -17,13 +18,16 @@ class StorageData {
 
     public void increaseCounter() {
         this.counter++;
+        if (counter == 9) {
+            counter = 0;
+        }
     }
 
     public int getCounter() {
         return counter;
     }
 
-    public void setTask (String displayTask, int i, int j, int result, boolean ready) {
+    public void setTask (String displayTask, int i, int j, int result, int box) {
 
         if(step1 == null) {
             this.step1 = new ArrayList<>();
@@ -32,10 +36,12 @@ class StorageData {
             this.step2 = new ArrayList<>();
         }
 
-        if (ready) {
-            step2.add(new BigTask(displayTask, i, j, result, ready));
-        } else {
-            step1.add(new BigTask(displayTask, i, j, result, ready));
+        if (box == 2) {
+            step2.add(new BigTask(displayTask, i, j, result, box));
+        } else if (box == 1){
+            step1.add(new BigTask(displayTask, i, j, result, box));
+        } else if (box == 3) {
+            step3.add(new BigTask(displayTask, i, j, result, box));
         }
     }
 
@@ -45,6 +51,10 @@ class StorageData {
 
     public List<BigTask> getStep2() {
         return step2 != null ? step2 : new ArrayList<BigTask>();
+    }
+
+    public List<BigTask> getStep3() {
+        return step3 != null ? step3 : new ArrayList<BigTask>();
     }
 
     public void setCounter(int counter) {

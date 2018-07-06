@@ -49,6 +49,7 @@ public class MatheActivity extends AppCompatActivity {
     private StorageData storedData;
     private long startTaskDate;
     private List<BigTask> taskList;
+    private Ueben application;
 
 
     @Override
@@ -56,11 +57,13 @@ public class MatheActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mathe);
 
-        this.name =  ((Ueben) getApplication()).getUsername();
-        this.operation = ((Ueben) getApplication()).getOperation();
-        this.max = ((Ueben) getApplication()).getMax();
+        application = ((Ueben) getApplication());
 
-        int many = ((Ueben) getApplication()).getMany();
+        this.name =  application.getUsername();
+        this.operation = application.getOperation();
+        this.max = application.getMax();
+
+        int many = application.getMany();
         if (many == 0) {
             many = 10;
         }
@@ -106,16 +109,68 @@ public class MatheActivity extends AppCompatActivity {
             storedData = new StorageData();
             createTasks();
         } finally {
-            if (storedData.getCounter()%4 == 0 && storedData.getStep2().size() >= this.many) {
-                taskList = storedData.getStep2();
-            } else if (storedData.getStep1().size() >= this.many){
+            // new
+            int counter = storedData.getCounter();
+
+            if (application.getUsersettings().getCountBoxes() == 3) {
+                if (counter != 3 && counter != 6 && counter != 8) {
+                    taskList = storedData.getStep1();
+                    if (taskList.size() < this.many) {
+                        taskList.addAll(storedData.getStep2());
+                    }
+                    if (taskList.size() < this.many) {
+                        taskList.addAll(storedData.getStep3());
+                    }
+                } else if (counter == 8) {
+                    taskList = storedData.getStep3();
+                    if (taskList.size() < this.many) {
+                        taskList.addAll(storedData.getStep2());
+                    }
+                    if (taskList.size() < this.many) {
+                        taskList.addAll(storedData.getStep1());
+                    }
+                } else {
+                    taskList = storedData.getStep2();
+                    if (taskList.size() < this.many) {
+                        taskList.addAll(storedData.getStep3());
+                    }
+                    if (taskList.size() < this.many) {
+                        taskList.addAll(storedData.getStep1());
+                    }
+                }
+            } else if (application.getUsersettings().getCountBoxes() == 2) {
+                if (counter == 3 || counter == 7 || counter == 8) {
+                    taskList = storedData.getStep2();
+                    if (taskList.size() < this.many) {
+                        taskList.addAll(storedData.getStep1());
+                    }
+                } else {
+                    taskList = storedData.getStep1();
+                    if (taskList.size() < this.many) {
+                        taskList.addAll(storedData.getStep2());
+                    }
+                }
+            } else {
                 taskList = storedData.getStep1();
-            } else if (storedData.getStep2().size() >= this.many){
-                taskList = storedData.getStep2();
-            } else { // worst case :(
-                taskList.addAll(storedData.getStep1());
                 taskList.addAll(storedData.getStep2());
+                taskList.addAll(storedData.getStep3());
             }
+
+
+
+
+//            // old
+//            if (storedData.getCounter()%4 == 0 && storedData.getStep2().size() >= this.many) {
+//                taskList = storedData.getStep2();
+//            } else if (storedData.getStep1().size() >= this.many){
+//                taskList = storedData.getStep1();
+//            } else if (storedData.getStep2().size() >= this.many){
+//                taskList = storedData.getStep2();
+//            } else { // worst case :(
+//                taskList.addAll(storedData.getStep1());
+//                taskList.addAll(storedData.getStep2());
+//                taskList.addAll(storedData.getStep3());
+//            }
         }
 
         chooseTask();
@@ -134,7 +189,7 @@ public class MatheActivity extends AppCompatActivity {
         line = bufferIn.readLine();
         while (line != null) {
             String [] taskSplit = line.split(",");
-            sd.setTask(taskSplit[0], Integer.parseInt(taskSplit[1]), Integer.parseInt(taskSplit[2]), Integer.parseInt(taskSplit[3]), Boolean.parseBoolean(taskSplit[4]));
+            sd.setTask(taskSplit[0], Integer.parseInt(taskSplit[1]), Integer.parseInt(taskSplit[2]), Integer.parseInt(taskSplit[3]), Integer.parseInt(taskSplit[4]));
             line = bufferIn.readLine();
         }
         bufferIn.close();
@@ -161,12 +216,12 @@ public class MatheActivity extends AppCompatActivity {
         if (this.max == 10) {
             for (int i = 0; i <= 10; i++) {
                 for (int k = 1; k <= 10; k++) {
-                    storedData.setTask(i + " * " + k + " = ", i, k, i*k, false);
+                    storedData.setTask(i + " * " + k + " = ", i, k, i*k, 1);
                 }
             }
         } else {
             for (int i = 10; i <= 20; i++) {
-                storedData.setTask(i + " * " + i + " = ", i, i, i*i, false);
+                storedData.setTask(i + " * " + i + " = ", i, i, i*i, 1);
             }
         }
     }
@@ -176,11 +231,11 @@ public class MatheActivity extends AppCompatActivity {
         for (int i =  0; i <= max; i++) {
             for (int k =  0; k <= max; k++) {
                 if (i + k <= max) {
-                    storedData.setTask(i + " + " + k + " = ", i, k, i+k, false);
+                    storedData.setTask(i + " + " + k + " = ", i, k, i+k, 1);
                 }
 
                 if (i - k >= 0) {
-                    storedData.setTask(i + " - " + k + " = ", i, k, i-k, false);
+                    storedData.setTask(i + " - " + k + " = ", i, k, i-k, 1);
                 }
             }
         }
@@ -383,9 +438,13 @@ public class MatheActivity extends AppCompatActivity {
             long duration = new Date().getTime() - startTaskDate;
             counterCorrect++;
 
-            // Wenn die Frage erst falsch beantwortet wurde, gehe ich davon aus, dass die duration zu groß ist, andern Falls hat der User Glück gehabt und die Antwort wird in Step 2 verschoben :)
-            if (readyForStep2(duration)) {
-                taskList.get(tmpIndex).ready = true;
+            // Wenn die Frage erst falsch beantwortet wurde, gehe ich davon aus, dass die duration zu groß ist,
+            // andern Falls hat der User Glück gehabt und die Antwort wird in die nächste Box verschoben :)
+            if (readyForNextStep(duration)) {
+                int maxBoxes = application.getUsersettings().getCountBoxes();
+                if (taskList.get(tmpIndex).box < maxBoxes) {
+                    taskList.get(tmpIndex).box++;
+                }
             }
 
             progressBar.setProgress(counterCorrect);
@@ -402,7 +461,7 @@ public class MatheActivity extends AppCompatActivity {
                 }
             }
         } else {
-            taskList.get(tmpIndex).ready = false;
+            taskList.get(tmpIndex).box = 1;
             final Drawable background = viewResult.getBackground();
             viewResult.setBackgroundColor(Color.RED);
             Handler handler = new Handler();
@@ -416,7 +475,7 @@ public class MatheActivity extends AppCompatActivity {
         viewResult.setText("");
     }
 
-    private boolean readyForStep2(long duration) {
+    private boolean readyForNextStep(long duration) {
          return duration < 5000;
     }
 }
