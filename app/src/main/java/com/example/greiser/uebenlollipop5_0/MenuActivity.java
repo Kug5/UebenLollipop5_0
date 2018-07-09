@@ -3,6 +3,9 @@ package com.example.greiser.uebenlollipop5_0;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -100,6 +103,12 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(new Intent(MenuActivity.this, SettingsActivity.class));
             }
         });
+
+        Button buttonTest = (Button) findViewById(R.id.buttonok);
+        Spannable buttonLabel = new SpannableString("4");
+        buttonLabel.setSpan(new ImageSpan(getApplicationContext(), R.drawable.ic_home_black_24dp,
+                ImageSpan.ALIGN_BOTTOM), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        buttonTest.setText(buttonLabel);
 
     }
 

@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="Box">
+        <attr name="boxnr" format="string" />
+        <attr name="counter" format="string" />
+        <!--<attr name="exampleColor" format="color" />-->
+        <!--<attr name="exampleDrawable" format="color|reference" />-->
+    </declare-styleable>
+</resources>
