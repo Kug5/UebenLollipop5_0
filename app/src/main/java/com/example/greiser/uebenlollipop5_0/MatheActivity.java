@@ -16,9 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -100,9 +97,9 @@ public class MatheActivity extends AppCompatActivity {
 
         createKeybord();
 
-        File storageFile = getStorageFile(this.operation, this.max);
         try {
-            storedData = getStoredData(storageFile);
+            ExternalStorage es = new ExternalStorage();
+            storedData = es.getStoredTasks(getApplicationContext(), this.operation, this.max, application.getUsername());
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("Error", e.getMessage());
@@ -235,32 +232,6 @@ public class MatheActivity extends AppCompatActivity {
         } while (returnValue.size() < count);
 
         return returnValue;
-    }
-
-    private StorageData getStoredData(File storage) throws Exception {
-        BufferedReader bufferIn = new BufferedReader(new FileReader(storage));
-        StorageData sd = new StorageData();
-        String line  = bufferIn.readLine();
-        if(line == null) {
-            throw new Exception("empty file");
-        }
-        sd.setDate(Long.parseLong(line));
-        line = bufferIn.readLine();
-        sd.setCounter(Integer.parseInt(line));
-        line = bufferIn.readLine();
-        while (line != null) {
-            String [] taskSplit = line.split(",");
-            sd.setTask(taskSplit[0], Integer.parseInt(taskSplit[1]), Integer.parseInt(taskSplit[2]), Integer.parseInt(taskSplit[3]), Integer.parseInt(taskSplit[4]));
-            line = bufferIn.readLine();
-        }
-        bufferIn.close();
-
-        return sd;
-    }
-
-    private File getStorageFile(String operation, int max) {
-        ExternalStorage es = new ExternalStorage();
-        return es.getPrivateDocumentsStorageFile(getApplicationContext(), operation,max, name);
     }
 
     private void createTasks() {
@@ -528,7 +499,7 @@ public class MatheActivity extends AppCompatActivity {
             } else {
                 ExternalStorage es = new ExternalStorage();
                 try {
-                    es.store(getApplicationContext(), storedData, operation, max, name);
+                    es.storeTasks(getApplicationContext(), storedData, operation, max, name);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {

@@ -44,7 +44,10 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".SettingsActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ScoreActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

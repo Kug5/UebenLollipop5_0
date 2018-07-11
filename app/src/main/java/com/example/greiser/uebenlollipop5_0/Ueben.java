@@ -14,6 +14,9 @@ public class Ueben extends Application {
     private int many;
     private UserSetting usersettings;
 
+    public enum Operations { plusminus, mult, divide }
+
+
     public String getUsername() {
         return username;
     }

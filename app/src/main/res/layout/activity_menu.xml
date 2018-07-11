@@ -31,17 +31,20 @@
                 android:orientation="horizontal">
 
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="200" />
+                <ImageButton
+                    android:id="@+id/overviewScore"
+                    android:layout_width="56dp"
+                    android:layout_height="52dp"
+                    android:layout_margin="15dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/kurs6_karteikasten_s" />
 
                 <ImageButton
                     android:id="@+id/settings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_weight="0.1"
                     app:srcCompat="@android:drawable/ic_menu_manage" />
 
             </LinearLayout>
@@ -158,14 +161,6 @@
                     android:padding="5dp"
                     android:text=": bis 100" />
 
-                <Button
-                    android:id="@+id/buttonok"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minHeight="32dp"
-                    android:minWidth="150dp"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal|top" />
             </LinearLayout>
 
         </LinearLayout>

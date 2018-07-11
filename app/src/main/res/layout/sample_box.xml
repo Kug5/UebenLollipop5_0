@@ -1,31 +1,48 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app2="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="25dp">
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        app2:layout_constraintStart_toStartOf="parent"
+        app2:layout_constraintTop_toTopOf="parent"
         app2:srcCompat="@drawable/kurs6_karteikasten_s" />
 
     <TextView
         android:id="@+id/boxnr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="130dp"
+        android:layout_width="297dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/arbutus_slab"
         android:text="1"
-        android:textSize="24sp" />
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app2:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app2:layout_constraintHorizontal_bias="0.5"
+        app2:layout_constraintStart_toEndOf="@+id/imageView3"
+        app2:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     <TextView
         android:id="@+id/counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="211dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="144dp"
         android:fontFamily="@font/arbutus_slab"
         android:text="240"
-        android:textSize="24sp" />
-</FrameLayout>
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app2:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app2:layout_constraintHorizontal_bias="0.691"
+        app2:layout_constraintStart_toEndOf="@+id/imageView3"
+        app2:layout_constraintTop_toTopOf="@+id/imageView3" /> />
+
+</android.support.constraint.ConstraintLayout>

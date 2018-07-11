@@ -4,8 +4,10 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,14 +28,14 @@ public class ExternalStorage {
         return Environment.MEDIA_MOUNTED.equals(state) || Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
     }
 
-    public File getPrivateDocumentsStorageFile(Context context, String operation, int max, String name) {
+    public File getTasksFile(Context context, String operation, int max, String name) {
         // Get the directory for the app's private pictures directory.
         return new File(context.getExternalFilesDir(
                 Environment.DIRECTORY_DOCUMENTS), this.getFileName(operation,max, name));
     }
 
 
-    public void store(Context context, StorageData storedData, String operation, int max, String name) throws IOException {
+    public void storeTasks(Context context, StorageData storedData, String operation, int max, String name) throws IOException {
 
         if(!isExternalStorageWritable()) {
             return;
@@ -150,5 +152,31 @@ public class ExternalStorage {
         bw.flush();
         bw.close();
 
+    }
+
+    public StorageData getStoredTasks(Context context, String operation, int max, String name) throws Exception {
+        File file = getTasksFile(context, operation, max, name);
+        return getStoredTasksData(file);
+    }
+
+    private StorageData getStoredTasksData(File storage) throws Exception {
+        BufferedReader bufferIn = new BufferedReader(new FileReader(storage));
+        StorageData sd = new StorageData();
+        String line  = bufferIn.readLine();
+        if(line == null) {
+            throw new Exception("empty file");
+        }
+        sd.setDate(Long.parseLong(line));
+        line = bufferIn.readLine();
+        sd.setCounter(Integer.parseInt(line));
+        line = bufferIn.readLine();
+        while (line != null) {
+            String [] taskSplit = line.split(",");
+            sd.setTask(taskSplit[0], Integer.parseInt(taskSplit[1]), Integer.parseInt(taskSplit[2]), Integer.parseInt(taskSplit[3]), Integer.parseInt(taskSplit[4]));
+            line = bufferIn.readLine();
+        }
+        bufferIn.close();
+
+        return sd;
     }
 }
