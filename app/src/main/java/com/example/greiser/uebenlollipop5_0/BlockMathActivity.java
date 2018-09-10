@@ -21,7 +21,7 @@ public class BlockMathActivity extends AppCompatActivity {
     private EditText[] resultMap;
 
     public EditText currentInputFocus;
-    private Map[] b;
+    private Map[] blocks;
 
     private static int wrong = Color.RED;
     private static int right = Color.GREEN;
@@ -33,7 +33,7 @@ public class BlockMathActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        b = new Map[4];
+        blocks = new Map[4];
 
         createInputFields();
         createKeyboard();
@@ -111,32 +111,32 @@ public class BlockMathActivity extends AppCompatActivity {
         String ts1 = summand1 + " + " + summand2 + " = ";
         String ts2 = summand2 + " + " + summand1 + " = ";
         String ts3 = "?" + " - " + summand1 + " = ";
-        final String ts4 = "?" + " - " + summand2 + " = ";
+        String ts4 = "?" + " - " + summand2 + " = ";
 
-        final int index = block * 4;
-        final int index_1 = index + 1;
-        final int index_2 = index + 2;
-        final int index_3 = index + 3;
+        final int index_0 = block * 4;
+        final int index_1 = index_0 + 1;
+        final int index_2 = index_0 + 2;
+        final int index_3 = index_0 + 3;
 
-        b[block] = new LinkedHashMap<String, Task>();
-        b[block].put(ts1, t1);
-        b[block].put(ts2, t2);
-        b[block].put(ts3, t3);
-        b[block].put(ts4, t4);
+        blocks[block] = new LinkedHashMap<String, Task>();
+        blocks[block].put(ts1, t1);
+        blocks[block].put(ts2, t2);
+        blocks[block].put(ts3, t3);
+        blocks[block].put(ts4, t4);
 
-        taskMap[index].setText(ts1);
+        taskMap[index_0].setText(ts1);
         taskMap[index_1].setText(ts2);
         taskMap[index_2].setText(ts3);
         taskMap[index_3].setText(ts4);
 
-        resultMap[index].setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        resultMap[index_0].setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 
                 if (hasFocus) {
-                    currentInputFocus = resultMap[index];
+                    currentInputFocus = resultMap[index_0];
                 } else {
-                    boolean right = checkResult (resultMap[index], t1);
+                    boolean right = checkResult (resultMap[index_0], t1);
                     if (right) {
                         replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
                     }
@@ -165,7 +165,10 @@ public class BlockMathActivity extends AppCompatActivity {
                 if (hasFocus) {
                     currentInputFocus = resultMap[index_2];
                 } else {
-                    checkResult (resultMap[index_2], t3);
+                    boolean right = checkResult (resultMap[index_2], t3);
+                    if (right) {
+                        replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
+                    }
                 }
             }
         });
@@ -176,7 +179,10 @@ public class BlockMathActivity extends AppCompatActivity {
                 if (hasFocus) {
                     currentInputFocus = resultMap[index_3];
                 } else {
-                    checkResult (resultMap[index_3], t4);
+                    boolean right = checkResult (resultMap[index_3], t4);
+                    if (right) {
+                        replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
+                    }
                 }
             }
         });
@@ -193,7 +199,7 @@ public class BlockMathActivity extends AppCompatActivity {
             return false;
         }
 
-        if (editText.getText().toString().equals("" + task.result)) {
+        if (editText.getText().toString().equals("" + task.sum)) {
             editText.setBackgroundColor(right);
             return true;
         } else {
@@ -303,7 +309,7 @@ public class BlockMathActivity extends AppCompatActivity {
 
                     boolean all = true;
                     for (int i = 0; i < 4; i++) {
-                        Map<String, Task> whatever = b[i];
+                        Map<String, Task> whatever = blocks[i];
                         int counter = 0;
                         for (Task task : whatever.values()) {
                             boolean tmp = checkResult(resultMap[ i * 4 + counter], task);

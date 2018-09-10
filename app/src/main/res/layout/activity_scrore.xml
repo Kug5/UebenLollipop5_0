@@ -9,6 +9,115 @@
             android:id="@+id/mainScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
+
+                        <!--<EditText-->
+                            <!--android:id="@+id/editText20"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="0"-->
+                            <!--android:ems="5"-->
+                            <!--android:inputType="textPersonName"-->
+                            <!--android:text="+-20" />-->
+
+                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--app:boxnr="1"-->
+                            <!--app:counter="1"></com.example.greiser.uebenlollipop5_0.Box>-->
+
+                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--app:boxnr="2"-->
+                            <!--app:counter="22"></com.example.greiser.uebenlollipop5_0.Box>-->
+
+                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--app:boxnr="3"-->
+                            <!--app:counter="333"></com.example.greiser.uebenlollipop5_0.Box>-->
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
+
+                        <!--<EditText-->
+                            <!--android:id="@+id/editText30"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="0"-->
+                            <!--android:ems="5"-->
+                            <!--android:inputType="textPersonName"-->
+                            <!--android:text="+-30" />-->
+
+                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--app:boxnr="1"-->
+                            <!--app:counter="1"></com.example.greiser.uebenlollipop5_0.Box>-->
+
+                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--app:boxnr="2"-->
+                            <!--app:counter="22"></com.example.greiser.uebenlollipop5_0.Box>-->
+
+                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--app:boxnr="3"-->
+                            <!--app:counter="333"></com.example.greiser.uebenlollipop5_0.Box>-->
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
+
+                        <!--<EditText-->
+                            <!--android:id="@+id/editText100"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="0"-->
+                            <!--android:ems="5"-->
+                            <!--android:inputType="textPersonName"-->
+                            <!--android:text="+-100" />-->
+
+                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--app:boxnr="1"-->
+                            <!--app:counter="6666"></com.example.greiser.uebenlollipop5_0.Box>-->
+
+                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--app:boxnr="2"-->
+                            <!--app:counter="5555"></com.example.greiser.uebenlollipop5_0.Box>-->
+
+                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--app:boxnr="3"-->
+                            <!--app:counter="444"></com.example.greiser.uebenlollipop5_0.Box>-->
+                <!--</LinearLayout>-->
+        </LinearLayout>
 
 </ScrollView>

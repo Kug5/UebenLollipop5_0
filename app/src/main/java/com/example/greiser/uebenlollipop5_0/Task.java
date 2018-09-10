@@ -4,12 +4,12 @@ public class Task {
 
     int summand1 = -1;
     int summand2 = -1;
-    int result = -1;
+    int sum = -1;
 
-    public Task(int i, int k, int result) {
-        this.result = result;
-        this.summand1 = i;
-        this.summand2 = k;
+    public Task(int summand1, int summand2, int sum) {
+        this.sum = sum;
+        this.summand1 = summand1;
+        this.summand2 = summand2;
     }
 
 }

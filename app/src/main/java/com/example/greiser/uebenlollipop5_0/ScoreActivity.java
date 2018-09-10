@@ -19,7 +19,7 @@ public class ScoreActivity extends AppCompatActivity {
         application = ((Ueben) getApplication());
 
         LinearLayout mainLayout = findViewById(R.id.mainScore);
-        LinearLayout.LayoutParams paramsRow = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1);
+        LinearLayout.LayoutParams paramsRow = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
         LinearLayout.LayoutParams paramsBox = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
 
         StorageData storedData;
@@ -43,15 +43,21 @@ public class ScoreActivity extends AppCompatActivity {
                 if (max.length > 0) {
                     for (int i = 0; i < max.length; i++) {
 
+                        try {
+                            storedData = es.getStoredTasks(getApplicationContext(), op.name(), max[i], application.getUsername());
+                        } catch (Exception e) {
+                            continue;
+                        }
+
                         LinearLayout row = new LinearLayout(getApplicationContext());
                         row.setOrientation(LinearLayout.HORIZONTAL);
                         row.setLayoutParams(paramsRow);
                         mainLayout.addView(row);
 
-                        storedData = es.getStoredTasks(getApplicationContext(), op.name(), max[i], application.getUsername());
-
                         TextView label = new TextView(getApplicationContext());
                         label.setText("" + sign + " " + max[i]);
+                        label.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,0));
+                        label.setEms(5);
                         row.addView(label);
 
                         for (int boxNr = 1; boxNr < 4; boxNr++) {
@@ -64,7 +70,6 @@ public class ScoreActivity extends AppCompatActivity {
                                 case 2: box.setCounter("" + storedData.getStep2().size()); break;
                                 case 3: box.setCounter("" + storedData.getStep3().size()); break;
                             }
-                            box.setBottom(1000);
                             row.addView(box);
                         }
 
@@ -74,6 +79,7 @@ public class ScoreActivity extends AppCompatActivity {
             }
 
 
+            mainLayout.postInvalidate();
 
         } catch (Exception e) {
             e.printStackTrace();
