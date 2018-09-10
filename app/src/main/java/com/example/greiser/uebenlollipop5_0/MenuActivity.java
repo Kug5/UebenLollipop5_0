@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -16,6 +17,9 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        final TextView halloName = findViewById(R.id.halloName);
+        halloName.setText("Hallo " + ((Ueben)getApplication()).getUsername() + "! :)");
 
         final Button level_plusMinus20 = findViewById(R.id.level_plusMinus20);
         level_plusMinus20.setOnClickListener(new View.OnClickListener() {

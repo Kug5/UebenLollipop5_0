@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="197dp"
+        android:layout_height="173dp"
         android:scaleType="fitCenter"
         app2:layout_constraintStart_toStartOf="parent"
         app2:layout_constraintTop_toTopOf="parent"
@@ -33,13 +33,13 @@
         android:id="@+id/counter"
         android:layout_width="211dp"
         android:layout_height="41dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="120dp"
         android:fontFamily="@font/arbutus_slab"
         android:text="240"
         android:textAlignment="center"
         android:textSize="24sp"
         app2:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app2:layout_constraintHorizontal_bias="0.691"
+        app2:layout_constraintHorizontal_bias="0.566"
         app2:layout_constraintStart_toEndOf="@+id/imageView3"
         app2:layout_constraintTop_toTopOf="@+id/imageView3" /> />
 
