@@ -11,14 +11,28 @@
     android:paddingRight="20dp"
     tools:context=".MatheActivity">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@android:dimen/app_icon_size"
-        android:layout_marginBottom="10dp"
-        android:clickable="false"
-        android:minHeight="250dp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="@android:dimen/app_icon_size"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:minHeight="250dp" />
+
+        <TextView
+            android:id="@+id/timeAndPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="@android:dimen/app_icon_size"
+            android:layout_weight="1"
+            android:text="TextView" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -13,6 +13,16 @@ public class Ueben extends Application {
     private int max;
     private int many;
     private UserSetting usersettings;
+    private UserHeightScore userHeightScore;
+    public int lastPoints = -1;
+
+    public void setHeightScores(UserHeightScore heightScores) {
+        this.userHeightScore = heightScores;
+    }
+
+    public UserHeightScore getHeightScores() {
+        return this.userHeightScore;
+    }
 
     public enum Operations { plusminus, mult, divide }
 

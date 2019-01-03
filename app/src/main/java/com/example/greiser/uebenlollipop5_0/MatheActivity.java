@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class MatheActivity extends AppCompatActivity {
     ProgressBar progressBar;
 
     int counterCorrect = 0;
+    int points = 0;
     private EditText abakus;
 
     private List<Integer> usedIndex;
@@ -47,6 +49,12 @@ public class MatheActivity extends AppCompatActivity {
     private long startTaskDate;
     private List<BigTask> taskList;
     private Ueben application;
+    private UserHeightScore heightScores;
+    private TextView timeAndPoints;
+    private Handler timerHandler;
+    private Runnable timerRunnable;
+    private int seconds;
+    private int nextPoint;
 
 
     @Override
@@ -55,10 +63,12 @@ public class MatheActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mathe);
 
         application = ((Ueben) getApplication());
+        timerHandler = new Handler();
 
         this.name =  application.getUsername();
         this.operation = application.getOperation();
         this.max = application.getMax();
+        this.heightScores = application.getHeightScores();
 
         int many = application.getMany();
         if (many == 0) {
@@ -87,6 +97,8 @@ public class MatheActivity extends AppCompatActivity {
             }
         });
 
+        timeAndPoints = findViewById(R.id.timeAndPoints);
+
         if (operation.equals(Ueben.OPERATION_PLUSMINUS)) {
             help.setVisibility(View.VISIBLE);
         }else {
@@ -109,52 +121,55 @@ public class MatheActivity extends AppCompatActivity {
             // new
             int counter = storedData.getCounter();
 
-            if (application.getUsersettings().getCountBoxes() == 3) {
-                if (counter != 3 && counter != 6 && counter != 8) {
-                    taskList = storedData.getStep1();
-                    if (taskList.size() < this.many) {
-                        taskList.addAll(getXFromBox2(many - taskList.size()));
-                    }
-                    if (taskList.size() < this.many) {
-                        taskList.addAll(getXFromBox3(many - taskList.size()));
-                    }
-                } else if (counter == 8) {
-                    taskList = storedData.getStep3();
-                    if (taskList.size() < this.many) {
-                        taskList.addAll(getXFromBox2(many - taskList.size()));
-                    }
-                    if (taskList.size() < this.many) {
-                        taskList.addAll(getXFromBox1(many - taskList.size()));
-                    }
-                } else {
-                    taskList = storedData.getStep2();
-                    if (taskList.size() < this.many) {
-                        taskList.addAll(getXFromBox3(many - taskList.size()));
-                    }
-                    if (taskList.size() < this.many) {
-                        taskList.addAll(getXFromBox1(many - taskList.size()));
-                    }
-                }
-            } else if (application.getUsersettings().getCountBoxes() == 2) {
-                if (counter == 3 || counter == 7 || counter == 8) {
-                    taskList = storedData.getStep2();
-                    if (taskList.size() < this.many) {
-                        taskList.addAll(getXFromBox1(many - taskList.size()));
-                    }
-                } else {
-                    taskList = storedData.getStep1();
-                    if (taskList.size() < this.many) {
-                        taskList.addAll(getXFromBox2(many - taskList.size()));
-                    }
-                }
-            } else {
+            if (counter != 3 && counter != 6 && counter != 8) { // 1 && 2 && 4 && 5 && 7
                 taskList = storedData.getStep1();
-                taskList.addAll(storedData.getStep2());
-                taskList.addAll(storedData.getStep3());
+                if (taskList.size() < this.many) {
+                    taskList.addAll(getXFromBox2(many - taskList.size()));
+                }
+                if (taskList.size() < this.many) {
+                    taskList.addAll(getXFromBox3(many - taskList.size()));
+                }
+            } else if (counter == 3 || counter == 6){
+                taskList = storedData.getStep2();
+                if (taskList.size() < this.many) {
+                    taskList.addAll(getXFromBox3(many - taskList.size()));
+                }
+                if (taskList.size() < this.many) {
+                    taskList.addAll(getXFromBox1(many - taskList.size()));
+                }
+            } else if (counter == 8) { // 8
+                taskList = storedData.getStep3();
+                if (taskList.size() < this.many) {
+                    taskList.addAll(getXFromBox2(many - taskList.size()));
+                }
+                if (taskList.size() < this.many) {
+                    taskList.addAll(getXFromBox1(many - taskList.size()));
+                }
             }
         }
 
         chooseTask();
+    }
+
+    private void initTimer() {
+        timerRunnable = new Runnable() {
+            @Override
+            public void run() {
+                long millis = System.currentTimeMillis() - startTaskDate;
+                seconds = ((int) (millis / 1000)) % 60;
+
+                int diff = seconds - 5;
+                nextPoint = diff < 0 ? 10 : (10 - diff);
+                nextPoint = nextPoint > 0 ? nextPoint : 0;
+                updateTimeAndPoints();
+
+                timerHandler.postDelayed(timerRunnable, 1000);
+            }
+        };
+    }
+
+    private void updateTimeAndPoints() {
+        timeAndPoints.setText("Your points: " + points + " (+ " + nextPoint + ") Time: " + seconds);
     }
 
     private List<BigTask> getXFromBox2(int count) {
@@ -419,6 +434,9 @@ public class MatheActivity extends AppCompatActivity {
 
         viewCurrentTask.setText(currentAufgabe);
         startTaskDate = new Date().getTime();
+        if (timerRunnable != null) timerHandler.removeCallbacks(timerRunnable);
+        initTimer();
+        timerHandler.postDelayed(timerRunnable, 0);
     }
 
     private void createAbakusPlus(BigTask task) {
@@ -481,17 +499,18 @@ public class MatheActivity extends AppCompatActivity {
 
         if (viewResult.getText().toString().equals(currentErgebnis)) {
 
-            long duration = new Date().getTime() - startTaskDate;
             counterCorrect++;
 
-            // Wenn die Frage erst falsch beantwortet wurde, gehe ich davon aus, dass die duration zu groß ist,
-            // andern Falls hat der User Glück gehabt und die Antwort wird in die Box 2 verschoben :)
-            if (readyForNextStep(duration)) {
-                int maxBoxes = application.getUsersettings().getCountBoxes();
+            // Wenn die Frage erst falsch beantwortet wurde, gehe ich davon aus, dass seconds zu groß ist,
+            // andern Falls hat der User Glück gehabt und die Antwort wird in die nächste Box verschoben :)
+            if (nextPoint == 10) {
+                int maxBoxes = 3;
                 if (taskList.get(tmpIndex).box < maxBoxes) {
                     taskList.get(tmpIndex).box++;
                 }
             }
+
+            points += nextPoint;
 
             progressBar.setProgress(counterCorrect);
             if (counterCorrect < many) {
@@ -499,6 +518,9 @@ public class MatheActivity extends AppCompatActivity {
             } else {
                 ExternalStorage es = new ExternalStorage();
                 try {
+                    application.lastPoints = points;
+                    this.heightScores.setNewScore(operation, max, points);
+                    es.storeHeightScores(getApplicationContext(), name, this.heightScores);
                     es.storeTasks(getApplicationContext(), storedData, operation, max, name);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -519,9 +541,5 @@ public class MatheActivity extends AppCompatActivity {
             }, 500);
         }
         viewResult.setText("");
-    }
-
-    private boolean readyForNextStep(long duration) {
-         return duration < 5000;
     }
 }

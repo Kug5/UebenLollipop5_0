@@ -96,6 +96,7 @@ public class NameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 application.setUsername(name);
                 application.setUsersettings(loadUserSettings(name));
+                application.setHeightScores(es.getHeightScores(getApplicationContext(), name));
             Intent menu = new Intent(NameActivity.this, MenuActivity.class);
             startActivity(menu);
             }
@@ -120,11 +121,7 @@ public class NameActivity extends AppCompatActivity {
     private UserSetting getSettings(File file) throws Exception {
 
         UserSetting returnValue = new UserSetting();
-        BufferedReader bufferIn = new BufferedReader(new FileReader(file));
-        String line  = bufferIn.readLine(); // countBoxes
-        if (line != null && line.contains("countBoxes:")) {
-            returnValue.setCountBoxes(Integer.parseInt(line.split(":")[1]));
-        }
+      //  BufferedReader bufferIn = new BufferedReader(new FileReader(file));
 
         return returnValue;
     }

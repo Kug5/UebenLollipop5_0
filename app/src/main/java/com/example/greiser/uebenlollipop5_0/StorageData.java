@@ -52,9 +52,7 @@ class StorageData {
         return step1 != null ? step1 : new ArrayList<BigTask>();
     }
 
-    public List<BigTask> getStep2() {
-        return step2 != null ? step2 : new ArrayList<BigTask>();
-    }
+    public List<BigTask> getStep2() { return step2 != null ? step2 : new ArrayList<BigTask>(); }
 
     public List<BigTask> getStep3() {
         return step3 != null ? step3 : new ArrayList<BigTask>();
