@@ -1,5 +1,6 @@
 package com.example.greiser.uebenlollipop5_0;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,8 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,14 +21,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NameActivity extends AppCompatActivity {
 
     public static final int padding = 10;
-    String[] _names;
+    ArrayList<String> names;
     private ExternalStorage es;
     private Ueben application;
+    private LinearLayout partForButtons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,49 +39,86 @@ public class NameActivity extends AppCompatActivity {
 
         application = ((Ueben) getApplication());
 
-        final LinearLayout partForButtons = findViewById(R.id.partForButtons);
+        partForButtons = findViewById(R.id.partForButtons);
         this.es = new ExternalStorage();
         File file = es.getFileListOfNames(getApplicationContext());
 
         try {
-            final String[] names = getNames(file);
-            this._names = names;
+            this.names = getNames(file);
 
             if (names != null) {
-
-                for (int i = 0; i < names.length; i++) {
-                    final String name = names[i];
-                    Button buttonName = createButton(name);
-                    partForButtons.addView(buttonName);
-                }
+                recreatePartForButtons();
             } else {
                 findViewById(R.id.werIstDa).setVisibility(View.GONE);
                 partForButtons.setVisibility(View.GONE);
             }
-
         } catch (Exception e) {
             findViewById(R.id.werIstDa).setVisibility(View.GONE);
             partForButtons.setVisibility(View.GONE);
         }
 
         final EditText inputName = findViewById(R.id.inputName);
+        inputName.setVisibility(View.INVISIBLE);
+
+        final ImageView newName = findViewById(R.id.newName);
+        newName.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                inputName.setVisibility(View.VISIBLE);
+                inputName.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(inputName, InputMethodManager.SHOW_FORCED);
+            }
+        });
+
         inputName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
-                    partForButtons.addView(createButton(inputName.getText().toString()));
+                    names.add(inputName.getText().toString());
+                    recreatePartForButtons();
                     partForButtons.setVisibility(View.VISIBLE);
                     try {
-                        es.storeNames(getApplicationContext(), _names, inputName.getText().toString());
+                        es.storeNames(getApplicationContext(), names);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     inputName.setText("");
+                    inputName.setVisibility(View.INVISIBLE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
                 return false;
             }
         });
 
 
+    }
+
+    private void recreatePartForButtons() {
+
+        partForButtons.removeAllViews();
+        int counter = 0;
+        LinearLayout currentLine = createNewLine();
+        partForButtons.addView(currentLine);
+        for (String name: names) {
+            if (counter%5 == 0) {
+                currentLine = createNewLine();
+                partForButtons.addView(currentLine);
+            }
+            currentLine.addView(createButton(name));
+            counter++;
+        }
+    }
+
+    private LinearLayout createNewLine() {
+        LinearLayout newLine = new LinearLayout(this);
+        newLine.setOrientation(LinearLayout.HORIZONTAL);
+
+        LinearLayout.LayoutParams newLineParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        newLine.setLayoutParams(newLineParams);
+
+        return newLine;
     }
 
     @NonNull
@@ -126,7 +168,7 @@ public class NameActivity extends AppCompatActivity {
         return returnValue;
     }
 
-    private String[] getNames(File file) throws Exception {
+    private ArrayList<String> getNames(File file) throws Exception {
 
         BufferedReader bufferIn = new BufferedReader(new FileReader(file));
         List<String> names = new ArrayList<String>();
@@ -137,8 +179,7 @@ public class NameActivity extends AppCompatActivity {
         }
         bufferIn.close();
 
-        return line.split(",");
-
+        String [] tmpNames = line.split(",");
+        return new ArrayList<String>(Arrays.asList(tmpNames));
     }
-
 }

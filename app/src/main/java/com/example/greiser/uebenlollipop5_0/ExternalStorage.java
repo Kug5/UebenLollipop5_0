@@ -107,7 +107,7 @@ public class ExternalStorage {
                 Environment.DIRECTORY_DOCUMENTS), getFileNameListOfNames());
     }
 
-    public void storeNames(Context context, String[] names, String newName) throws IOException {
+    public void storeNames(Context context, ArrayList<String> names) throws IOException {
 
         if(!isExternalStorageWritable()) {
             return;
@@ -118,18 +118,13 @@ public class ExternalStorage {
         BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 
         if (names != null) {
-            for (int i = 0; i < names.length; i++) {
+            for (int i = 0; i < names.size(); i++) {
                 if (i != 0) {
                     bw.write(",");
                 }
-                bw.write(names[i]);
+                bw.write(names.get(i));
             }
         }
-
-        if (names != null && names.length > 0) {
-            bw.write(",");
-        }
-        bw.write(newName);
 
         bw.flush();
         bw.close();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,55 +9,53 @@
     android:orientation="vertical"
     tools:context=".NameActivity">
 
-    <EditText
+    <TextView
         android:id="@+id/werIstDa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
+        android:layout_weight="0"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:inputType="textLongMessage"
+        android:inputType="none"
         android:linksClickable="false"
         android:longClickable="false"
-        android:text="Wer ist heute dran?" />
+        android:text="Wer ist heute dran?"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-    <LinearLayout
-        android:id="@+id/partForButtons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"></LinearLayout>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="left|center_horizontal"
-        android:orientation="horizontal">
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="3">
 
-        <EditText
-            android:id="@+id/duBistNeu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="8"
-            android:ems="10"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:inputType="textPersonName"
-            android:linksClickable="false"
-            android:longClickable="false"
-            android:text="Du bist neu? Gib hier bitte deinen Namen an:" />
-
-        <EditText
-            android:id="@+id/inputName"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/partForButtons"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:imeOptions="actionGo"
-            android:inputType="textPersonName" />
+            android:orientation="vertical"></LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/newName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_weight="0"
+        android:background="@android:color/holo_green_dark"
+        android:padding="9dp"
+        android:textAlignment="viewEnd"
+        app:srcCompat="@android:drawable/ic_menu_add" />
+
+    <EditText
+        android:id="@+id/inputName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:imeOptions="actionGo"
+        android:inputType="textPersonName" />
 
 </LinearLayout>
