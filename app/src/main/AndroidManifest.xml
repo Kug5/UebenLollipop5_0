@@ -48,6 +48,9 @@
         <activity
             android:name=".ScoreActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".MenuMathActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>
