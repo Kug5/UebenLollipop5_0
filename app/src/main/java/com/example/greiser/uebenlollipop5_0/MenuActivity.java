@@ -26,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
         buttonDeutsch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            startActivity(new Intent(MenuActivity.this, DeutschActivity.class));
+            startActivity(new Intent(MenuActivity.this, DeutschRightWrongActivity.class));
             }
         });
 

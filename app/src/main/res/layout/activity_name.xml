@@ -20,8 +20,7 @@
         android:linksClickable="false"
         android:longClickable="false"
         android:text="Wer ist heute dran?"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <ScrollView
         android:layout_width="match_parent"

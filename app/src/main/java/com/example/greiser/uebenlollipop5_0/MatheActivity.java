@@ -42,7 +42,7 @@ public class MatheActivity extends AppCompatActivity {
 
     int counterCorrect = 0;
     int points = 0;
-    private EditText abakus;
+    private TextView abakus;
 
     private List<Integer> usedIndex;
     private StorageData storedData;

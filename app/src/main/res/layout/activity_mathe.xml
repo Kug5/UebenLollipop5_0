@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_dark"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
     tools:context=".MatheActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <ProgressBar
@@ -37,13 +35,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/aufgabe"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="text"
             android:paddingLeft="15dp"
@@ -52,7 +51,7 @@
         <EditText
             android:id="@+id/ergebnis"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="number"
             android:textSize="36sp" />
@@ -60,7 +59,7 @@
         <ImageView
             android:id="@+id/help"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingRight="15dp"
             app:srcCompat="@android:drawable/ic_menu_help" />
@@ -68,16 +67,15 @@
 
     </LinearLayout>
 
-    <include layout="@layout/keyboard_ext" />
+    <include
+        layout="@layout/keyboard_ext" />
 
-    <EditText
+    <TextView
         android:id="@+id/abakus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:cursorVisible="false"
-        android:editable="false"
-        android:gravity="left|center_vertical"
-        android:singleLine="false" />
+        android:layout_margin="10dp"
+        android:layout_weight="0"
+        android:gravity="left|center_vertical" />
 
 </LinearLayout>

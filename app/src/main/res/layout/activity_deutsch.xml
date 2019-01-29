@@ -4,26 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_dark"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".DeutschActivity">
+    tools:context=".DeutschRightWrongActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/toSpeak"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="134dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:singleLine="false"
-            android:text="Opa und Papa haben eine Tür eingebaut. Die Tür ist braun und soll vor Fliegen schüzten."
-            android:textSize="36sp" />
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/toSpeak"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:text="TextView"
+                android:textSize="20sp" />
+        </ScrollView>
 
         <ImageView
             android:id="@+id/play"
@@ -37,7 +42,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:layout_weight="5"
         android:orientation="horizontal">
 
         <Button

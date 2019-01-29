@@ -49,6 +49,7 @@ public class ScoreActivity extends AppCompatActivity {
                         try {
                             storedData = es.getStoredTasks(getApplicationContext(), op.name(), max[i], application.getUsername());
                         } catch (Exception e) {
+                            mainLayout.addView(createEmptyRow(paramsRow));
                             continue;
                         }
 
@@ -92,5 +93,13 @@ public class ScoreActivity extends AppCompatActivity {
             e.printStackTrace();
             Log.e("Error", e.getMessage());
         }
+    }
+
+    private LinearLayout createEmptyRow(LinearLayout.LayoutParams paramsRow) {
+        LinearLayout row = new LinearLayout(getApplicationContext());
+        row.setOrientation(LinearLayout.HORIZONTAL);
+        row.setLayoutParams(paramsRow);
+
+        return row;
     }
 }

@@ -34,7 +34,7 @@
             android:name=".SuperActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".DeutschActivity"
+            android:name=".DeutschRightWrongActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".BlockMathActivity"

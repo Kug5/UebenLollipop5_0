@@ -8,22 +8,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class DeutschActivity extends AppCompatActivity {
+public class DeutschRightWrongActivity extends AppCompatActivity {
 
     private TextToSpeech textToSpeach;
     private List<Question> questions = new ArrayList<Question>();
     private Question currentQuestion;
-    private EditText questionText;
+    private TextView questionText;
     static int counter = 0;
-    static final int howMany= 5;
+    static final int howMany = 10;
+    private Ueben application;
+    private List<Integer> usedIndex = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class DeutschActivity extends AppCompatActivity {
         setContentView(R.layout.activity_deutsch);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        application = ((Ueben) getApplication());
 
         questionText = findViewById(R.id.toSpeak);
         createQuestions();
@@ -84,15 +88,17 @@ public class DeutschActivity extends AppCompatActivity {
     private void chooseTask() {
 
         if (howMany == counter) {
-            startActivity(new Intent(DeutschActivity.this, MenuActivity.class));
+            application.lastPoints = counter;
+            startActivity(new Intent(DeutschRightWrongActivity.this, SuperActivity.class));
         }
 
         int index = -1;
 
         do {
             index = (int)(Math.random()* questions.size());
-        } while (index > questions.size());
+        } while (index > questions.size() || usedIndex.contains(index));
 
+        usedIndex.add(index);
         currentQuestion = questions.get(index);
         questionText.setText(currentQuestion.text);
     }
@@ -106,7 +112,7 @@ public class DeutschActivity extends AppCompatActivity {
         questions.add(new Question("Alle Autos sind lila", new Answer(tmp, 1)));
         questions.add(new Question("Wale schwimmen im Meer", new Answer(tmp, 0)));
         questions.add(new Question("Baden kann ich nur im See", new Answer(tmp, 1)));
-        questions.add(new Question("Die Sonne ust gelb", new Answer(tmp, 0)));
+        questions.add(new Question("Die Sonne ist gelb", new Answer(tmp, 0)));
         questions.add(new Question("Die Vögel pfeifen ein Lied", new Answer(tmp, 0)));
         questions.add(new Question("Die Wolken sind rosa", new Answer(tmp, 1)));
         questions.add(new Question("Der Tiger ist gefährlich", new Answer(tmp, 0)));
