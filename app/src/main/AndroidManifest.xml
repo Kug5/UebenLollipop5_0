@@ -54,6 +54,10 @@
         <activity
             android:name=".DeutschWriteActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".DeutschSingularPluralActivity"
+            android:screenOrientation="landscape"/>
+
     </application>
 
 </manifest>

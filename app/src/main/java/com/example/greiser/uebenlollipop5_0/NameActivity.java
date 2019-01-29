@@ -27,10 +27,11 @@ import java.util.List;
 public class NameActivity extends AppCompatActivity {
 
     public static final int padding = 10;
-    ArrayList<String> names;
+    List<String> names;
     private ExternalStorage es;
     private Ueben application;
     private LinearLayout partForButtons;
+    private TextView niemandText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,9 @@ public class NameActivity extends AppCompatActivity {
         application = ((Ueben) getApplication());
 
         partForButtons = findViewById(R.id.partForButtons);
+        niemandText = findViewById(R.id.niemandIstDa);
+        niemandText.setVisibility(View.GONE);
+
         this.es = new ExternalStorage();
         File file = es.getFileListOfNames(getApplicationContext());
 
@@ -49,12 +53,11 @@ public class NameActivity extends AppCompatActivity {
             if (names != null) {
                 recreatePartForButtons();
             } else {
-                findViewById(R.id.werIstDa).setVisibility(View.GONE);
-                partForButtons.setVisibility(View.GONE);
+                setEmptyNamesLayout();
             }
         } catch (Exception e) {
-            findViewById(R.id.werIstDa).setVisibility(View.GONE);
-            partForButtons.setVisibility(View.GONE);
+            names = new ArrayList<>();
+            setEmptyNamesLayout();
         }
 
         final EditText inputName = findViewById(R.id.inputName);
@@ -77,7 +80,11 @@ public class NameActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
                     names.add(inputName.getText().toString());
                     recreatePartForButtons();
+
+                    niemandText.setVisibility(View.GONE);
+                    findViewById(R.id.werIstDa).setVisibility(View.GONE);
                     partForButtons.setVisibility(View.VISIBLE);
+
                     try {
                         es.storeNames(getApplicationContext(), names);
                     } catch (IOException e) {
@@ -93,6 +100,12 @@ public class NameActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void setEmptyNamesLayout() {
+        findViewById(R.id.werIstDa).setVisibility(View.GONE);
+        niemandText.setVisibility(View.VISIBLE);
+        partForButtons.setVisibility(View.GONE);
     }
 
     private void recreatePartForButtons() {
@@ -168,18 +181,18 @@ public class NameActivity extends AppCompatActivity {
         return returnValue;
     }
 
-    private ArrayList<String> getNames(File file) throws Exception {
+    private List<String> getNames(File file) throws Exception {
 
         BufferedReader bufferIn = new BufferedReader(new FileReader(file));
         List<String> names = new ArrayList<String>();
 
         String line  = bufferIn.readLine();
-        if(line == null) {
-            throw new Exception("empty file");
+        if(line != null) {
+            String [] tmpNames = line.split(",");
+            bufferIn.close();
+            return new ArrayList<String>(Arrays.asList(tmpNames));
         }
-        bufferIn.close();
 
-        String [] tmpNames = line.split(",");
-        return new ArrayList<String>(Arrays.asList(tmpNames));
+        return names;
     }
 }

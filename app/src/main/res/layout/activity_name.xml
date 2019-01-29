@@ -22,6 +22,19 @@
         android:text="Wer ist heute dran?"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
+    <TextView
+        android:id="@+id/niemandIstDa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="none"
+        android:linksClickable="false"
+        android:longClickable="false"
+        android:text="Erstelle bitte einen Namen"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

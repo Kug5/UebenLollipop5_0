@@ -17,6 +17,8 @@ import java.util.List;
 
 public class ExternalStorage {
 
+    private static final String CURRENT_VERSION_DEUTSCH_VORLAGE = "v1";
+
     /* Checks if external storage is available for read and write */
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
@@ -108,7 +110,7 @@ public class ExternalStorage {
                 Environment.DIRECTORY_DOCUMENTS), getFileNameListOfNames());
     }
 
-    public void storeNames(Context context, ArrayList<String> names) throws IOException {
+    public void storeNames(Context context, List<String> names) throws IOException {
 
         if(!isExternalStorageWritable()) {
             return;
@@ -267,12 +269,33 @@ public class ExternalStorage {
                 Environment.DIRECTORY_DOCUMENTS), "hs" + name + ".txt");
     }
 
+    private BufferedReader getBufferedReaderDeutschVorlagen(Context context) {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(getDeutschFileName(context)));
+
+            String line = br.readLine();
+            if (line == null || !line.equals(CURRENT_VERSION_DEUTSCH_VORLAGE)) {
+                createDeutschVorlagenFile(context);
+                return getBufferedReaderDeutschVorlagen(context);
+            }
+
+        } catch (FileNotFoundException e) {
+            createDeutschVorlagenFile(context);
+            return getBufferedReaderDeutschVorlagen(context);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return br;
+    }
+
     public List<String> getDeutschWriteEntities(Context context) {
 
         List<String> entities = new ArrayList<>();
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(getDeutschFileName(context)));
+            BufferedReader br = getBufferedReaderDeutschVorlagen(context);
             String line = br.readLine();
             do {
                 String [] split = line.split(" ");
@@ -287,9 +310,6 @@ public class ExternalStorage {
                 line = br.readLine();
             } while (line != null);
 
-        } catch (FileNotFoundException e) {
-            createDeutschVorlagenFile(context);
-            getDeutschWriteEntities(context);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -314,7 +334,8 @@ public class ExternalStorage {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(getDeutschFileName(context)));
             bw.write(
-                    "1 bunt gelb braun rot blau grün süß saftig groß rund klein schwer grau klar stark kalt heftig schwarz schnell schwer schön schon November Dezember Januar Februar März April Mai Juni Juli August September Oktober voll viel vom von vor vier eins zwei drei vier fünf sechs sieben acht neuen zehn elf zwölf dreihzehn vierzehn einhundert tausend klein kalt krank morgen gesund fremd uns und noch auch doch weiß zuerst dann danach nun zuletzt warm stark freundlich klug nett hilfsbereit fleißig schüchtern witzig mutig frech ehrlich\n" +
+                    CURRENT_VERSION_DEUTSCH_VORLAGE + "\n" +
+                            "1 bunt gelb braun rot blau grün süß saftig groß rund klein schwer grau klar stark kalt heftig schwarz schnell schwer schön schon November Dezember Januar Februar März April Mai Juni Juli August September Oktober voll viel vom von vor vier eins zwei drei vier fünf sechs sieben acht neuen zehn elf zwölf dreihzehn vierzehn einhundert tausend klein kalt krank morgen gesund fremd uns und noch auch doch weiß zuerst dann danach nun zuletzt warm stark freundlich klug nett hilfsbereit fleißig schüchtern witzig mutig frech ehrlich\n" +
                             "2 Bild das Bield Bilt Bilder Bielder Bilter \n" +
                             "2 Baum der Paum Bum Bäume Beume Päume\n" +
                             "2 Buch das Boch Bug Bücher Büscher Bicher\n" +
@@ -476,4 +497,42 @@ public class ExternalStorage {
                 Environment.DIRECTORY_DOCUMENTS), "deutschVorlagen.txt");
 
     }
+
+    public List<SinglePlural> getDeutschSinglePluralEntities(Context context) {
+
+        BufferedReader br = getBufferedReaderDeutschVorlagen(context);
+        List<SinglePlural> entities = new ArrayList<>();
+
+        try {
+          String line = br.readLine();
+
+            do {
+                String [] split = line.split(" ");
+                if (split.length < 8) {
+                    continue;
+                }
+
+                if (split[0].equals("2")) {
+                    entities.add(new SinglePlural(split)); break;
+                }
+
+                line = br.readLine();
+
+            } while (line != null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return entities;
+
+    }
+
+    public String getImageFilePath(Context context, String singular) {
+        return new File(context.getExternalFilesDir(
+                Environment.DIRECTORY_PICTURES), singular + ".png").getAbsolutePath();
+
+    }
+
+
 }
