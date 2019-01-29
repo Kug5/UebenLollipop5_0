@@ -26,6 +26,8 @@ public class DeutschRightWrongActivity extends AppCompatActivity {
     static final int howMany = 10;
     private Ueben application;
     private List<Integer> usedIndex = new ArrayList();
+    private boolean failed = false;
+    private int points = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +67,11 @@ public class DeutschRightWrongActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (currentQuestion.answer.rightIndex == 0) {
+                    if (!failed) points++;
                     counter++;
                     chooseTask();
+                } else {
+                    failed = true;
                 }
             }
         });
@@ -76,8 +81,11 @@ public class DeutschRightWrongActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (currentQuestion.answer.rightIndex == 1) {
+                    if (!failed) points++;
                     counter++;
                     chooseTask();
+                } else {
+                    failed = true;
                 }
             }
         });
@@ -87,8 +95,10 @@ public class DeutschRightWrongActivity extends AppCompatActivity {
 
     private void chooseTask() {
 
+        failed = false;
+
         if (howMany == counter) {
-            application.lastPoints = counter;
+            application.lastPoints = points;
             startActivity(new Intent(DeutschRightWrongActivity.this, SuperActivity.class));
         }
 

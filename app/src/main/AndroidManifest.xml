@@ -51,6 +51,9 @@
         <activity
             android:name=".MenuMathActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".DeutschWriteActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>
