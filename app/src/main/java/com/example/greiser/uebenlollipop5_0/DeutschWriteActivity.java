@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,6 +30,8 @@ public class DeutschWriteActivity extends AppCompatActivity {
     private EditText userInput;
     private boolean failed = false;
     private int points = 0;
+    private Button startButton;
+    private TextView merke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class DeutschWriteActivity extends AppCompatActivity {
         ExternalStorage es = new ExternalStorage();
         entries = es.getDeutschWriteEntities(getApplicationContext());
 
+        merke = findViewById(R.id.merke);
         preset = findViewById(R.id.preset);
         layoutInput = findViewById(R.id.layoutInput);
         userInput = findViewById(R.id.userInput);
@@ -54,10 +58,28 @@ public class DeutschWriteActivity extends AppCompatActivity {
             }
         });
 
-        chooseEntry();
+        startButton = findViewById(R.id.startButton);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseEntry();
+            }
+        });
+
+        setPreStartConfigs();
+    }
+
+    private void setPreStartConfigs() {
+        merke.setVisibility(View.VISIBLE);
+        startButton.setVisibility(View.VISIBLE);
+        preset.setVisibility(View.INVISIBLE);
+        layoutInput.setVisibility(View.INVISIBLE);
     }
 
     private void setStartConfigs() {
+        merke.setVisibility(View.INVISIBLE);
+        startButton.setVisibility(View.INVISIBLE);
+
         failed = false;
         preset.setVisibility(View.VISIBLE);
         preset.setBackgroundColor(Color.WHITE);

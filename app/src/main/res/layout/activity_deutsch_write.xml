@@ -11,9 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        tools:text="Merke dir das Wort und Schreibe es nach!" />
+        android:text="Merke dir das Wort und Schreibe es nach!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@android:color/holo_green_dark"
+        android:text="Start" />
 
     <TextView
         android:id="@+id/preset"
