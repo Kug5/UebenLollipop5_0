@@ -27,19 +27,19 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                startActivity(new Intent(MenuActivity.this, DeutschSingularPluralActivity.class));
+                startActivity(new Intent(MenuActivity.this, DeutschSingularPluralActivity.class));
 //                startActivity(new Intent(MenuActivity.this, DeutschWriteActivity.class));
 
                 // A random integer value in the range [Min,Max]
-                int min = 0;
-                int max = 2;
-                int x = min + (int) (Math.random() * ((max - min) + 1));
-                if (x == 0)
-                    startActivity(new Intent(MenuActivity.this, DeutschRightWrongActivity.class));
-                else if (x == 1)
-                    startActivity(new Intent(MenuActivity.this, DeutschWriteActivity.class));
-                else if (x == 2)
-                    startActivity(new Intent(MenuActivity.this, DeutschSingularPluralActivity.class));
+//                int min = 0;
+//                int max = 2;
+//                int x = min + (int) (Math.random() * ((max - min) + 1));
+//                if (x == 0)
+//                    startActivity(new Intent(MenuActivity.this, DeutschRightWrongActivity.class));
+//                else if (x == 1)
+//                    startActivity(new Intent(MenuActivity.this, DeutschWriteActivity.class));
+//                else if (x == 2)
+//                    startActivity(new Intent(MenuActivity.this, DeutschSingularPluralActivity.class));
 
             }
         });
