@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ExternalStorage {
 
-    private static final String CURRENT_VERSION_DEUTSCH_VORLAGE = "v1";
+    private static final String CURRENT_VERSION_DEUTSCH_VORLAGE = "v2";
 
     /* Checks if external storage is available for read and write */
     public boolean isExternalStorageWritable() {
@@ -346,53 +346,52 @@ public class ExternalStorage {
                             "2 Stift der Stiefte Stivte Stifte Stiefte Stivte\n" +
                             "2 Mädchen das Medchen Mätchen Mädchen Medchen Mätchen\n" +
                             "2 Junge der June Jonge Jungen Jugen Jüngen\n" +
-                            "2 Computer Komputer Compüter Computer Kompüter Kombüse\n" +
+                            "2 Computer der Komputer Compüter Computer Kompüter Kombüse\n" +
                             "2 Lehrerin die Lererin Lehrerien Lehrerinnen Lehrerinen Lererinnen\n" +
                             "2 Apfel der Appel Abfel Äpfel Epfel Äfel\n" +
                             "2 Schere die Schäre Schähre Scheren Schären Schähren \n" +
                             "2 Maus die Meis Mauhs Mäuse Meuse Meuhse\n" +
                             "2 Schule die Schuhle Schulle Schulen Schullen Schuhlen  \n" +
                             "2 Tasche die Tasce Tache Taschen Tachen Taschhen\n" +
-                            "2 Schultasche die\n" +
-                            "2 Brot das\n" +
-                            "2 Ball der\n" +
-                            "2 Fenster das\n" +
-                            "2 Bank die\n" +
-                            "2 Birne die\n" +
-                            "2 Boden der\n" +
-                            "2 Gras das\n" +
-                            "2 Gemüse das\n" +
-                            "2 Garten der\n" +
-                            "2 Dach das\n" +
-                            "2 Schwester die\n" +
-                            "2 Vater der\n" +
-                            "2 Mutter die\n" +
-                            "2 Eltern die\n" +
-                            "2 Bruder der\n" +
-                            "2 Schwester die\n" +
-                            "2 Geschwister die\n" +
-                            "2 Opa der\n" +
-                            "2 Oma die\n" +
-                            "2 Wärme die\n" +
-                            "2 Kälte die\n" +
-                            "2 Großeltern die\n" +
-                            "2 Vogel der\n" +
-                            "2 Verkehr der\n" +
-                            "2 Vase die\n" +
-                            "2 Puppe die\n" +
-                            "2 Papier das\n" +
-                            "2 Tante die\n" +
-                            "2 Körper der\n" +
-                            "2 Kopf der\n" +
-                            "2 Käfer der\n" +
-                            "2 Kalender der\n" +
-                            "2 Dieb der\n" +
-                            "2 Korb der\n" +
-                            "2 Tag der\n" +
-                            "2 Weg der\n" +
-                            "2 Kleid das\n" +
-                            "2 Hand die\n" +
-                            "2 Sand der\n" +
+                            "2 Schultasche die Chultasche Schuhltasche Schultaschen Schuhltaschen Schultachen\n" +
+                            "2 Brot das Brott Prot Brote Prote Brotte\n" +
+                            "2 Ball der Bal Baal Bälle Belle Bele\n" +
+                            "2 Fenster das Fänster Venster Fenster Fänster Venster\n" +
+                            "2 Bank die Bang Banck Bänke Benke Bäncke\n" +
+                            "2 Birne die Bierne Pirne Birnen Biernen Pirnen\n" +
+                            "2 Boden der Buden Boten Böden Bürden Bötten\n" +
+                            "2 Gras das Grass Kras Gräser Kräser Greser\n" +
+                            "2 Gemüse das Gemüze Gemüße Gemüse Kemüse Gemüsse\n" +
+                            "2 Garten der Karten Garden Gärten Gerten Kerten\n" +
+                            "2 Dach das Dack Tach Dächer Decher Techer\n" +
+                            "2 Schwester die Schester Schwerter Schwestern Schestern Schwertern \n" +
+                            "2 Vater der Fater Pfatter Väter Veter Feter\n" +
+                            "2 Mutter die Muter Muttär Mütter Mitter Müttär\n" +
+                            "2 Eltern die Elten Ältern Eltern Ältern Eltärn\n" +
+                            "2 Bruder der Pruder Bruter Brüder Prüder Brüter\n" +
+                            "2 Geschwister die Keschwister Geschfister Geschwister Kreschwister Geschwiter\n" +
+                            "2 Opa der Oppa Oba Opas Obbas Oppas\n" +
+                            "2 Oma die Omma Uma Omas Ommas Umas\n" +
+                            "2 Wärme die Werme Wärmme Wärme Werme Wärmme\n" +
+                            "2 Kälte die Kelte Gelte Kälte Kelte Gälte\n" +
+                            "2 Großeltern die Grosältern Großältern Großeltern Grosältern Großältern\n" +
+                            "2 Vogel der Fogel Vokel Vögel Fögel Vökel\n" +
+                            "2 Verkehr der Ferkehr Verker Verkehre Ferkähre Verkähre\n" +
+                            "2 Vase die Fase Wase Vasen Fasen Wasen\n" +
+                            "2 Puppe die Pupe Bubben Puppen Buppen Pupen\n" +
+                            "2 Papier das Pappier Papir Papiere Pappiere Pappire\n" +
+                            "2 Tante die Tande Tantte Tanten Tantten Tanden\n" +
+                            "2 Körper der Körber Körpper Körper Körpper Körpär\n" +
+                            "2 Kopf der Kof Gopf Köpfe Göpfe Köfe\n" +
+                            "2 Käfer der Kefer Käver Käfer Kefer Käpfer\n" +
+                            "2 Kalender der Kalenter Galender Kalender Kälender Kalenter\n" +
+                            "2 Dieb der Dib Diep Diebe Dibe Diepe\n" +
+                            "2 Korb der Korp Gorb Körbe Körpe Köbe\n" +
+                            "2 Tag der Tak Tack Tage Take Tagge\n" +
+                            "2 Weg der Wek Weck Wege Wegge Wäge\n" +
+                            "2 Kleid das Kleit Klied Kleider Kleiter Glitter\n" +
+                            "2 Hand die Hant Hannd Hände Hende Hänte\n" +
+                            "2 Sand der Sant Sannd Sande Sante Sandän\n" +
                             "2 Geld das\n" +
                             "2 Feld das\n" +
                             "2 Wind der\n" +
@@ -508,22 +507,19 @@ public class ExternalStorage {
 
             do {
                 String [] split = line.split(" ");
-                if (split.length < 8) {
-                    continue;
-                }
 
-                if (split[0].equals("2")) {
-                    entities.add(new SinglePlural(split)); break;
+                if (split.length == 8 && split[0].equals("2")) {
+                    entities.add(new SinglePlural(split));
                 }
 
                 line = br.readLine();
 
             } while (line != null);
+
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         return entities;
 
     }

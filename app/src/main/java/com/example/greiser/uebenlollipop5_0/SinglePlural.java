@@ -43,4 +43,8 @@ class SinglePlural {
     public String getsWrong2() {
         return sWrong2;
     }
+
+    public String getArticle() {
+        return article;
+    }
 }
