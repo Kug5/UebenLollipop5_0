@@ -86,8 +86,11 @@ public class DeutschSingularPluralActivity extends AppCompatActivity {
         final Button p3 = new Button(getApplicationContext());
 
         p1.setText(tmp.getpRight());
+        p1.setTransformationMethod(null);
         p2.setText(tmp.getpWrong1());
+        p2.setTransformationMethod(null);
         p3.setText(tmp.getpWrong2());
+        p3.setTransformationMethod(null);
 
         p1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +136,7 @@ public class DeutschSingularPluralActivity extends AppCompatActivity {
         buttonList.add(b2);
         buttonList.add(b3);
         Collections.shuffle(buttonList);
-        for (Button b: buttonList) {
+        for (Button b : buttonList) {
             layout.addView(b);
         }
     }
@@ -145,8 +148,11 @@ public class DeutschSingularPluralActivity extends AppCompatActivity {
         final Button s3 = new Button(getApplicationContext());
 
         s1.setText(tmp.getsRight());
+        s1.setTransformationMethod(null);
         s2.setText(tmp.getsWrong1());
+        s2.setTransformationMethod(null);
         s3.setText(tmp.getsWrong2());
+        s3.setTransformationMethod(null);
 
         s1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,8 +198,11 @@ public class DeutschSingularPluralActivity extends AppCompatActivity {
         final Button a3 = new Button(getApplicationContext());
 
         a1.setText("der");
+        a1.setTransformationMethod(null);
         a2.setText("die");
+        a2.setTransformationMethod(null);
         a3.setText("das");
+        a3.setTransformationMethod(null);
 
         a1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -299,6 +308,10 @@ public class DeutschSingularPluralActivity extends AppCompatActivity {
     }
 
     private int getResource(String singular) {
+
+        // <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
+        // title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"
+        // title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
         switch (singular) {
             case "Baum":
                 return R.drawable.baum;
@@ -324,6 +337,68 @@ public class DeutschSingularPluralActivity extends AppCompatActivity {
                 return R.drawable.junge;
             case "Computer":
                 return R.drawable.computer;
+            case "Affe":
+                return R.drawable.affe;
+            case "Apfel":
+                return R.drawable.apfel;
+            case "Ball":
+                return R.drawable.ball;
+            case "Bank":
+                return R.drawable.bank;
+            case "Birne":
+                return R.drawable.birne;
+            case "Brot":
+                return R.drawable.brot;
+            case "Fenster":
+                return R.drawable.fenster;
+            case "Lehrerin":
+                return R.drawable.lehrerin;
+            case "Maus":
+                return R.drawable.maus;
+            case "Schere":
+                return R.drawable.schere;
+            case "Schule":
+                return R.drawable.schule;
+            case "Schultasche":
+                return R.drawable.schultasche;
+            case "Tasche":
+                return R.drawable.tasche;
+            case "Boden":
+                return R.drawable.boden;
+            case "Garten":
+                return R.drawable.garten;
+            case "Gemüse":
+                return R.drawable.gemuese;
+            case "Gras":
+                return R.drawable.gras;
+            case "Bruder":
+                return R.drawable.bruder;
+            case "Geschwister":
+                return R.drawable.geschwister;
+            case "grosseltern":
+                return R.drawable.grosseltern;
+            case "Kälte":
+                return R.drawable.kaelte;
+            case "Mutter":
+                return R.drawable.mutter;
+            case "Oma":
+                return R.drawable.oma;
+            case "Opa":
+                return R.drawable.opa;
+            case "Papier":
+                return R.drawable.papier;
+            case "Puppe":
+                return R.drawable.puppe;
+            case "Vase":
+                return R.drawable.vase;
+            case "Vater":
+                return R.drawable.vater;
+            case "Verkehr":
+                return R.drawable.verkehr;
+            case "Wärme":
+                return R.drawable.waerme;
+
+
         }
 
         return 0;
