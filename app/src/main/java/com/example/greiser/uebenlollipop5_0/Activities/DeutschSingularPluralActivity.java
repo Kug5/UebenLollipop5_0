@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.example.greiser.uebenlollipop5_0.Helper.ExternalStorage;
+import com.example.greiser.uebenlollipop5_0.Helper.SinglePlural;
+import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
+import com.example.greiser.uebenlollipop5_0.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

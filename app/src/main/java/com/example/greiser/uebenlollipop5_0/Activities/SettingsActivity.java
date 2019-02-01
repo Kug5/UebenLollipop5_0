@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.greiser.uebenlollipop5_0.Helper.ExternalStorage;
+import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
+import com.example.greiser.uebenlollipop5_0.R;
 
 import java.io.IOException;
 

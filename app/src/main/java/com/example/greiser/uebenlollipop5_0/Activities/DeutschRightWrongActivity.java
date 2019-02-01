@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.Activities;
 
 import android.content.Intent;
 import android.media.AudioManager;
@@ -10,6 +10,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
+import com.example.greiser.uebenlollipop5_0.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

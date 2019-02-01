@@ -9,7 +9,7 @@
     android:id="@+id/container"
     android:gravity="center_vertical|center_horizontal"
     android:orientation="horizontal"
-    tools:context=".MenuMathActivity">
+    tools:context=".Activities.MenuMathActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,6 +1,6 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.Helper;
 
-class UserHeightScore {
+public class UserHeightScore {
 
     public int[] bestPlusMinus20 = new int[10];
     public int[] bestPlusMinus30 = new int[10];

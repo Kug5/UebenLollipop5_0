@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.greiser.uebenlollipop5_0.Helper.Task;
+import com.example.greiser.uebenlollipop5_0.R;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -199,7 +202,7 @@ public class BlockMathActivity extends AppCompatActivity {
             return false;
         }
 
-        if (editText.getText().toString().equals("" + task.sum)) {
+        if (editText.getText().toString().equals("" + task.getSum())) {
             editText.setBackgroundColor(right);
             return true;
         } else {

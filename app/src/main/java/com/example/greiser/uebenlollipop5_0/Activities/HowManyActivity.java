@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class HowMany extends AppCompatActivity {
+import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
+import com.example.greiser.uebenlollipop5_0.R;
+
+public class HowManyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +78,7 @@ public class HowMany extends AppCompatActivity {
     }
 
     private void goToMatheActivity(int many) {
-        Intent math = new Intent(HowMany.this, MatheActivity.class);
+        Intent math = new Intent(HowManyActivity.this, MatheActivity.class);
         ((Ueben)getApplication()).setMany(many);
         startActivity(math);
     }

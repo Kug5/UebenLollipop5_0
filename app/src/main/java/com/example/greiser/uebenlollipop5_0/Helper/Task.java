@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.Helper;
 
 public class Task {
 
@@ -10,6 +10,10 @@ public class Task {
         this.sum = sum;
         this.summand1 = summand1;
         this.summand2 = summand2;
+    }
+
+    public int getSum() {
+        return this.sum;
     }
 
 }

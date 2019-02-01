@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +16,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.greiser.uebenlollipop5_0.Helper.BigTask;
+import com.example.greiser.uebenlollipop5_0.Helper.ExternalStorage;
+import com.example.greiser.uebenlollipop5_0.Helper.StorageData;
+import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
+import com.example.greiser.uebenlollipop5_0.Helper.UserHeightScore;
+import com.example.greiser.uebenlollipop5_0.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -423,12 +430,12 @@ public class MatheActivity extends AppCompatActivity {
 
         usedIndex.add(indexRandom);
 
-        currentAufgabe = taskList.get(indexRandom).displayTask;
-        currentErgebnis = "" + taskList.get(indexRandom).result;
+        currentAufgabe = taskList.get(indexRandom).getDisplayTask();
+        currentErgebnis = "" + taskList.get(indexRandom).getResult();
 
-        if (operation.equals(Ueben.OPERATION_PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" + ")) {
+        if (operation.equals(Ueben.OPERATION_PLUSMINUS) && taskList.get(indexRandom).getDisplayTask().contains(" + ")) {
             createAbakusPlus(taskList.get(indexRandom));
-        } else if (operation.equals(Ueben.OPERATION_PLUSMINUS) && taskList.get(indexRandom).displayTask.contains(" - ")) {
+        } else if (operation.equals(Ueben.OPERATION_PLUSMINUS) && taskList.get(indexRandom).getDisplayTask().contains(" - ")) {
             createAbakusMinus(taskList.get(indexRandom));
         }
 
@@ -447,7 +454,7 @@ public class MatheActivity extends AppCompatActivity {
         int countKugelI = 0;
         int countKugelK = 0;
 
-        for (int i = 0; i< task.i; i++) {
+        for (int i = 0; i< task.getI(); i++) {
             forI.append(kugel);
             countKugelI++;
             if (countKugelI % 10 == 0) {
@@ -455,7 +462,7 @@ public class MatheActivity extends AppCompatActivity {
             }
         }
 
-        for (int k = 0; k< task.j; k++) {
+        for (int k = 0; k< task.getJ(); k++) {
             fork.append(kugel);
             countKugelK++;
             if ( (countKugelI + countKugelK) % 10 == 0 ) {
@@ -473,7 +480,7 @@ public class MatheActivity extends AppCompatActivity {
         int countKugelI = 0;
         int countKugelK = 0;
 
-        for (int i = 0; i< task.result; i++) {
+        for (int i = 0; i< task.getResult(); i++) {
             forI.append(kugel);
             countKugelI++;
             if (countKugelI % 10 == 0) {
@@ -481,7 +488,7 @@ public class MatheActivity extends AppCompatActivity {
             }
         }
 
-        for (int k = 0; k< task.j; k++) {
+        for (int k = 0; k< task.getJ(); k++) {
             fork.append(kugel_minus);
             countKugelK++;
             if ( (countKugelI + countKugelK) % 10 == 0 ) {
@@ -505,8 +512,8 @@ public class MatheActivity extends AppCompatActivity {
             // andern Falls hat der User Glück gehabt und die Antwort wird in die nächste Box verschoben :)
             if (nextPoint == 10) {
                 int maxBoxes = 3;
-                if (taskList.get(tmpIndex).box < maxBoxes) {
-                    taskList.get(tmpIndex).box++;
+                if (taskList.get(tmpIndex).getBox() < maxBoxes) {
+                    taskList.get(tmpIndex).increaseBox();
                 }
             }
 
@@ -529,7 +536,7 @@ public class MatheActivity extends AppCompatActivity {
                 }
             }
         } else {
-            taskList.get(tmpIndex).box = 1;
+            taskList.get(tmpIndex).setToFirstBox();
             final Drawable background = viewResult.getBackground();
             viewResult.setBackgroundColor(Color.RED);
             Handler handler = new Handler();

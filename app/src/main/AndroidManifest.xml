@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".Ueben"
+        android:name=".Helper.Ueben"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden">
         <activity
-            android:name=".NameActivity"
+            android:name=".Activities.NameActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape">
             <intent-filter>
@@ -24,38 +24,38 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MenuActivity"
+            android:name=".Activities.MenuActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MatheActivity"
+            android:name=".Activities.MatheActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".SuperActivity"
+            android:name=".Activities.SuperActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".DeutschRightWrongActivity"
+            android:name=".Activities.DeutschRightWrongActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".BlockMathActivity"
+            android:name=".Activities.BlockMathActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".HowMany"
+            android:name=".Activities.HowManyActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".Activities.SettingsActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ScoreActivity"
+            android:name=".Activities.ScoreActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MenuMathActivity"
+            android:name=".Activities.MenuMathActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".DeutschWriteActivity"
+            android:name=".Activities.DeutschWriteActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".DeutschSingularPluralActivity"
+            android:name=".Activities.DeutschSingularPluralActivity"
             android:screenOrientation="landscape"/>
 
     </application>

@@ -1,6 +1,6 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.Helper;
 
-class SinglePlural {
+public class SinglePlural {
 
     private String sRight;
     private String article;

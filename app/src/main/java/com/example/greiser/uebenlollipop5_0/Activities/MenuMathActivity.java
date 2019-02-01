@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
+import com.example.greiser.uebenlollipop5_0.R;
 
 public class MenuMathActivity extends AppCompatActivity {
 
@@ -26,7 +29,7 @@ public class MenuMathActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setOperationPlusMinus();
                 setMax(20);
-                startActivity(new Intent(MenuMathActivity.this, HowMany.class));
+                startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
             }
         });
 
@@ -36,7 +39,7 @@ public class MenuMathActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setOperationPlusMinus();
                 setMax(30);
-                startActivity(new Intent(MenuMathActivity.this, HowMany.class));
+                startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
             }
         });
 
@@ -46,7 +49,7 @@ public class MenuMathActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setOperationPlusMinus();
                 setMax(100);
-                startActivity(new Intent(MenuMathActivity.this, HowMany.class));
+                startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
             }
         });
 
@@ -64,7 +67,7 @@ public class MenuMathActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setOperationMult();
                 setMax(10);
-                startActivity(new Intent(MenuMathActivity.this, HowMany.class));
+                startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
             }
         });
 
@@ -74,7 +77,7 @@ public class MenuMathActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setOperationDivide();
                 setMax(100);
-                startActivity(new Intent(MenuMathActivity.this, HowMany.class));
+                startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
             }
         });
 

@@ -1,9 +1,9 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.Helper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class StorageData {
+public class StorageData {
 
     private long date;
     private int counter;
