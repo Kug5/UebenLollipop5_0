@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0;
+package com.example.greiser.uebenlollipop5_0.layout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import com.example.greiser.uebenlollipop5_0.R;
 
 /**
  * TODO: document your custom view class.

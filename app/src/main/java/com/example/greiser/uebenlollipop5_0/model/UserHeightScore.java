@@ -1,4 +1,6 @@
-package com.example.greiser.uebenlollipop5_0.Helper;
+package com.example.greiser.uebenlollipop5_0.model;
+
+import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 
 public class UserHeightScore {
 

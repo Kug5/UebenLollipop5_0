@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0.Helper;
+package com.example.greiser.uebenlollipop5_0.model;
 
 public class SinglePlural {
 

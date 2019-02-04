@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.ScoreActivity">
+    tools:context=".activities.ScoreActivity">
 
         <LinearLayout
             android:id="@+id/mainScore"
@@ -25,26 +25,26 @@
                             <!--android:inputType="textPersonName"-->
                             <!--android:text="+-20" />-->
 
-                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                        <!--<com.example.greiser.uebenlollipop5_0.layout.Box-->
                             <!--android:layout_width="wrap_content"-->
                             <!--android:layout_height="wrap_content"-->
                             <!--android:layout_weight="1"-->
                             <!--app:boxnr="1"-->
-                            <!--app:counter="1"></com.example.greiser.uebenlollipop5_0.Box>-->
+                            <!--app:counter="1"></com.example.greiser.uebenlollipop5_0.layout.Box>-->
 
-                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                        <!--<com.example.greiser.uebenlollipop5_0.layout.Box-->
                             <!--android:layout_width="wrap_content"-->
                             <!--android:layout_height="wrap_content"-->
                             <!--android:layout_weight="1"-->
                             <!--app:boxnr="2"-->
-                            <!--app:counter="22"></com.example.greiser.uebenlollipop5_0.Box>-->
+                            <!--app:counter="22"></com.example.greiser.uebenlollipop5_0.layout.Box>-->
 
-                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                        <!--<com.example.greiser.uebenlollipop5_0.layout.Box-->
                             <!--android:layout_width="wrap_content"-->
                             <!--android:layout_height="wrap_content"-->
                             <!--android:layout_weight="1"-->
                             <!--app:boxnr="3"-->
-                            <!--app:counter="333"></com.example.greiser.uebenlollipop5_0.Box>-->
+                            <!--app:counter="333"></com.example.greiser.uebenlollipop5_0.layout.Box>-->
                 <!--</LinearLayout>-->
 
                 <!--<LinearLayout-->
@@ -61,26 +61,26 @@
                             <!--android:inputType="textPersonName"-->
                             <!--android:text="+-30" />-->
 
-                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                        <!--<com.example.greiser.uebenlollipop5_0.layout.Box-->
                             <!--android:layout_width="wrap_content"-->
                             <!--android:layout_height="wrap_content"-->
                             <!--android:layout_weight="1"-->
                             <!--app:boxnr="1"-->
-                            <!--app:counter="1"></com.example.greiser.uebenlollipop5_0.Box>-->
+                            <!--app:counter="1"></com.example.greiser.uebenlollipop5_0.layout.Box>-->
 
-                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                        <!--<com.example.greiser.uebenlollipop5_0.layout.Box-->
                             <!--android:layout_width="wrap_content"-->
                             <!--android:layout_height="wrap_content"-->
                             <!--android:layout_weight="1"-->
                             <!--app:boxnr="2"-->
-                            <!--app:counter="22"></com.example.greiser.uebenlollipop5_0.Box>-->
+                            <!--app:counter="22"></com.example.greiser.uebenlollipop5_0.layout.Box>-->
 
-                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                        <!--<com.example.greiser.uebenlollipop5_0.layout.Box-->
                             <!--android:layout_width="wrap_content"-->
                             <!--android:layout_height="wrap_content"-->
                             <!--android:layout_weight="1"-->
                             <!--app:boxnr="3"-->
-                            <!--app:counter="333"></com.example.greiser.uebenlollipop5_0.Box>-->
+                            <!--app:counter="333"></com.example.greiser.uebenlollipop5_0.layout.Box>-->
                 <!--</LinearLayout>-->
 
                 <!--<LinearLayout-->
@@ -97,26 +97,26 @@
                             <!--android:inputType="textPersonName"-->
                             <!--android:text="+-100" />-->
 
-                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                        <!--<com.example.greiser.uebenlollipop5_0.layout.Box-->
                             <!--android:layout_width="wrap_content"-->
                             <!--android:layout_height="wrap_content"-->
                             <!--android:layout_weight="1"-->
                             <!--app:boxnr="1"-->
-                            <!--app:counter="6666"></com.example.greiser.uebenlollipop5_0.Box>-->
+                            <!--app:counter="6666"></com.example.greiser.uebenlollipop5_0.layout.Box>-->
 
-                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                        <!--<com.example.greiser.uebenlollipop5_0.layout.Box-->
                             <!--android:layout_width="wrap_content"-->
                             <!--android:layout_height="wrap_content"-->
                             <!--android:layout_weight="1"-->
                             <!--app:boxnr="2"-->
-                            <!--app:counter="5555"></com.example.greiser.uebenlollipop5_0.Box>-->
+                            <!--app:counter="5555"></com.example.greiser.uebenlollipop5_0.layout.Box>-->
 
-                        <!--<com.example.greiser.uebenlollipop5_0.Box-->
+                        <!--<com.example.greiser.uebenlollipop5_0.layout.Box-->
                             <!--android:layout_width="wrap_content"-->
                             <!--android:layout_height="wrap_content"-->
                             <!--android:layout_weight="1"-->
                             <!--app:boxnr="3"-->
-                            <!--app:counter="444"></com.example.greiser.uebenlollipop5_0.Box>-->
+                            <!--app:counter="444"></com.example.greiser.uebenlollipop5_0.layout.Box>-->
                 <!--</LinearLayout>-->
         </LinearLayout>
 

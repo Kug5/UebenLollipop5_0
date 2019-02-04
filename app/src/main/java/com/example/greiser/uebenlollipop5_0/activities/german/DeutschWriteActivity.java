@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0.Activities;
+package com.example.greiser.uebenlollipop5_0.activities.german;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,9 +15,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.greiser.uebenlollipop5_0.Helper.ExternalStorage;
-import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
 import com.example.greiser.uebenlollipop5_0.R;
+import com.example.greiser.uebenlollipop5_0.activities.SuperActivity;
+import com.example.greiser.uebenlollipop5_0.helper.ExternalStorage;
+import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 
 import java.util.ArrayList;
 import java.util.List;

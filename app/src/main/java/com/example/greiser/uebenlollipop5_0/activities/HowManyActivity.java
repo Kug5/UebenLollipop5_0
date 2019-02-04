@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0.Activities;
+package com.example.greiser.uebenlollipop5_0.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
 import com.example.greiser.uebenlollipop5_0.R;
+import com.example.greiser.uebenlollipop5_0.activities.math.MatheActivity;
+import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 
 public class HowManyActivity extends AppCompatActivity {
 

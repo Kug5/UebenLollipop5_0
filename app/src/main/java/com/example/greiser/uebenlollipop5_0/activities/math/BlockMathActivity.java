@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0.Activities;
+package com.example.greiser.uebenlollipop5_0.activities.math;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,8 +9,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.greiser.uebenlollipop5_0.Helper.Task;
 import com.example.greiser.uebenlollipop5_0.R;
+import com.example.greiser.uebenlollipop5_0.activities.SuperActivity;
+import com.example.greiser.uebenlollipop5_0.model.Task;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

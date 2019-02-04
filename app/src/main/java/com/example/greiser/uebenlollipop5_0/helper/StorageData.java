@@ -1,4 +1,6 @@
-package com.example.greiser.uebenlollipop5_0.Helper;
+package com.example.greiser.uebenlollipop5_0.helper;
+
+import com.example.greiser.uebenlollipop5_0.model.BigTask;
 
 import java.util.ArrayList;
 import java.util.List;

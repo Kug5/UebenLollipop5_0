@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0.Activities;
+package com.example.greiser.uebenlollipop5_0.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,11 +7,11 @@ import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.greiser.uebenlollipop5_0.Box;
-import com.example.greiser.uebenlollipop5_0.Helper.ExternalStorage;
-import com.example.greiser.uebenlollipop5_0.Helper.StorageData;
-import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
 import com.example.greiser.uebenlollipop5_0.R;
+import com.example.greiser.uebenlollipop5_0.helper.ExternalStorage;
+import com.example.greiser.uebenlollipop5_0.helper.StorageData;
+import com.example.greiser.uebenlollipop5_0.helper.Ueben;
+import com.example.greiser.uebenlollipop5_0.layout.Box;
 
 public class ScoreActivity extends AppCompatActivity {
 

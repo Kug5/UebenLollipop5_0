@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0.Activities;
+package com.example.greiser.uebenlollipop5_0.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.greiser.uebenlollipop5_0.Helper.ExternalStorage;
-import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
-import com.example.greiser.uebenlollipop5_0.Helper.UserSetting;
 import com.example.greiser.uebenlollipop5_0.R;
+import com.example.greiser.uebenlollipop5_0.helper.ExternalStorage;
+import com.example.greiser.uebenlollipop5_0.helper.Ueben;
+import com.example.greiser.uebenlollipop5_0.model.UserSetting;
 
 import java.io.BufferedReader;
 import java.io.File;

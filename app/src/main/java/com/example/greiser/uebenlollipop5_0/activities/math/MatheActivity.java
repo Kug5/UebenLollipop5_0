@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0.Activities;
+package com.example.greiser.uebenlollipop5_0.activities.math;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,12 +17,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.greiser.uebenlollipop5_0.Helper.BigTask;
-import com.example.greiser.uebenlollipop5_0.Helper.ExternalStorage;
-import com.example.greiser.uebenlollipop5_0.Helper.StorageData;
-import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
-import com.example.greiser.uebenlollipop5_0.Helper.UserHeightScore;
 import com.example.greiser.uebenlollipop5_0.R;
+import com.example.greiser.uebenlollipop5_0.activities.SuperActivity;
+import com.example.greiser.uebenlollipop5_0.helper.ExternalStorage;
+import com.example.greiser.uebenlollipop5_0.helper.StorageData;
+import com.example.greiser.uebenlollipop5_0.helper.Ueben;
+import com.example.greiser.uebenlollipop5_0.model.BigTask;
+import com.example.greiser.uebenlollipop5_0.model.UserHeightScore;
 
 import java.io.IOException;
 import java.util.ArrayList;

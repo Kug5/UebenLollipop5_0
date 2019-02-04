@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0.Helper;
+package com.example.greiser.uebenlollipop5_0.model;
 
 public class BigTask {
 
@@ -6,9 +6,9 @@ public class BigTask {
     int i;
     int j;
     int result;
-    int box;
+    public int box;
 
-    BigTask (String displayTask, int i, int j, int result, int box) {
+    public BigTask(String displayTask, int i, int j, int result, int box) {
         this.displayTask = displayTask;
         this.i = i;
         this.j = j;

@@ -1,6 +1,9 @@
-package com.example.greiser.uebenlollipop5_0.Helper;
+package com.example.greiser.uebenlollipop5_0.helper;
 
 import android.app.Application;
+
+import com.example.greiser.uebenlollipop5_0.model.UserHeightScore;
+import com.example.greiser.uebenlollipop5_0.model.UserSetting;
 
 public class Ueben extends Application {
 

@@ -7,7 +7,7 @@
     android:layout_margin="15dp"
     android:clickable="false"
     android:orientation="vertical"
-    tools:context=".Activities.NameActivity">
+    tools:context=".activities.NameActivity">
 
     <TextView
         android:id="@+id/werIstDa"

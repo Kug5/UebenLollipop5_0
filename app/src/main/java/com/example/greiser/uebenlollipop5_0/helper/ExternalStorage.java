@@ -1,8 +1,13 @@
-package com.example.greiser.uebenlollipop5_0.Helper;
+package com.example.greiser.uebenlollipop5_0.helper;
 
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
+
+import com.example.greiser.uebenlollipop5_0.model.BigTask;
+import com.example.greiser.uebenlollipop5_0.model.SinglePlural;
+import com.example.greiser.uebenlollipop5_0.model.UserHeightScore;
+import com.example.greiser.uebenlollipop5_0.model.UserSetting;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -79,7 +84,7 @@ public class ExternalStorage {
             int index = -1;
             int indexInto = 0;
             for (BigTask intoBigTask: into) {
-                if (intoBigTask.displayTask.equals(taskInToAdd.displayTask)) {
+                if (intoBigTask.getDisplayTask().equals(taskInToAdd.getDisplayTask())) {
                     index = indexInto;
                     break;
                 }
@@ -88,8 +93,8 @@ public class ExternalStorage {
 
             if (index > -1) {
                 BigTask tmp = into.get(index);
-                if (tmp.box < taskInToAdd.box) {
-                    tmp.box = taskInToAdd.box;
+                if (tmp.getBox() < taskInToAdd.getBox()) {
+                    tmp.box = taskInToAdd.getBox();
                 }
             } else {
                 into.add(taskInToAdd);
@@ -98,7 +103,7 @@ public class ExternalStorage {
     }
 
     private String getStringBigTask(BigTask bt) {
-        return bt.displayTask+","+bt.i+","+bt.j+","+bt.result+","+bt.box;
+        return bt.getDisplayTask() +","+ bt.getI() +","+ bt.getJ() +","+ bt.getResult() +","+bt.box;
     }
 
     private String getFileName(String operation, int max, String name) {

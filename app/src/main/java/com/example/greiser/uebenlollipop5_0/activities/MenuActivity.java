@@ -1,4 +1,4 @@
-package com.example.greiser.uebenlollipop5_0.Activities;
+package com.example.greiser.uebenlollipop5_0.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.greiser.uebenlollipop5_0.Helper.Ueben;
 import com.example.greiser.uebenlollipop5_0.R;
+import com.example.greiser.uebenlollipop5_0.activities.german.DeutschRightWrongActivity;
+import com.example.greiser.uebenlollipop5_0.activities.german.DeutschSingularPluralActivity;
+import com.example.greiser.uebenlollipop5_0.activities.german.DeutschWriteActivity;
+import com.example.greiser.uebenlollipop5_0.activities.math.MenuMathActivity;
+import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 
 public class MenuActivity extends AppCompatActivity {
 
