@@ -58,7 +58,7 @@ public class MenuMathActivity extends AppCompatActivity {
         level_umkehr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent(MenuMathActivity.this, BlockMathActivity.class));
+                startActivity( new Intent(MenuMathActivity.this, MathBlockActivity.class));
             }
         });
 
@@ -88,7 +88,7 @@ public class MenuMathActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setOperationMult();
                 setMax(20);
-                startActivity(new Intent(MenuMathActivity.this, MatheActivity.class));
+                startActivity(new Intent(MenuMathActivity.this, MathePlusMinusMultDivideActivity.class));
             }
         });
     }

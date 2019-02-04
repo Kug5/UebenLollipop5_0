@@ -16,7 +16,7 @@ import com.example.greiser.uebenlollipop5_0.model.Task;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class BlockMathActivity extends AppCompatActivity {
+public class MathBlockActivity extends AppCompatActivity {
 
 
     Map<String, Task> b1 = new LinkedHashMap<String, Task>();
@@ -324,7 +324,7 @@ public class BlockMathActivity extends AppCompatActivity {
                         }
                     }
                     if (all) {
-                        Intent finish = new Intent(BlockMathActivity.this, SuperActivity.class);
+                        Intent finish = new Intent(MathBlockActivity.this, SuperActivity.class);
                         startActivity(finish);
                     }
                 }

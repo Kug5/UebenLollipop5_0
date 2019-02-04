@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MatheActivity extends AppCompatActivity {
+public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
 
     static final String kugel = "&#9679;";
     static final String kugel_minus = "&#9152;";
@@ -533,7 +533,7 @@ public class MatheActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
-                    startActivity(new Intent(MatheActivity.this, SuperActivity.class));
+                    startActivity(new Intent(MathePlusMinusMultDivideActivity.this, SuperActivity.class));
                 }
             }
         } else {

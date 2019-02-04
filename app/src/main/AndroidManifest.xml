@@ -28,16 +28,16 @@
             android:label="@string/app_name"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".activities.math.MatheActivity"
+            android:name=".activities.math.MathePlusMinusMultDivideActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".activities.SuperActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".activities.german.DeutschRightWrongActivity"
+            android:name=".activities.german.GermanRightWrongActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".activities.math.BlockMathActivity"
+            android:name=".activities.math.MathBlockActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".activities.HowManyActivity"
@@ -52,10 +52,10 @@
             android:name=".activities.math.MenuMathActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".activities.german.DeutschWriteActivity"
+            android:name=".activities.german.GermanWriteActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".activities.german.DeutschSingularPluralActivity"
+            android:name=".activities.german.GermanSingularPluralActivity"
             android:screenOrientation="landscape" />
     </application>
 

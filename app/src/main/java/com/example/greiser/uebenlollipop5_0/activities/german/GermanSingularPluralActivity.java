@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DeutschSingularPluralActivity extends AppCompatActivity {
+public class GermanSingularPluralActivity extends AppCompatActivity {
 
     private static final int SELECTED_COLOR = Color.CYAN;
     private static final int RIGHT_COLOR = Color.GREEN;
@@ -293,7 +293,7 @@ public class DeutschSingularPluralActivity extends AppCompatActivity {
                 public void run() {
                     if (usedIndex.size() == howMany) {
                         ((Ueben) getApplication()).lastPoints = points;
-                        startActivity(new Intent(DeutschSingularPluralActivity.this, SuperActivity.class));
+                        startActivity(new Intent(GermanSingularPluralActivity.this, SuperActivity.class));
                     } else {
                         reset();
                         chooseTask();

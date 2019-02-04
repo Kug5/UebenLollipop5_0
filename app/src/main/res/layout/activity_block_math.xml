@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activities.math.BlockMathActivity">
+    tools:context=".activities.math.MathBlockActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

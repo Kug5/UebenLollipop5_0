@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class DeutschRightWrongActivity extends AppCompatActivity {
+public class GermanRightWrongActivity extends AppCompatActivity {
 
     private TextToSpeech textToSpeach;
     private List<Question> questions = new ArrayList<Question>();
@@ -103,7 +103,7 @@ public class DeutschRightWrongActivity extends AppCompatActivity {
 
         if (howMany == counter) {
             application.lastPoints = points;
-            startActivity(new Intent(DeutschRightWrongActivity.this, SuperActivity.class));
+            startActivity(new Intent(GermanRightWrongActivity.this, SuperActivity.class));
         }
 
         int index = -1;

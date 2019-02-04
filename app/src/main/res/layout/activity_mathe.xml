@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activities.math.MatheActivity">
+    tools:context=".activities.math.MathePlusMinusMultDivideActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

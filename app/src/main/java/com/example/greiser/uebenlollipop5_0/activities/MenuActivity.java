@@ -10,9 +10,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.greiser.uebenlollipop5_0.R;
-import com.example.greiser.uebenlollipop5_0.activities.german.DeutschRightWrongActivity;
-import com.example.greiser.uebenlollipop5_0.activities.german.DeutschSingularPluralActivity;
-import com.example.greiser.uebenlollipop5_0.activities.german.DeutschWriteActivity;
+import com.example.greiser.uebenlollipop5_0.activities.german.GermanRightWrongActivity;
+import com.example.greiser.uebenlollipop5_0.activities.german.GermanSingularPluralActivity;
+import com.example.greiser.uebenlollipop5_0.activities.german.GermanWriteActivity;
 import com.example.greiser.uebenlollipop5_0.activities.math.MenuMathActivity;
 import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 
@@ -34,19 +34,19 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(MenuActivity.this, DeutschSingularPluralActivity.class));
-                startActivity(new Intent(MenuActivity.this, DeutschWriteActivity.class));
+                startActivity(new Intent(MenuActivity.this, GermanSingularPluralActivity.class));
+                startActivity(new Intent(MenuActivity.this, GermanWriteActivity.class));
 
                 // A random integer value in the range [Min,Max]
                 int min = 0;
                 int max = 2;
                 int x = min + (int) (Math.random() * ((max - min) + 1));
                 if (x == 0)
-                    startActivity(new Intent(MenuActivity.this, DeutschRightWrongActivity.class));
+                    startActivity(new Intent(MenuActivity.this, GermanRightWrongActivity.class));
                 else if (x == 1)
-                    startActivity(new Intent(MenuActivity.this, DeutschWriteActivity.class));
+                    startActivity(new Intent(MenuActivity.this, GermanWriteActivity.class));
                 else if (x == 2)
-                    startActivity(new Intent(MenuActivity.this, DeutschSingularPluralActivity.class));
+                    startActivity(new Intent(MenuActivity.this, GermanSingularPluralActivity.class));
 
             }
         });

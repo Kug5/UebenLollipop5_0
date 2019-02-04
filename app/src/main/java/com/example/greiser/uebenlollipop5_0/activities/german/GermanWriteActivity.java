@@ -23,7 +23,7 @@ import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeutschWriteActivity extends AppCompatActivity {
+public class GermanWriteActivity extends AppCompatActivity {
 
     private TextView preset;
     private LinearLayout layoutInput;
@@ -114,7 +114,7 @@ public class DeutschWriteActivity extends AppCompatActivity {
         setStartConfigs();
         if (howMany == counter) {
             application.lastPoints = points;
-            startActivity(new Intent(DeutschWriteActivity.this, SuperActivity.class));
+            startActivity(new Intent(GermanWriteActivity.this, SuperActivity.class));
         }
 
         int index = -1;

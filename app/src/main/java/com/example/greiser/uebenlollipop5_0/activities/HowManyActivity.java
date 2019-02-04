@@ -8,7 +8,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.greiser.uebenlollipop5_0.R;
-import com.example.greiser.uebenlollipop5_0.activities.math.MatheActivity;
+import com.example.greiser.uebenlollipop5_0.activities.math.MathePlusMinusMultDivideActivity;
 import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 
 public class HowManyActivity extends AppCompatActivity {
@@ -79,7 +79,7 @@ public class HowManyActivity extends AppCompatActivity {
     }
 
     private void goToMatheActivity(int many) {
-        Intent math = new Intent(HowManyActivity.this, MatheActivity.class);
+        Intent math = new Intent(HowManyActivity.this, MathePlusMinusMultDivideActivity.class);
         ((Ueben)getApplication()).setMany(many);
         startActivity(math);
     }
