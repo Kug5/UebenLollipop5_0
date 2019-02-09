@@ -78,7 +78,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
         this.max = application.getMax();
         this.heightScores = application.getHeightScores();
 
-        int many = application.getMany();
+        int many = application.getHowMany();
         if (many == 0) {
             many = 10;
         }

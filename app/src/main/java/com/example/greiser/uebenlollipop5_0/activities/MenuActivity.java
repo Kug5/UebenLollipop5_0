@@ -10,9 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.greiser.uebenlollipop5_0.R;
-import com.example.greiser.uebenlollipop5_0.activities.german.GermanRightWrongActivity;
-import com.example.greiser.uebenlollipop5_0.activities.german.GermanSingularPluralActivity;
-import com.example.greiser.uebenlollipop5_0.activities.german.GermanWriteActivity;
+import com.example.greiser.uebenlollipop5_0.activities.german.MenuGermaActivity;
 import com.example.greiser.uebenlollipop5_0.activities.math.MenuMathActivity;
 import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 
@@ -26,28 +24,15 @@ public class MenuActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         final TextView halloName = findViewById(R.id.halloName);
-        halloName.setText("Hallo " + ((Ueben)getApplication()).getUsername() + "! :)");
+        halloName.setText("Hallo " + ((Ueben) getApplication()).getUsername() + "! :)");
 
 
         final Button buttonDeutsch = findViewById(R.id.ButtonDeutsch);
         buttonDeutsch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                startActivity(new Intent(MenuActivity.this, GermanSingularPluralActivity.class));
-                startActivity(new Intent(MenuActivity.this, GermanWriteActivity.class));
-
-                // A random integer value in the range [Min,Max]
-                int min = 0;
-                int max = 2;
-                int x = min + (int) (Math.random() * ((max - min) + 1));
-                if (x == 0)
-                    startActivity(new Intent(MenuActivity.this, GermanRightWrongActivity.class));
-                else if (x == 1)
-                    startActivity(new Intent(MenuActivity.this, GermanWriteActivity.class));
-                else if (x == 2)
-                    startActivity(new Intent(MenuActivity.this, GermanSingularPluralActivity.class));
-
+                ((Ueben) getApplication()).setSubject(Ueben.SUBJECT_GERMAN);
+                startActivity(new Intent(MenuActivity.this, MenuGermaActivity.class));
             }
         });
 
@@ -55,6 +40,7 @@ public class MenuActivity extends AppCompatActivity {
         buttonMathe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((Ueben) getApplication()).setSubject(Ueben.SUBJECT_MATH);
                 startActivity(new Intent(MenuActivity.this, MenuMathActivity.class));
             }
         });

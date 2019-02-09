@@ -11,10 +11,6 @@ public class UserHeightScore {
     public int[] bestMult400 = new int[10];
     public int[] bestDivide100 = new int[10];
 
-    public void UserHeightScore( ) {
-      System.out.println("Hallo Welt");
-    }
-
     public int getBestPlusMinus20() {
         int max = bestPlusMinus20[0];
         for (int i=1; i < bestPlusMinus20.length; i++) {

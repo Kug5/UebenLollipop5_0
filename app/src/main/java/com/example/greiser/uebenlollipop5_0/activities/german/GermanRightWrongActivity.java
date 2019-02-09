@@ -27,7 +27,7 @@ public class GermanRightWrongActivity extends AppCompatActivity {
     private Question currentQuestion;
     private TextView questionText;
     static int counter = 0;
-    static final int howMany = 10;
+    static int howMany = 10;
     private Ueben application;
     private List<Integer> usedIndex = new ArrayList();
     private boolean failed = false;
@@ -38,9 +38,12 @@ public class GermanRightWrongActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deutsch);
 
+        reset();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         application = ((Ueben) getApplication());
+        howMany = application.getHowMany();
+
 
         questionText = findViewById(R.id.toSpeak);
         createQuestions();
@@ -95,6 +98,12 @@ public class GermanRightWrongActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void reset() {
+        this.counter = 0;
+        this.points = 0;
+        this.failed = false;
     }
 
     private void chooseTask() {

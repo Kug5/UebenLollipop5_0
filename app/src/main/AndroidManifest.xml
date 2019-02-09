@@ -57,6 +57,9 @@
         <activity
             android:name=".activities.german.GermanSingularPluralActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.german.MenuGermaActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

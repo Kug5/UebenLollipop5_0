@@ -10,9 +10,18 @@ public class Ueben extends Application {
     public static final String OPERATION_PLUSMINUS = "plusminus";
     public static final String OPERATION_MULT = "mult";
     public static final String OPERATION_DIVIDE = "divide";
+    public static final String GERMAN_READ = "read";
+    public static final String GERMAN_WRITE = "write";
+    public static final String GERMAN_SP = "singularplural";
+    public static final String GERMAN_MIX = "mix";
+    public static final String SUBJECT_MATH = "math";
+    public static final String SUBJECT_GERMAN = "german";
 
+
+    private String subject;
     private String username;
     private String operation;
+    private String germanTarget;
     private int max;
     private int many;
     private UserSetting usersettings;
@@ -50,7 +59,7 @@ public class Ueben extends Application {
         this.many = many;
     }
 
-    public int getMany() {
+    public int getHowMany() {
         return many;
     }
 
@@ -68,5 +77,21 @@ public class Ueben extends Application {
 
     public UserSetting getUsersettings() {
         return usersettings;
+    }
+
+    public void setGermanTarget(String germanTarget) {
+        this.germanTarget = germanTarget;
+    }
+
+    public String getGermanTarget() {
+        return germanTarget;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 }

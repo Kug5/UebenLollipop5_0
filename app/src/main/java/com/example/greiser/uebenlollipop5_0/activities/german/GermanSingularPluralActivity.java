@@ -49,6 +49,9 @@ public class GermanSingularPluralActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deutsch_singular_plural);
 
+        initReset();
+
+        howMany = ((Ueben)getApplication()).getHowMany();
         ExternalStorage es = new ExternalStorage();
         entities = es.getDeutschSinglePluralEntities(getApplicationContext());
 
@@ -60,6 +63,12 @@ public class GermanSingularPluralActivity extends AppCompatActivity {
 
         createArticleLayout();
         chooseTask();
+    }
+
+    private void initReset() {
+        this.points = 0;
+        this.somethingWrong = 0;
+        this.usedIndex = new ArrayList<>();
     }
 
     private void chooseTask() {

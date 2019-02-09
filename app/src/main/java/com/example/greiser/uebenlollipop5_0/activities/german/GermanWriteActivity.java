@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -43,7 +44,9 @@ public class GermanWriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deutsch_write);
 
+        reset();
         application = ((Ueben) getApplication());
+        howMany = application.getHowMany();
 
         ExternalStorage es = new ExternalStorage();
         entries = es.getDeutschWriteEntities(getApplicationContext());
@@ -72,6 +75,12 @@ public class GermanWriteActivity extends AppCompatActivity {
         });
 
         setPreStartConfigs();
+    }
+
+    private void reset() {
+        this.counter = 0;
+        this.failed = false;
+        this.points = 0;
     }
 
     private void setPreStartConfigs() {
@@ -153,6 +162,7 @@ public class GermanWriteActivity extends AppCompatActivity {
                 preset.setVisibility(View.INVISIBLE);
                 layoutInput.setVisibility(View.VISIBLE);
                 userInput.requestFocus();
+                userInput.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(userInput, InputMethodManager.SHOW_FORCED);
             }
