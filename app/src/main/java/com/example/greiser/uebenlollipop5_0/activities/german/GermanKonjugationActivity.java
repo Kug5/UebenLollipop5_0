@@ -16,6 +16,7 @@ import com.example.greiser.uebenlollipop5_0.R;
 import com.example.greiser.uebenlollipop5_0.helper.ExternalStorage;
 import com.example.greiser.uebenlollipop5_0.model.Konjugation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GermanKonjugationActivity extends AppCompatActivity {
@@ -29,6 +30,8 @@ public class GermanKonjugationActivity extends AppCompatActivity {
     private EditText editTextHe;
     private EditText editTextWe;
     private EditText editTextYour;
+    private List<Integer> usedIndex = new ArrayList<>();
+    private Konjugation entityToTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +41,43 @@ public class GermanKonjugationActivity extends AppCompatActivity {
         ExternalStorage es = new ExternalStorage();
         this.entities = es.getDeutschKonjugationEntities(getApplicationContext());
 
-        this.textViewInfinitive = findViewById(R.id.textViewInfnitive);
-        this.textViewInfinitive.setText(this.entities.get(2).getInfinitive());
+        initKonjugationFields();
+        chooseEntry();
+    }
 
+    private void chooseEntry() {
+        int index = -1;
+
+        do {
+            index = (int) (Math.random() * entities.size());
+        } while (index > entities.size() || usedIndex.contains(index));
+
+        usedIndex.add(index);
+
+        entityToTest = entities.get(index);
+        setEntityToKonjugationFields(entityToTest);
+    }
+
+    private void setEntityToKonjugationFields(Konjugation entityToTest) {
+        this.textViewInfinitive.setText(entityToTest.getInfinitive());
+        this.editTextI.setText(entityToTest.getI());
+        this.editTextSYou.setText(entityToTest.getsYou());
+        this.editTextHe.setText(entityToTest.getHe());
+        this.editTextWe.setText(entityToTest.getWe());
+        this.editTextYour.setText(entityToTest.getYour());
+        this.editTextPYou.setText(entityToTest.getpYou());
+    }
+
+    private void initKonjugationFields() {
+
+        this.textViewInfinitive = findViewById(R.id.textViewInfnitive);
         this.editTextI = findViewById(R.id.editTextI);
-        this.editTextI.setText(this.entities.get(2).getI());
+        this.editTextSYou = findViewById(R.id.editTextSYou);
+        this.editTextHe = findViewById(R.id.editTextHe);
+        this.editTextWe = findViewById(R.id.editTextWe);
+        this.editTextYour = findViewById(R.id.editTextYour);
+        this.editTextPYou = findViewById(R.id.editTextPYou);
+
         this.editTextI.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
@@ -62,8 +97,7 @@ public class GermanKonjugationActivity extends AppCompatActivity {
             }
         });
 
-        this.editTextSYou = findViewById(R.id.editTextSYou);
-        this.editTextSYou.setText(this.entities.get(2).getsYou());
+
         this.editTextSYou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,8 +106,6 @@ public class GermanKonjugationActivity extends AppCompatActivity {
             }
         });
 
-        this.editTextHe = findViewById(R.id.editTextHe);
-        this.editTextHe.setText(this.entities.get(2).getHe());
         this.editTextHe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,8 +114,6 @@ public class GermanKonjugationActivity extends AppCompatActivity {
             }
         });
 
-        this.editTextWe = findViewById(R.id.editTextWe);
-        this.editTextWe.setText(this.entities.get(2).getWe());
         this.editTextWe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,8 +122,6 @@ public class GermanKonjugationActivity extends AppCompatActivity {
             }
         });
 
-        this.editTextYour = findViewById(R.id.editTextYour);
-        this.editTextYour.setText(this.entities.get(2).getYour());
         this.editTextYour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,8 +130,6 @@ public class GermanKonjugationActivity extends AppCompatActivity {
             }
         });
 
-        this.editTextPYou = findViewById(R.id.editTextPYou);
-        this.editTextPYou.setText(this.entities.get(2).getpYou());
         this.editTextPYou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
