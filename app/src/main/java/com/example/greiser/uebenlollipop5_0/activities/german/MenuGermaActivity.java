@@ -71,7 +71,13 @@ public class MenuGermaActivity extends AppCompatActivity {
                 startActivity(new Intent(MenuGermaActivity.this, HowManyActivity.class));
             }
         });
-        Button mix = findViewById(R.id.mix);
+        Button konjugation = findViewById(R.id.konjugation);
+        konjugation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuGermaActivity.this, GermanKonjugationActivity.class));
+            }
+        });
 
     }
 }

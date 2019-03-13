@@ -36,9 +36,9 @@
         android:text="Zufall" />
 
     <Button
-        android:id="@+id/mix"
+        android:id="@+id/konjugation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Mix" />
+        android:text="Konjugation" />
 </LinearLayout>

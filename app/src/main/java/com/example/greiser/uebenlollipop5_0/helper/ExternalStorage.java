@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.example.greiser.uebenlollipop5_0.model.BigTask;
+import com.example.greiser.uebenlollipop5_0.model.Konjugation;
 import com.example.greiser.uebenlollipop5_0.model.SinglePlural;
 import com.example.greiser.uebenlollipop5_0.model.UserHeightScore;
 import com.example.greiser.uebenlollipop5_0.model.UserSetting;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class ExternalStorage {
 
-    private static final String CURRENT_VERSION_DEUTSCH_VORLAGE = "v2";
+    private static final String CURRENT_VERSION_DEUTSCH_VORLAGE = "v3";
 
     /* Checks if external storage is available for read and write */
     public boolean isExternalStorageWritable() {
@@ -397,95 +398,95 @@ public class ExternalStorage {
                             "2 Kleid das Kleit Klied Kleider Kleiter Glitter\n" +
                             "2 Hand die Hant Hannd Hände Hende Hänte\n" +
                             "2 Sand der Sant Sannd Sande Sante Sandän\n" +
-                            "2 Geld das\n" +
-                            "2 Feld das\n" +
-                            "2 Wind der\n" +
-                            "2 Hund der\n" +
-                            "2 Bauch der\n" +
-                            "2 Nacht die\n" +
-                            "2 Tochter die\n" +
-                            "2 Licht das\n" +
-                            "2 Schnee der\n" +
-                            "2 Kugel die\n" +
-                            "2 Schneekugel die\n" +
-                            "2 Schlitten der\n" +
-                            "2 Möhre die\n" +
-                            "2 Regen der\n" +
-                            "2 Nebel der\n" +
-                            "2 Hemd das\n" +
-                            "2 Hecke die\n" +
-                            "2 Ohr das\n" +
-                            "2 Rock der\n" +
-                            "2 Zucker der\n" +
-                            "2 Rücken der\n" +
-                            "2 Paket das\n" +
-                            "2 Ast der\n" +
-                            "2 Blatt das\n" +
-                            "2 Schuh der\n" +
-                            "2 Busch der\n" +
-                            "3 schlafen\n" +
-                            "3 scheinen\n" +
-                            "3 schauen\n" +
-                            "3 schneiden\n" +
-                            "3 baden\n" +
-                            "3 bauen\n" +
-                            "3 dürfen\n" +
+                            "2 Geld das Gelt Gäld Gelder Gälder Gelter\n" +
+                            "2 Feld das Fält Felt Felder Fälder Felter\n" +
+                            "2 Wind der Wint Wient Winde Wiende Winte\n" +
+                            "2 Hund der Hunt Huntt Hunde Hunte Hundee\n" +
+                            "2 Bauch der Beuch Bauhc Bäuche Beuche Bäuhce\n" +
+                            "2 Nacht die Nachd Nahct Nächte Nechte nächte \n" +
+                            "2 Tochter die Dochter tochter Töchter töchter Döchter\n" +
+                            "2 Licht das licht Liecht Lichter Liechter Lihcter\n" +
+                            "2 Schnee der Schne Schnä Schnee Schnä Schne\n" +
+                            "2 Kugel die Gugel Kukel Kugeln Gugeln Kukeln\n" +
+                            "2 Schneekugel die Schnekugel Schneegukel Scheekugeln Schnäkugeln Schnekukeln\n" +
+                            "2 Schlitten der Schliten Schlieten Schlitten Schlieten Schliten\n" +
+                            "2 Möhre die Mören Möhhre Möhren Mohrän Möhrän\n" +
+                            "2 Regen der Rägen Reken Regen Reken Rägen\n" +
+                            "2 Nebel der Näbel Nebbel Nebel Näbel Nebeln\n" +
+                            "2 Hemd das Hämd Hemt Hemden Hämnden Hemnden\n" +
+                            "2 Hecke die Häcke Heke Hecken Häcken Heken\n" +
+                            "2 Ohr das Or Ohrr Ohren Oren Ohrän\n" +
+                            "2 Rock der Rok Rog Röcke Röke Rökke\n" +
+                            "2 Zucker der Zukker Sucker Zucker Sucker Zukker\n" +
+                            "2 Rücken der Rükken Rükcen Rücken Rükken Rükcen\n" +
+                            "2 Paket das Packet Pakket Pakete Packete Pakkete\n" +
+                            "2 Ast der Aßt Asst Äste Äßte Ässte \n" +
+                            "2 Blatt das Blad Blat Blätter Bletter Bläter\n" +
+                            "2 Schuh der Schuh Schuhh Schuhe Schue Schuhee\n" +
+                            "2 Busch der Bushc Buusch Büsche Biesche Büchse\n" +
+                            "3 schlafen schlafe schläfst schläft schlafen schlaft schlafen\n" +
+                            "3 scheinen scheine scheinst scheint scheinen scheint scheinen\n" +
+                            "3 schauen schaue schaust schaut schauen schaut schauen\n" +
+                            "3 schneiden schneide schneidest schneidet schneiden schneidet schneiden\n" +
+                            "3 baden bade badest badet baden badet baden\n" +
+                            "3 bauen baue baust baut bauen baut bauen\n" +
+                            "3 dürfen darf darfst darf dürfen dürft dürfen\n" +
                             "3 lesen lese liest liest lesen lest lesen\n" +
                             "3 schreiben schreibe schreibst schreibt schreiben schreibt schreiben\n" +
                             "3 rechnen rechne rechnest rechnet rechnen rechnet rechnen\n" +
                             "3 malen male malst malt malen malt malen\n" +
                             "3 singen singe singst singt singen singt singen\n" +
-                            "3 spielen\n" +
-                            "3 kochen\n" +
-                            "3 gießen\n" +
-                            "3 decken\n" +
-                            "3 leeren\n" +
-                            "3 spülen\n" +
-                            "3 putzen\n" +
-                            "3 waschen\n" +
-                            "3 wünschen\n" +
-                            "3 tanzen\n" +
-                            "3 lachen\n" +
-                            "3 versuchen\n" +
-                            "3 turnen\n" +
-                            "3 kaufen\n" +
-                            "3 arbeiten\n" +
-                            "3 üben\n" +
-                            "3 bleiben\n" +
-                            "3 geben\n" +
-                            "3 leben\n" +
-                            "3 fragen\n" +
-                            "3 legen\n" +
-                            "3 liegen\n" +
-                            "3 zeigen\n" +
-                            "3 schlagen\n" +
-                            "3 bewegen\n" +
-                            "3 pflegen\n" +
-                            "3 sein\n" +
-                            "3 machen\n" +
-                            "3 rollen\n" +
-                            "3 holen\n" +
-                            "3 schmelzen\n" +
-                            "3 fressen\n" +
-                            "3 essen\n" +
-                            "3 fallen\n" +
-                            "3 kommen\n" +
-                            "3 müssen\n" +
-                            "3 wollen\n" +
-                            "3 finden\n" +
-                            "3 suchen\n" +
-                            "3 rufen\n" +
-                            "3 backen\n" +
-                            "3 lecken\n" +
-                            "3 drücken\n" +
-                            "3 packen\n" +
-                            "3 halten\n" +
-                            "3 tragen\n" +
-                            "3 lügen\n" +
-                            "3 petzen\n" +
-                            "3 helfen\n" +
-                            "3 beschützen\n" +
-                            "3 schreien"
+                            "3 spielen spielst spielt spielen spielt spielen\n" +
+                            "3 kochen koche kochst kocht kochen kocht kochen\n" +
+                            "3 gießen gieße gießt gießt gießen gießt gießen\n" +
+                            "3 decken decke deckst deckt decken deckt decken\n" +
+                            "3 leeren leere leerst leert leeren leert leeren\n" +
+                            "3 spülen spüle spülst spült spülen spült spülen\n" +
+                            "3 putzen putze putzt putzt putzen putzt putzen\n" +
+                            "3 wasche wasche wäschst wäscht waschen wascht waschen\n" +
+                            "3 wünschen wünsche wünschst wünscht wünschen wünscht wünschen\n" +
+                            "3 tanzen tanze tanzt tanzt tanzen tanzt tanzen\n" +
+                            "3 lachen lache lachst lacht lachen lacht lachen\n" +
+                            "3 versuchen versuche versuchst versucht versuchen versucht versuchen\n" +
+                            "3 turnen turne turnst turnt turnen turnt turnen\n" +
+                            "3 kaufen kaufe kaufst kauft kaufen kauft kaufen\n" +
+                            "3 arbeiten arbeite arbeitest arbeitet arbeiten arbeitet arbeiten\n" +
+                            "3 üben übe übst übt üben übt üben\n" +
+                            "3 bleiben bleibe bleibst bleibt bleiben bliebt bleiben\n" +
+                            "3 geben gebe gibst gibt geben gebt geben\n" +
+                            "3 leben lebe lebst lebt leben lebt leben\n" +
+                            "3 fragen frage fragst fragt fragen fragt fragen\n" +
+                            "3 legen lege legst legt legen legt legen\n" +
+                            "3 liegen liege liegst liegt liegen liegt liegen\n" +
+                            "3 zeigen zeige zeigst zeigt zeigen zeigt zeigen\n" +
+                            "3 schlagen schlage schlägst schlägt schlagen schlagt schlagen\n" +
+                            "3 bewegen bewege bewegst bewegt bewegen bewegt bewegen\n" +
+                            "3 pflegen pflege pflegst pflegt pflegen pflegt pflegen\n" +
+                            "3 sein bin bist ist sind seid sind\n" +
+                            "3 machen mache machst macht machen macht machen\n" +
+                            "3 rollen rolle rollst rollt rollen rollt rollen\n" +
+                            "3 holen hole holst holt holen holt holen\n" +
+                            "3 schmelzen schmelze schmilzt schmilzt schmelzen schmelzt schmelzen\n" +
+                            "3 fressen fresse frisst frisst fressen fresst fressen\n" +
+                            "3 essen esse isst isst essen esst essen\n" +
+                            "3 fallen falle fällst fällt fallen fallt falllen\n" +
+                            "3 kommen komme kommst kommt kommen kommt kommen\n" +
+                            "3 müssen muss musst muss müssen müsst müssen\n" +
+                            "3 wollen will willst will wollen wollt wollen\n" +
+                            "3 finden finde findest findet finden findet finden\n" +
+                            "3 suchen suche suchst sucht suchen sucht suchen\n" +
+                            "3 rufen rufe rufst ruft rufen ruft rufen\n" +
+                            "3 backen backe backst bakct backen backt backen\n" +
+                            "3 lecken lecke leckst leckt lecken leckt lecken\n" +
+                            "3 drücken drücke drückst drückt drücken drückt drücken\n" +
+                            "3 packen packe packst packt packen packt packen\n" +
+                            "3 halten halte hälst hält halten haltet halten\n" +
+                            "3 tragen trage trägst trägt tragen tragt tragen\n" +
+                            "3 lügen lüge lügst lügt lügen lügt lügen\n" +
+                            "3 petzen petze petzt petzt petzten petzt petzen\n" +
+                            "3 helfen helfe hilfst hilft helfen helft helfen\n" +
+                            "3 beschützen beschütze beschützt beschützt beschützen beschützt beschützen\n" +
+                            "3 schreien schreie schreist schreit schreien schreit schreien"
             );
 
             bw.flush();
@@ -532,8 +533,35 @@ public class ExternalStorage {
     public String getImageFilePath(Context context, String singular) {
         return new File(context.getExternalFilesDir(
                 Environment.DIRECTORY_PICTURES), singular + ".png").getAbsolutePath();
-
     }
 
 
+    public List<Konjugation> getDeutschKonjugationEntities(Context context) {
+
+        BufferedReader br = getBufferedReaderDeutschVorlagen(context);
+        List<Konjugation> entities = new ArrayList<>();
+
+        try {
+            String line = br.readLine();
+
+            do {
+                String [] split = line.split(" ");
+
+                if (split.length == 8 && split[0].equals("3")) {
+                    entities.add(new Konjugation(split));
+                }
+
+                line = br.readLine();
+
+            } while (line != null);
+
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return entities;
+
+
+    }
 }

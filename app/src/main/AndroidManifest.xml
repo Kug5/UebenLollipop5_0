@@ -60,6 +60,9 @@
         <activity
             android:name=".activities.german.MenuGermaActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.german.GermanKonjugationActivity"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>
