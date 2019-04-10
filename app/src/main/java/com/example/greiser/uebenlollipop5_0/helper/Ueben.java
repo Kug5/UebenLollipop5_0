@@ -2,6 +2,7 @@ package com.example.greiser.uebenlollipop5_0.helper;
 
 import android.app.Application;
 
+import com.example.greiser.uebenlollipop5_0.model.BigTask;
 import com.example.greiser.uebenlollipop5_0.model.UserHeightScore;
 import com.example.greiser.uebenlollipop5_0.model.UserSetting;
 
@@ -27,6 +28,7 @@ public class Ueben extends Application {
     private UserSetting usersettings;
     private UserHeightScore userHeightScore;
     public int lastPoints = -1;
+    private Boolean[] multTableToTrain;
 
     public void setHeightScores(UserHeightScore heightScores) {
         this.userHeightScore = heightScores;
@@ -36,7 +38,31 @@ public class Ueben extends Application {
         return this.userHeightScore;
     }
 
-    public enum Operations { plusminus, mult, divide }
+    public void setMultTable(boolean checked0, boolean checked1,
+                             boolean checked2, boolean checked3,
+                             boolean checked4, boolean checked5,
+                             boolean checked6, boolean checked7,
+                             boolean checked8, boolean checked9, boolean checked10) {
+        this.multTableToTrain = new Boolean[]{checked0, checked1, checked2, checked3, checked4,
+                checked5, checked6, checked7, checked8, checked9, checked10};
+    }
+
+    public boolean canCheck(BigTask task) {
+        if (task.getI() < 0 || task.getI() > 10 || task.getJ() < 0 || task.getJ() > 10) {
+            return false;
+        }
+        return multTableToTrain[task.getI()] || multTableToTrain[task.getJ()];
+    }
+
+    public boolean canCheckDivide(BigTask task) {
+        return multTableToTrain[task.getResult()];
+    }
+
+    public Boolean[] getMultTableToTrain() {
+        return multTableToTrain;
+    }
+
+    public enum Operations {plusminus, mult, divide}
 
 
     public String getUsername() {

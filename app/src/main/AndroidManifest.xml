@@ -62,7 +62,10 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".activities.german.GermanKonjugationActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.math.MathChoiceMultTableActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

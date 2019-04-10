@@ -564,4 +564,49 @@ public class ExternalStorage {
 
 
     }
+
+    public void storeChoiceMultTable(Context context, Boolean[] multTableToTrain, String username) {
+
+        if (!isExternalStorageWritable()) {
+            return;
+        }
+        File file = getFileNameMultTable(context, username);
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            for (boolean mult : multTableToTrain) {
+                bw.write(mult ? "1" : "0");
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean[] getChoiceMultTable(Context context, String username) {
+        File file = getFileNameMultTable(context, username);
+        boolean[] returnValue = new boolean[11];
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line = br.readLine();
+            int counter = 0;
+            do {
+                if (counter < returnValue.length) {
+                    returnValue[counter] = line.equals("1");
+                }
+                counter++;
+                line = br.readLine();
+            } while (line != null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return returnValue;
+    }
+
+    private File getFileNameMultTable(Context context, String username) {
+        return new File(context.getExternalFilesDir(
+                Environment.DIRECTORY_DOCUMENTS), "multtable_" + username + ".txt");
+    }
 }

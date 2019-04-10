@@ -73,7 +73,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
         application = ((Ueben) getApplication());
         timerHandler = new Handler();
 
-        this.name =  application.getUsername();
+        this.name = application.getUsername();
         this.operation = application.getOperation();
         this.max = application.getMax();
         this.heightScores = application.getHeightScores();
@@ -109,7 +109,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
 
         if (operation.equals(Ueben.OPERATION_PLUSMINUS)) {
             help.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             help.setVisibility(View.INVISIBLE);
         }
 
@@ -126,7 +126,14 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
             storedData = new StorageData();
             createTasks();
         } finally {
-            // new
+            fillTaskList(true);
+        }
+
+        chooseTask();
+    }
+
+    private void fillTaskList(boolean withCounter) {
+        if (withCounter) {
             int counter = storedData.getCounter();
 
             if (counter != 3 && counter != 6 && counter != 8) { // 1 && 2 && 4 && 5 && 7
@@ -137,7 +144,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
                 if (taskList.size() < this.many) {
                     taskList.addAll(getXFromBox3(many - taskList.size()));
                 }
-            } else if (counter == 3 || counter == 6){
+            } else if (counter == 3 || counter == 6) {
                 taskList = storedData.getStep2();
                 if (taskList.size() < this.many) {
                     taskList.addAll(getXFromBox3(many - taskList.size()));
@@ -154,9 +161,36 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
                     taskList.addAll(getXFromBox1(many - taskList.size()));
                 }
             }
+        } else {
+            taskList = storedData.getStep1();
+            taskList.addAll(storedData.getStep2());
+            taskList.addAll(storedData.getStep3());
         }
 
-        chooseTask();
+        if (application.getOperation().equals(Ueben.OPERATION_MULT)) {
+            List<BigTask> tmp = new ArrayList<>();
+            for (BigTask task : taskList) {
+                if (application.canCheck(task)) {
+                    tmp.add(task);
+                }
+            }
+            taskList = tmp;
+            if (taskList.size() < many) {
+                fillTaskList(false);
+            }
+        }
+        if (application.getOperation().equals(Ueben.OPERATION_DIVIDE)) {
+            List<BigTask> tmp = new ArrayList<>();
+            for (BigTask task : taskList) {
+                if (application.canCheckDivide(task)) {
+                    tmp.add(task);
+                }
+            }
+            taskList = tmp;
+            if (taskList.size() < many) {
+                fillTaskList(false);
+            }
+        }
     }
 
     private void initTimer() {
@@ -272,8 +306,8 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
         if (this.max == 100) {
             for (int i = 100; i >= 0; i--) {
                 for (int k = 10; k > 0; k--) {
-                    if (i%k == 0 && (i/k) <= 10) {
-                        storedData.setTask(i + " : " + k + " = ", i, k, (i/k) , 1);
+                    if (i % k == 0 && (i / k) <= 10) {
+                        storedData.setTask(i + " : " + k + " = ", i, k, (i / k), 1);
                     }
                 }
             }
@@ -285,26 +319,26 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
         if (this.max == 10) {
             for (int i = 0; i <= 10; i++) {
                 for (int k = 1; k <= 10; k++) {
-                    storedData.setTask(i + " * " + k + " = ", i, k, i*k, 1);
+                    storedData.setTask(i + " * " + k + " = ", i, k, i * k, 1);
                 }
             }
         } else {
             for (int i = 10; i <= 20; i++) {
-                storedData.setTask(i + " * " + i + " = ", i, i, i*i, 1);
+                storedData.setTask(i + " * " + i + " = ", i, i, i * i, 1);
             }
         }
     }
 
     private void createPlusMinusTasks() {
 
-        for (int i =  0; i <= max; i++) {
-            for (int k =  0; k <= max; k++) {
+        for (int i = 0; i <= max; i++) {
+            for (int k = 0; k <= max; k++) {
                 if (i + k <= max) {
-                    storedData.setTask(i + " + " + k + " = ", i, k, i+k, 1);
+                    storedData.setTask(i + " + " + k + " = ", i, k, i + k, 1);
                 }
 
                 if (i - k >= 0) {
-                    storedData.setTask(i + " - " + k + " = ", i, k, i-k, 1);
+                    storedData.setTask(i + " - " + k + " = ", i, k, i - k, 1);
                 }
             }
         }
@@ -408,7 +442,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
         button_OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               checkResult();
+                checkResult();
             }
         });
     }
@@ -455,7 +489,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
         int countKugelI = 0;
         int countKugelK = 0;
 
-        for (int i = 0; i< task.getI(); i++) {
+        for (int i = 0; i < task.getI(); i++) {
             forI.append(kugel);
             countKugelI++;
             if (countKugelI % 10 == 0) {
@@ -463,25 +497,25 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
             }
         }
 
-        for (int k = 0; k< task.getJ(); k++) {
+        for (int k = 0; k < task.getJ(); k++) {
             fork.append(kugel);
             countKugelK++;
-            if ( (countKugelI + countKugelK) % 10 == 0 ) {
+            if ((countKugelI + countKugelK) % 10 == 0) {
                 fork.append(BR);
             }
         }
 
-        abakus.setText(Html.fromHtml("<font color='#FF0000'>" + forI + " </font> <font color='#0000FF' >"+ fork+ "</font>"));
+        abakus.setText(Html.fromHtml("<font color='#FF0000'>" + forI + " </font> <font color='#0000FF' >" + fork + "</font>"));
     }
 
-    private void createAbakusMinus (BigTask task) {
+    private void createAbakusMinus(BigTask task) {
         StringBuilder forI = new StringBuilder();
         StringBuilder fork = new StringBuilder();
 
         int countKugelI = 0;
         int countKugelK = 0;
 
-        for (int i = 0; i< task.getResult(); i++) {
+        for (int i = 0; i < task.getResult(); i++) {
             forI.append(kugel);
             countKugelI++;
             if (countKugelI % 10 == 0) {
@@ -489,21 +523,21 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
             }
         }
 
-        for (int k = 0; k< task.getJ(); k++) {
+        for (int k = 0; k < task.getJ(); k++) {
             fork.append(kugel_minus);
             countKugelK++;
-            if ( (countKugelI + countKugelK) % 10 == 0 ) {
+            if ((countKugelI + countKugelK) % 10 == 0) {
                 fork.append(BR);
             }
 
         }
 
-        abakus.setText(Html.fromHtml("<font color='#FF0000'>" + forI + " </font> <font color='#FF0000' >"+ fork+ "</font>"));
+        abakus.setText(Html.fromHtml("<font color='#FF0000'>" + forI + " </font> <font color='#FF0000' >" + fork + "</font>"));
     }
 
-    private void checkResult () {
+    private void checkResult() {
 
-        int tmpIndex = usedIndex.get(usedIndex.size() - 1 );
+        int tmpIndex = usedIndex.get(usedIndex.size() - 1);
 
         if (viewResult.getText().toString().equals(currentErgebnis)) {
 

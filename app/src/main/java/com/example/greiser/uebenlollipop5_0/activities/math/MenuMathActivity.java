@@ -68,7 +68,7 @@ public class MenuMathActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setOperationMult();
                 setMax(10);
-                startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
+                startActivity(new Intent(MenuMathActivity.this, MathChoiceMultTableActivity.class));
             }
         });
 
@@ -78,7 +78,7 @@ public class MenuMathActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setOperationDivide();
                 setMax(100);
-                startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
+                startActivity(new Intent(MenuMathActivity.this, MathChoiceMultTableActivity.class));
             }
         });
 
