@@ -55,7 +55,7 @@ public class Ueben extends Application {
     }
 
     public boolean canCheckDivide(BigTask task) {
-        return multTableToTrain[task.getResult()];
+        return multTableToTrain[task.getResult()] || multTableToTrain[task.getJ()];
     }
 
     public Boolean[] getMultTableToTrain() {
