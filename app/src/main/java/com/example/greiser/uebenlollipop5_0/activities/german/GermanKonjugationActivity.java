@@ -13,13 +13,11 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.example.greiser.uebenlollipop5_0.R;
 import com.example.greiser.uebenlollipop5_0.activities.SuperActivity;
 import com.example.greiser.uebenlollipop5_0.helper.ExternalStorage;
 import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 import com.example.greiser.uebenlollipop5_0.model.Konjugation;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,30 +118,30 @@ public class GermanKonjugationActivity extends AppCompatActivity {
 
     switch (this.toTestIndex) {
       case 0:
-        this.editTextI.setBackgroundColor(BACKGROUND_COLOR_TO_TEST);
-        this.editTextI.setSelection(0);
+        setToTestLayout(this.editTextI);
         break;
       case 1:
-        this.editTextSYou.setBackgroundColor(BACKGROUND_COLOR_TO_TEST);
-        this.editTextSYou.setSelection(0);
+        setToTestLayout(this.editTextSYou);
         break;
       case 2:
-        this.editTextHe.setBackgroundColor(BACKGROUND_COLOR_TO_TEST);
-        this.editTextHe.setSelection(0);
+        setToTestLayout(this.editTextHe);
         break;
       case 3:
-        this.editTextWe.setBackgroundColor(BACKGROUND_COLOR_TO_TEST);
-        this.editTextWe.setSelection(0);
+        setToTestLayout(this.editTextWe);
         break;
       case 4:
-        this.editTextYour.setBackgroundColor(BACKGROUND_COLOR_TO_TEST);
-        this.editTextYour.setSelection(0);
+        setToTestLayout(this.editTextYour);
         break;
       case 5:
-        this.editTextPYou.setBackgroundColor(BACKGROUND_COLOR_TO_TEST);
-        this.editTextPYou.setSelection(0);
+        setToTestLayout(this.editTextPYou);
         break;
     }
+  }
+
+  private void setToTestLayout(EditText toTest) {
+    toTest.setBackgroundColor(BACKGROUND_COLOR_TO_TEST);
+    toTest.setSelection(0);
+    toTest.requestFocus();
   }
 
   private void initKonjugationFields() {
@@ -157,42 +155,42 @@ public class GermanKonjugationActivity extends AppCompatActivity {
     this.editTextPYou = findViewById(R.id.editTextPYou);
 
     this.editTextI.setOnEditorActionListener(
-            new TextView.OnEditorActionListener() {
-              public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return checkInput((EditText) v, actionId);
-              }
-            });
+        new TextView.OnEditorActionListener() {
+          public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            return checkInput((EditText) v, actionId);
+          }
+        });
 
     this.editTextSYou.setOnEditorActionListener(
-            new TextView.OnEditorActionListener() {
-              public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return checkInput((EditText) v, actionId);
-              }
-            });
+        new TextView.OnEditorActionListener() {
+          public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            return checkInput((EditText) v, actionId);
+          }
+        });
     this.editTextHe.setOnEditorActionListener(
-            new TextView.OnEditorActionListener() {
-              public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return checkInput((EditText) v, actionId);
-              }
-            });
+        new TextView.OnEditorActionListener() {
+          public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            return checkInput((EditText) v, actionId);
+          }
+        });
     this.editTextWe.setOnEditorActionListener(
-            new TextView.OnEditorActionListener() {
-              public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return checkInput((EditText) v, actionId);
-              }
-            });
+        new TextView.OnEditorActionListener() {
+          public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            return checkInput((EditText) v, actionId);
+          }
+        });
     this.editTextYour.setOnEditorActionListener(
-            new TextView.OnEditorActionListener() {
-              public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return checkInput((EditText) v, actionId);
-              }
-            });
+        new TextView.OnEditorActionListener() {
+          public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            return checkInput((EditText) v, actionId);
+          }
+        });
     this.editTextPYou.setOnEditorActionListener(
-            new TextView.OnEditorActionListener() {
-              public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return checkInput((EditText) v, actionId);
-              }
-            });
+        new TextView.OnEditorActionListener() {
+          public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            return checkInput((EditText) v, actionId);
+          }
+        });
   }
 
   private boolean checkInput(EditText v, int actionId) {
@@ -208,7 +206,7 @@ public class GermanKonjugationActivity extends AppCompatActivity {
         }
 
         InputMethodManager imm =
-                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
         setAllVisible();
         chooseEntry();
@@ -264,38 +262,39 @@ public class GermanKonjugationActivity extends AppCompatActivity {
   private void createTimer(final EditText toTest) {
     Handler handler = new Handler();
     handler.postDelayed(
-            new Runnable() {
-              @Override
-              public void run() {
-                setAllInvisible();
-                toTest.setVisibility(View.VISIBLE);
-                toTest.requestFocus();
-                toTest.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-                InputMethodManager imm =
-                        (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(toTest, InputMethodManager.SHOW_FORCED);
-              }
-            },
-            5000);
+        new Runnable() {
+          @Override
+          public void run() {
+            setAllInvisible();
+            toTest.setBackgroundColor(BACKGROUND_COLOR_INIT);
+            toTest.setVisibility(View.VISIBLE);
+            toTest.requestFocus();
+            toTest.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+            InputMethodManager imm =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(toTest, InputMethodManager.SHOW_FORCED);
+          }
+        },
+        5000);
   }
 
   private void createFailedTimer(final EditText v, final String userInput) {
     Handler handler = new Handler();
     handler.postDelayed(
-            new Runnable() {
-              @Override
-              public void run() {
-                v.setBackgroundColor(BACKGROUND_COLOR_INIT);
-                v.setText(userInput);
-                v.setSelection(userInput.length() - 1);
-                v.requestFocus();
-                v.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-                InputMethodManager imm =
-                        (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(v, InputMethodManager.SHOW_FORCED);
-              }
-            },
-            2500);
+        new Runnable() {
+          @Override
+          public void run() {
+            v.setBackgroundColor(BACKGROUND_COLOR_INIT);
+            v.setText(userInput);
+            v.setSelection(userInput.length());
+            v.requestFocus();
+            v.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+            InputMethodManager imm =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(v, InputMethodManager.SHOW_FORCED);
+          }
+        },
+        2500);
   }
 
   private void setAllInvisible() {
