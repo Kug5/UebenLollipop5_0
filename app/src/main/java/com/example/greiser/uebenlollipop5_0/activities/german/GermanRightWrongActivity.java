@@ -10,11 +10,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.greiser.uebenlollipop5_0.R;
 import com.example.greiser.uebenlollipop5_0.activities.SuperActivity;
 import com.example.greiser.uebenlollipop5_0.helper.Ueben;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,59 +47,59 @@ public class GermanRightWrongActivity extends AppCompatActivity {
     chooseTask();
 
     textToSpeach =
-            new TextToSpeech(
-                    getApplicationContext(),
-                    new TextToSpeech.OnInitListener() {
-                      @Override
-                      public void onInit(int status) {
+        new TextToSpeech(
+            getApplicationContext(),
+            new TextToSpeech.OnInitListener() {
+              @Override
+              public void onInit(int status) {
                 if (status != TextToSpeech.ERROR) {
                   textToSpeach.setLanguage(Locale.GERMAN);
                 }
-                      }
-                    });
+              }
+            });
 
     final ImageView play = findViewById(R.id.play);
     play.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                // Toast.makeText(getApplicationContext(), toSpeak, Toast.LENGTH_SHORT).show(); //?
-                HashMap<String, String> hash = new HashMap<String, String>();
-                hash.put(
-                        TextToSpeech.Engine.KEY_PARAM_STREAM,
-                        String.valueOf(AudioManager.STREAM_NOTIFICATION));
-                textToSpeach.speak(questionText.getText().toString(), TextToSpeech.QUEUE_ADD, hash);
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            // Toast.makeText(getApplicationContext(), toSpeak, Toast.LENGTH_SHORT).show(); //?
+            HashMap<String, String> hash = new HashMap<String, String>();
+            hash.put(
+                TextToSpeech.Engine.KEY_PARAM_STREAM,
+                String.valueOf(AudioManager.STREAM_NOTIFICATION));
+            textToSpeach.speak(questionText.getText().toString(), TextToSpeech.QUEUE_ADD, hash);
+          }
         });
 
     final Button stimmt = findViewById(R.id.stimmt);
     stimmt.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                if (currentQuestion.answer.rightIndex == 0) {
-                  if (!failed) points++;
-                  counter++;
-                  chooseTask();
-                } else {
-                  failed = true;
-                }
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            if (currentQuestion.answer.rightIndex == 0) {
+              if (!failed) points++;
+              counter++;
+              chooseTask();
+            } else {
+              failed = true;
+            }
+          }
         });
 
     final Button falsch = findViewById(R.id.falsch);
     falsch.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                if (currentQuestion.answer.rightIndex == 1) {
-                  if (!failed) points++;
-                  counter++;
-                  chooseTask();
-                } else {
-                  failed = true;
-                }
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            if (currentQuestion.answer.rightIndex == 1) {
+              if (!failed) points++;
+              counter++;
+              chooseTask();
+            } else {
+              failed = true;
+            }
+          }
         });
   }
 

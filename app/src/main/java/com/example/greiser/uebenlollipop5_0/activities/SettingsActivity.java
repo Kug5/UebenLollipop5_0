@@ -6,11 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.greiser.uebenlollipop5_0.R;
 import com.example.greiser.uebenlollipop5_0.helper.ExternalStorage;
 import com.example.greiser.uebenlollipop5_0.helper.Ueben;
-
 import java.io.IOException;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -29,11 +27,11 @@ public class SettingsActivity extends AppCompatActivity {
 
     Button back = findViewById(R.id.back);
     back.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
             saveSettings();
-              }
+          }
         });
   }
 
@@ -47,7 +45,7 @@ public class SettingsActivity extends AppCompatActivity {
     ExternalStorage es = new ExternalStorage();
     try {
       es.storeSettings(
-              getApplicationContext(), application.getUsersettings(), application.getUsername());
+          getApplicationContext(), application.getUsersettings(), application.getUsername());
     } catch (IOException e) {
       e.printStackTrace();
     } finally {

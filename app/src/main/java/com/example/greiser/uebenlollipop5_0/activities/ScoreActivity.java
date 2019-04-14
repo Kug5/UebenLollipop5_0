@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.example.greiser.uebenlollipop5_0.R;
 import com.example.greiser.uebenlollipop5_0.helper.ExternalStorage;
 import com.example.greiser.uebenlollipop5_0.helper.StorageData;
@@ -26,11 +25,11 @@ public class ScoreActivity extends AppCompatActivity {
 
     LinearLayout mainLayout = findViewById(R.id.mainScore);
     LinearLayout.LayoutParams paramsRow =
-            new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
+        new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
     LinearLayout.LayoutParams paramsBox =
-            new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
+        new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
 
     StorageData storedData;
     try {
@@ -41,14 +40,14 @@ public class ScoreActivity extends AppCompatActivity {
         String sign = "";
         int colorDiff = 0;
         if (op.name().equals(Ueben.OPERATION_PLUSMINUS)) {
-          max = new int[]{20, 30, 100};
+          max = new int[] {20, 30, 100};
           sign = "+-";
         } else if (op.name().equals(Ueben.OPERATION_DIVIDE)) {
-          max = new int[]{100};
+          max = new int[] {100};
           sign = ":";
           colorDiff = 15;
         } else if (op.name().equals(Ueben.OPERATION_MULT)) {
-          max = new int[]{10, 20};
+          max = new int[] {10, 20};
           sign = "*";
           colorDiff = 30;
         }
@@ -58,8 +57,8 @@ public class ScoreActivity extends AppCompatActivity {
 
             try {
               storedData =
-                      es.getStoredTasks(
-                              getApplicationContext(), op.name(), max[i], application.getUsername());
+                  es.getStoredTasks(
+                      getApplicationContext(), op.name(), max[i], application.getUsername());
             } catch (Exception e) {
               mainLayout.addView(createEmptyRow(paramsRow));
               continue;
@@ -75,10 +74,10 @@ public class ScoreActivity extends AppCompatActivity {
             TextView label = new TextView(getApplicationContext());
             label.setText(sign + " " + max[i]);
             label.setLayoutParams(
-                    new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            0));
+                new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    0));
             label.setEms(5);
             row.addView(label);
 

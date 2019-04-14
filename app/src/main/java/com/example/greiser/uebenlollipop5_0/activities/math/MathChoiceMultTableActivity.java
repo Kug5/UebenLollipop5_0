@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-
 import com.example.greiser.uebenlollipop5_0.R;
 import com.example.greiser.uebenlollipop5_0.activities.HowManyActivity;
 import com.example.greiser.uebenlollipop5_0.helper.ExternalStorage;
@@ -39,27 +38,27 @@ public class MathChoiceMultTableActivity extends AppCompatActivity {
 
     Button nextButton = findViewById(R.id.next);
     nextButton.setOnClickListener(
-            new View.OnClickListener() {
+        new View.OnClickListener() {
 
-              @Override
-              public void onClick(View v) {
-                ueben.setMultTable(
-                        ((CheckBox) findViewById(R.id.checkBox0)).isChecked(),
-                        ((CheckBox) findViewById(R.id.checkBox1)).isChecked(),
-                        ((CheckBox) findViewById(R.id.checkBox2)).isChecked(),
-                        ((CheckBox) findViewById(R.id.checkBox3)).isChecked(),
-                        ((CheckBox) findViewById(R.id.checkBox4)).isChecked(),
-                        ((CheckBox) findViewById(R.id.checkBox5)).isChecked(),
-                        ((CheckBox) findViewById(R.id.checkBox6)).isChecked(),
-                        ((CheckBox) findViewById(R.id.checkBox7)).isChecked(),
-                        ((CheckBox) findViewById(R.id.checkBox8)).isChecked(),
-                        ((CheckBox) findViewById(R.id.checkBox9)).isChecked(),
-                        ((CheckBox) findViewById(R.id.checkBox10)).isChecked());
-                new ExternalStorage()
-                        .storeChoiceMultTable(
-                                getApplicationContext(), ueben.getMultTableToTrain(), ueben.getUsername());
-                startActivity(new Intent(MathChoiceMultTableActivity.this, HowManyActivity.class));
-              }
+          @Override
+          public void onClick(View v) {
+            ueben.setMultTable(
+                ((CheckBox) findViewById(R.id.checkBox0)).isChecked(),
+                ((CheckBox) findViewById(R.id.checkBox1)).isChecked(),
+                ((CheckBox) findViewById(R.id.checkBox2)).isChecked(),
+                ((CheckBox) findViewById(R.id.checkBox3)).isChecked(),
+                ((CheckBox) findViewById(R.id.checkBox4)).isChecked(),
+                ((CheckBox) findViewById(R.id.checkBox5)).isChecked(),
+                ((CheckBox) findViewById(R.id.checkBox6)).isChecked(),
+                ((CheckBox) findViewById(R.id.checkBox7)).isChecked(),
+                ((CheckBox) findViewById(R.id.checkBox8)).isChecked(),
+                ((CheckBox) findViewById(R.id.checkBox9)).isChecked(),
+                ((CheckBox) findViewById(R.id.checkBox10)).isChecked());
+            new ExternalStorage()
+                .storeChoiceMultTable(
+                    getApplicationContext(), ueben.getMultTableToTrain(), ueben.getUsername());
+            startActivity(new Intent(MathChoiceMultTableActivity.this, HowManyActivity.class));
+          }
         });
   }
 }

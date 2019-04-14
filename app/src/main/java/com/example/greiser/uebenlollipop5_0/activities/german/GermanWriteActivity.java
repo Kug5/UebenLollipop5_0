@@ -15,12 +15,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.example.greiser.uebenlollipop5_0.R;
 import com.example.greiser.uebenlollipop5_0.activities.SuperActivity;
 import com.example.greiser.uebenlollipop5_0.helper.ExternalStorage;
 import com.example.greiser.uebenlollipop5_0.helper.Ueben;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,25 +54,25 @@ public class GermanWriteActivity extends AppCompatActivity {
     layoutInput = findViewById(R.id.layoutInput);
     userInput = findViewById(R.id.userInput);
     userInput.setOnEditorActionListener(
-            new TextView.OnEditorActionListener() {
-              public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
-                  checkSolution();
-                  InputMethodManager imm =
-                          (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                  imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                }
-                return false;
-              }
+        new TextView.OnEditorActionListener() {
+          public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
+              checkSolution();
+              InputMethodManager imm =
+                  (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+              imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+            return false;
+          }
         });
 
     startButton = findViewById(R.id.startButton);
     startButton.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                chooseEntry();
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            chooseEntry();
+          }
         });
 
     setPreStartConfigs();
@@ -156,18 +154,18 @@ public class GermanWriteActivity extends AppCompatActivity {
   private void createTimer() {
     Handler handler = new Handler();
     handler.postDelayed(
-            new Runnable() {
-              @Override
-              public void run() {
-                preset.setVisibility(View.INVISIBLE);
-                layoutInput.setVisibility(View.VISIBLE);
-                userInput.requestFocus();
-                userInput.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-                InputMethodManager imm =
-                        (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(userInput, InputMethodManager.SHOW_FORCED);
-              }
-            },
-            5000);
+        new Runnable() {
+          @Override
+          public void run() {
+            preset.setVisibility(View.INVISIBLE);
+            layoutInput.setVisibility(View.VISIBLE);
+            userInput.requestFocus();
+            userInput.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+            InputMethodManager imm =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(userInput, InputMethodManager.SHOW_FORCED);
+          }
+        },
+        5000);
   }
 }

@@ -6,12 +6,9 @@ import android.graphics.Canvas;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.widget.TextView;
-
 import com.example.greiser.uebenlollipop5_0.R;
 
-/**
- * TODO: document your custom view class.
- */
+/** TODO: document your custom view class. */
 public class Box extends ConstraintLayout {
   private String boxnr;
   private String counter;

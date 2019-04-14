@@ -10,13 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import com.example.greiser.uebenlollipop5_0.R;
 import com.example.greiser.uebenlollipop5_0.activities.SuperActivity;
 import com.example.greiser.uebenlollipop5_0.helper.ExternalStorage;
 import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 import com.example.greiser.uebenlollipop5_0.model.SinglePlural;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -108,40 +106,40 @@ public class GermanSingularPluralActivity extends AppCompatActivity {
     p3.setTransformationMethod(null);
 
     p1.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                selectedPlural = tmp.getpRight();
-                selectedPluralButton = p1;
-                p1.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
-                p2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                p3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                check();
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            selectedPlural = tmp.getpRight();
+            selectedPluralButton = p1;
+            p1.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
+            p2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            p3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            check();
+          }
         });
     p2.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                selectedPlural = tmp.getpWrong1();
-                selectedPluralButton = p2;
-                p2.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
-                p1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                p3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                check();
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            selectedPlural = tmp.getpWrong1();
+            selectedPluralButton = p2;
+            p2.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
+            p1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            p3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            check();
+          }
         });
     p3.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                selectedPlural = tmp.getpWrong2();
-                selectedPluralButton = p3;
-                p3.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
-                p2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                p1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                check();
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            selectedPlural = tmp.getpWrong2();
+            selectedPluralButton = p3;
+            p3.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
+            p2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            p1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            check();
+          }
         });
 
     shuffle(layoutPlural, p1, p2, p3);
@@ -173,40 +171,40 @@ public class GermanSingularPluralActivity extends AppCompatActivity {
     s3.setTransformationMethod(null);
 
     s1.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                selectedSingular = tmp.getsRight();
-                selectedSingularButton = s1;
-                s1.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
-                s2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                s3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                check();
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            selectedSingular = tmp.getsRight();
+            selectedSingularButton = s1;
+            s1.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
+            s2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            s3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            check();
+          }
         });
     s2.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                selectedSingular = tmp.getsWrong1();
-                selectedSingularButton = s2;
-                s2.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
-                s1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                s3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                check();
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            selectedSingular = tmp.getsWrong1();
+            selectedSingularButton = s2;
+            s2.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
+            s1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            s3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            check();
+          }
         });
     s3.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                selectedSingular = tmp.getsWrong2();
-                selectedSingularButton = s3;
-                s3.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
-                s2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                s1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                check();
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            selectedSingular = tmp.getsWrong2();
+            selectedSingularButton = s3;
+            s3.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
+            s2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            s1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            check();
+          }
         });
 
     shuffle(layoutSingular, s1, s2, s3);
@@ -225,42 +223,42 @@ public class GermanSingularPluralActivity extends AppCompatActivity {
     a3.setTransformationMethod(null);
 
     a1.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                selectedArticle = "der";
-                selectedArticleButton = a1;
-                a1.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
-                a2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                a3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                check();
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            selectedArticle = "der";
+            selectedArticleButton = a1;
+            a1.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
+            a2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            a3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            check();
+          }
         });
 
     a2.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                selectedArticle = "die";
-                selectedArticleButton = a2;
-                a2.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
-                a3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                a1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                check();
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            selectedArticle = "die";
+            selectedArticleButton = a2;
+            a2.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
+            a3.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            a1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            check();
+          }
         });
 
     a3.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                selectedArticle = "das";
-                selectedArticleButton = a3;
-                a3.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
-                a2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                a1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
-                check();
-              }
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            selectedArticle = "das";
+            selectedArticleButton = a3;
+            a3.getBackground().setColorFilter(SELECTED_COLOR, PorterDuff.Mode.MULTIPLY);
+            a2.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            a1.getBackground().setColorFilter(DEFAULT_COLOR, PorterDuff.Mode.MULTIPLY);
+            check();
+          }
         });
 
     layoutArticle.addView(a1);
@@ -306,19 +304,19 @@ public class GermanSingularPluralActivity extends AppCompatActivity {
 
       Handler handler = new Handler();
       handler.postDelayed(
-              new Runnable() {
-                @Override
-                public void run() {
-                  if (usedIndex.size() == howMany) {
-                    ((Ueben) getApplication()).lastPoints = points;
-                    startActivity(new Intent(GermanSingularPluralActivity.this, SuperActivity.class));
-                  } else {
-                    reset();
-                    chooseTask();
-                  }
-                }
-              },
-              800);
+          new Runnable() {
+            @Override
+            public void run() {
+              if (usedIndex.size() == howMany) {
+                ((Ueben) getApplication()).lastPoints = points;
+                startActivity(new Intent(GermanSingularPluralActivity.this, SuperActivity.class));
+              } else {
+                reset();
+                chooseTask();
+              }
+            }
+          },
+          800);
     }
   }
 
