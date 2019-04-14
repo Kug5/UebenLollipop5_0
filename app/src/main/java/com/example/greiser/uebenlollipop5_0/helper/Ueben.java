@@ -13,6 +13,7 @@ public class Ueben extends Application {
   public static final String GERMAN_READ = "read";
   public static final String GERMAN_WRITE = "write";
   public static final String GERMAN_SP = "singularplural";
+  public static final String GERMAN_KO = "konjugation";
   public static final String GERMAN_MIX = "mix";
   public static final String SUBJECT_MATH = "math";
   public static final String SUBJECT_GERMAN = "german";

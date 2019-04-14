@@ -29,16 +29,16 @@
         android:text="Einzahl / Mehrzahl" />
 
     <Button
-        android:id="@+id/random"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Zufall" />
-
-    <Button
         android:id="@+id/konjugation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Konjugation" />
+
+    <Button
+        android:id="@+id/random"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Zufall" />
 </LinearLayout>

@@ -61,7 +61,7 @@ public class MenuGermaActivity extends AppCompatActivity {
           public void onClick(View v) {
             // A random integer value in the range [Min,Max]
             int min = 0;
-            int max = 2;
+            int max = 3;
             int x = min + (int) (Math.random() * ((max - min) + 1));
             if (x == 0) {
               ueben.setGermanTarget(Ueben.GERMAN_READ);
@@ -69,6 +69,8 @@ public class MenuGermaActivity extends AppCompatActivity {
               ueben.setGermanTarget(Ueben.GERMAN_WRITE);
             } else if (x == 2) {
               ueben.setGermanTarget(Ueben.GERMAN_SP);
+            } else if (x == 3) {
+              ueben.setGermanTarget(Ueben.GERMAN_KO);
             }
 
             startActivity(new Intent(MenuGermaActivity.this, HowManyActivity.class));
@@ -79,6 +81,7 @@ public class MenuGermaActivity extends AppCompatActivity {
         new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+            ueben.setGermanTarget(Ueben.GERMAN_KO);
             startActivity(new Intent(MenuGermaActivity.this, GermanKonjugationActivity.class));
           }
         });

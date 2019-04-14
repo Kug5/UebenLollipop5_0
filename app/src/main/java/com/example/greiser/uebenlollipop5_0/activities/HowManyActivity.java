@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import com.example.greiser.uebenlollipop5_0.R;
+import com.example.greiser.uebenlollipop5_0.activities.german.GermanKonjugationActivity;
 import com.example.greiser.uebenlollipop5_0.activities.german.GermanRightWrongActivity;
 import com.example.greiser.uebenlollipop5_0.activities.german.GermanSingularPluralActivity;
 import com.example.greiser.uebenlollipop5_0.activities.german.GermanWriteActivity;
@@ -111,6 +112,8 @@ public class HowManyActivity extends AppCompatActivity {
         return new Intent(HowManyActivity.this, GermanWriteActivity.class);
       case Ueben.GERMAN_SP:
         return new Intent(HowManyActivity.this, GermanSingularPluralActivity.class);
+      case Ueben.GERMAN_KO:
+        return new Intent(HowManyActivity.this, GermanKonjugationActivity.class);
       default:
         return new Intent(HowManyActivity.this, GermanSingularPluralActivity.class);
     }
