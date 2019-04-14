@@ -47,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="none|textNoSuggestions" />
+            android:inputType="none|textNoSuggestions"
+            android:padding="10dp" />/>
     </LinearLayout>
 
     <LinearLayout
