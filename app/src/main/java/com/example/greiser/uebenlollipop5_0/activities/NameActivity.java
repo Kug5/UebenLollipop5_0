@@ -69,42 +69,44 @@ public class NameActivity extends AppCompatActivity {
         inputName.setVisibility(View.INVISIBLE);
 
         final ImageView newName = findViewById(R.id.newName);
-        newName.setOnClickListener(new View.OnClickListener() {
+        newName.setOnClickListener(
+                new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                inputName.setVisibility(View.VISIBLE);
-                inputName.requestFocus();
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(inputName, InputMethodManager.SHOW_FORCED);
-            }
-        });
-
-        inputName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
-                    names.add(inputName.getText().toString());
-                    recreatePartForButtons();
-
-                    niemandText.setVisibility(View.GONE);
-                    findViewById(R.id.werIstDa).setVisibility(View.GONE);
-                    partForButtons.setVisibility(View.VISIBLE);
-
-                    try {
-                        es.storeNames(getApplicationContext(), names);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    @Override
+                    public void onClick(View v) {
+                        inputName.setVisibility(View.VISIBLE);
+                        inputName.requestFocus();
+                        InputMethodManager imm =
+                                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(inputName, InputMethodManager.SHOW_FORCED);
                     }
-                    inputName.setText("");
-                    inputName.setVisibility(View.INVISIBLE);
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                }
-                return false;
-            }
         });
 
+        inputName.setOnEditorActionListener(
+                new TextView.OnEditorActionListener() {
+                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                        if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
+                            names.add(inputName.getText().toString());
+                            recreatePartForButtons();
 
+                            niemandText.setVisibility(View.GONE);
+                            findViewById(R.id.werIstDa).setVisibility(View.GONE);
+                            partForButtons.setVisibility(View.VISIBLE);
+
+                            try {
+                                es.storeNames(getApplicationContext(), names);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            inputName.setText("");
+                            inputName.setVisibility(View.INVISIBLE);
+                            InputMethodManager imm =
+                                    (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                        }
+                        return false;
+                    }
+        });
     }
 
     private void setEmptyNamesLayout() {
@@ -119,8 +121,8 @@ public class NameActivity extends AppCompatActivity {
         int counter = 0;
         LinearLayout currentLine = createNewLine();
         partForButtons.addView(currentLine);
-        for (String name: names) {
-            if (counter%5 == 0) {
+        for (String name : names) {
+            if (counter % 5 == 0) {
                 currentLine = createNewLine();
                 partForButtons.addView(currentLine);
             }
@@ -133,7 +135,9 @@ public class NameActivity extends AppCompatActivity {
         LinearLayout newLine = new LinearLayout(this);
         newLine.setOrientation(LinearLayout.HORIZONTAL);
 
-        LinearLayout.LayoutParams newLineParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams newLineParams =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         newLine.setLayoutParams(newLineParams);
 
         return newLine;
@@ -146,21 +150,23 @@ public class NameActivity extends AppCompatActivity {
         buttonName.setText(name);
         buttonName.setBackgroundColor(Color.argb(255, 51, 181, 229));
         buttonName.setTextColor(Color.BLACK);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
         params.setMargins(padding, padding, padding, padding);
         buttonName.setLayoutParams(params);
         buttonName.setPadding(padding, padding, padding, padding);
 
-        buttonName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                application.setUsername(name);
-                application.setUsersettings(loadUserSettings(name));
-                application.setHeightScores(es.getHeightScores(getApplicationContext(), name));
+        buttonName.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        application.setUsername(name);
+                        application.setUsersettings(loadUserSettings(name));
+                        application.setHeightScores(es.getHeightScores(getApplicationContext(), name));
             Intent menu = new Intent(NameActivity.this, MenuActivity.class);
             startActivity(menu);
-            }
-
+                    }
         });
         return buttonName;
     }
@@ -181,7 +187,7 @@ public class NameActivity extends AppCompatActivity {
     private UserSetting getSettings(File file) throws Exception {
 
         UserSetting returnValue = new UserSetting();
-      //  BufferedReader bufferIn = new BufferedReader(new FileReader(file));
+        //  BufferedReader bufferIn = new BufferedReader(new FileReader(file));
 
         return returnValue;
     }
@@ -191,9 +197,9 @@ public class NameActivity extends AppCompatActivity {
         BufferedReader bufferIn = new BufferedReader(new FileReader(file));
         List<String> names = new ArrayList<String>();
 
-        String line  = bufferIn.readLine();
-        if(line != null) {
-            String [] tmpNames = line.split(",");
+        String line = bufferIn.readLine();
+        if (line != null) {
+            String[] tmpNames = line.split(",");
             bufferIn.close();
             return new ArrayList<String>(Arrays.asList(tmpNames));
         }

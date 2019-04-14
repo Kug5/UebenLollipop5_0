@@ -15,41 +15,43 @@ import java.io.IOException;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    Ueben application;
+  Ueben application;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_settings);
 
-        application = (Ueben) getApplication();
+    application = (Ueben) getApplication();
 
-        TextView settingsFor = findViewById(R.id.settingsFor);
-        settingsFor.setText("Einstellungen für " + application.getUsername());
+    TextView settingsFor = findViewById(R.id.settingsFor);
+    settingsFor.setText("Einstellungen für " + application.getUsername());
 
-        Button back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    Button back = findViewById(R.id.back);
+    back.setOnClickListener(
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
             saveSettings();
-            }
+              }
         });
-    }
+  }
 
-    @Override
-    protected void onDestroy() {
-        saveSettings();
-        super.onDestroy();
-    }
+  @Override
+  protected void onDestroy() {
+    saveSettings();
+    super.onDestroy();
+  }
 
-    private void saveSettings() {
-        ExternalStorage es = new ExternalStorage();
-        try {
-            es.storeSettings(getApplicationContext(), application.getUsersettings(), application.getUsername());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            startActivity(new Intent(SettingsActivity.this, MenuActivity.class));
-        }
+  private void saveSettings() {
+    ExternalStorage es = new ExternalStorage();
+    try {
+      es.storeSettings(
+              getApplicationContext(), application.getUsersettings(), application.getUsername());
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      startActivity(new Intent(SettingsActivity.this, MenuActivity.class));
     }
+  }
 }

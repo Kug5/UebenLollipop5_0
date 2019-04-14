@@ -18,16 +18,16 @@ public class SuperActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_super);
 
-        Ueben ueben = (Ueben)getApplication();
+        Ueben ueben = (Ueben) getApplication();
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         final ImageView backToMenu = findViewById(R.id.backToMenu);
-        backToMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SuperActivity.this, MenuActivity.class));
-            }
+        backToMenu.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(SuperActivity.this, MenuActivity.class));
+                    }
         });
-
 
         final TextView p020 = findViewById(R.id.p020);
         p020.setText("" + ueben.getHeightScores().getBestPlusMinus20());
@@ -49,6 +49,5 @@ public class SuperActivity extends AppCompatActivity {
 
         final TextView points = findViewById(R.id.points);
         points.setText("" + (ueben.lastPoints > -1 ? ueben.lastPoints : 0));
-
     }
 }

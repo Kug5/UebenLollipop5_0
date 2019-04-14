@@ -17,8 +17,7 @@ public class Ueben extends Application {
     public static final String GERMAN_MIX = "mix";
     public static final String SUBJECT_MATH = "math";
     public static final String SUBJECT_GERMAN = "german";
-
-
+    public int lastPoints = -1;
     private String subject;
     private String username;
     private String operation;
@@ -27,24 +26,33 @@ public class Ueben extends Application {
     private int many;
     private UserSetting usersettings;
     private UserHeightScore userHeightScore;
-    public int lastPoints = -1;
     private Boolean[] multTableToTrain;
-
-    public void setHeightScores(UserHeightScore heightScores) {
-        this.userHeightScore = heightScores;
-    }
 
     public UserHeightScore getHeightScores() {
         return this.userHeightScore;
     }
 
-    public void setMultTable(boolean checked0, boolean checked1,
-                             boolean checked2, boolean checked3,
-                             boolean checked4, boolean checked5,
-                             boolean checked6, boolean checked7,
-                             boolean checked8, boolean checked9, boolean checked10) {
-        this.multTableToTrain = new Boolean[]{checked0, checked1, checked2, checked3, checked4,
-                checked5, checked6, checked7, checked8, checked9, checked10};
+    public void setHeightScores(UserHeightScore heightScores) {
+        this.userHeightScore = heightScores;
+    }
+
+    public void setMultTable(
+            boolean checked0,
+            boolean checked1,
+            boolean checked2,
+            boolean checked3,
+            boolean checked4,
+            boolean checked5,
+            boolean checked6,
+            boolean checked7,
+            boolean checked8,
+            boolean checked9,
+            boolean checked10) {
+        this.multTableToTrain =
+                new Boolean[]{
+                        checked0, checked1, checked2, checked3, checked4, checked5, checked6, checked7, checked8,
+                        checked9, checked10
+                };
     }
 
     public boolean canCheck(BigTask task) {
@@ -61,9 +69,6 @@ public class Ueben extends Application {
     public Boolean[] getMultTableToTrain() {
         return multTableToTrain;
     }
-
-    public enum Operations {plusminus, mult, divide}
-
 
     public String getUsername() {
         return username;
@@ -97,20 +102,20 @@ public class Ueben extends Application {
         this.max = max;
     }
 
-    public void setUsersettings(UserSetting usersettings) {
-        this.usersettings = usersettings;
-    }
-
     public UserSetting getUsersettings() {
         return usersettings;
     }
 
-    public void setGermanTarget(String germanTarget) {
-        this.germanTarget = germanTarget;
+    public void setUsersettings(UserSetting usersettings) {
+        this.usersettings = usersettings;
     }
 
     public String getGermanTarget() {
         return germanTarget;
+    }
+
+    public void setGermanTarget(String germanTarget) {
+        this.germanTarget = germanTarget;
     }
 
     public String getSubject() {
@@ -119,5 +124,11 @@ public class Ueben extends Application {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public enum Operations {
+        plusminus,
+        mult,
+        divide
     }
 }

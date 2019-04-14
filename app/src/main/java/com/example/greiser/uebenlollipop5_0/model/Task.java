@@ -2,9 +2,9 @@ package com.example.greiser.uebenlollipop5_0.model;
 
 public class Task {
 
-    int summand1 = -1;
-    int summand2 = -1;
-    int sum = -1;
+    private int summand1;
+    private int summand2;
+    private int sum;
 
     public Task(int summand1, int summand2, int sum) {
         this.sum = sum;
@@ -15,5 +15,4 @@ public class Task {
     public int getSum() {
         return this.sum;
     }
-
 }

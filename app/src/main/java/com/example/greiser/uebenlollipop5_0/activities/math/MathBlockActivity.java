@@ -18,17 +18,13 @@ import java.util.Map;
 
 public class MathBlockActivity extends AppCompatActivity {
 
-
-    Map<String, Task> b1 = new LinkedHashMap<String, Task>();
-
-    private EditText[] taskMap;
-    private EditText[] resultMap;
-
-    public EditText currentInputFocus;
-    private Map[] blocks;
-
     private static int wrong = Color.RED;
     private static int right = Color.GREEN;
+    public EditText currentInputFocus;
+    Map<String, Task> b1 = new LinkedHashMap<String, Task>();
+    private EditText[] taskMap;
+    private EditText[] resultMap;
+    private Map[] blocks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +42,6 @@ public class MathBlockActivity extends AppCompatActivity {
         currentInputFocus = resultMap[0];
         setCourser();
     }
-
-
 
     private void createInputFields() {
         taskMap = new EditText[16];
@@ -96,10 +90,10 @@ public class MathBlockActivity extends AppCompatActivity {
 
             int summand1 = -1;
             int summand2 = -1;
-            //do {
+            // do {
             summand1 = (int) (Math.random() * 10);
             summand2 = (int) (Math.random() * 10);
-            //} while (summand2 > summand1 );
+            // } while (summand2 > summand1 );
 
             fillLayout(i, summand1, summand2);
         }
@@ -133,62 +127,66 @@ public class MathBlockActivity extends AppCompatActivity {
         taskMap[index_2].setText(ts3);
         taskMap[index_3].setText(ts4);
 
-        resultMap[index_0].setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
+        resultMap[index_0].setOnFocusChangeListener(
+                new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
 
-                if (hasFocus) {
-                    currentInputFocus = resultMap[index_0];
-                } else {
-                    boolean right = checkResult (resultMap[index_0], t1);
-                    if (right) {
-                        replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
+                        if (hasFocus) {
+                            currentInputFocus = resultMap[index_0];
+                        } else {
+                            boolean right = checkResult(resultMap[index_0], t1);
+                            if (right) {
+                                replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
+                            }
+                        }
                     }
-                }
-            }
         });
 
-        resultMap[index_1].setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
+        resultMap[index_1].setOnFocusChangeListener(
+                new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
 
-                if (hasFocus) {
-                    currentInputFocus = resultMap[index_1];
-                } else {
-                    boolean right = checkResult (resultMap[index_1], t2);
-                    if (right) {
-                        replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
+                        if (hasFocus) {
+                            currentInputFocus = resultMap[index_1];
+                        } else {
+                            boolean right = checkResult(resultMap[index_1], t2);
+                            if (right) {
+                                replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
+                            }
+                        }
                     }
-                }
-            }
         });
-        resultMap[index_2].setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
+        resultMap[index_2].setOnFocusChangeListener(
+                new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
 
-                if (hasFocus) {
-                    currentInputFocus = resultMap[index_2];
-                } else {
-                    boolean right = checkResult (resultMap[index_2], t3);
-                    if (right) {
-                        replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
+                        if (hasFocus) {
+                            currentInputFocus = resultMap[index_2];
+                        } else {
+                            boolean right = checkResult(resultMap[index_2], t3);
+                            if (right) {
+                                replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
+                            }
+                        }
                     }
-                }
-            }
         });
-        resultMap[index_3].setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
+        resultMap[index_3].setOnFocusChangeListener(
+                new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
 
-                if (hasFocus) {
-                    currentInputFocus = resultMap[index_3];
-                } else {
-                    boolean right = checkResult (resultMap[index_3], t4);
-                    if (right) {
-                        replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
+                        if (hasFocus) {
+                            currentInputFocus = resultMap[index_3];
+                        } else {
+                            boolean right = checkResult(resultMap[index_3], t4);
+                            if (right) {
+                                replaceQuestionMark(taskMap[index_2], taskMap[index_3], (summand1 + summand2));
+                            }
+                        }
                     }
-                }
-            }
         });
     }
 
@@ -213,132 +211,141 @@ public class MathBlockActivity extends AppCompatActivity {
     }
 
     private void createKeyboard() {
-            final Button button_0 = findViewById(R.id.button_0);
-            button_0.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addNumber(0);
-                }
-            });
-
-            final Button button_1 = findViewById(R.id.button_1);
-            button_1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addNumber(1);
-                }
-            });
-
-            final Button button_2 = findViewById(R.id.button_2);
-            button_2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addNumber(2);
-                }
-            });
-
-            final Button button_3 = findViewById(R.id.button_3);
-            button_3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addNumber(3);
-                }
-            });
-
-            final Button button_4 = findViewById(R.id.button_4);
-            button_4.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addNumber(4);
-                }
-            });
-
-            final Button button_5 = findViewById(R.id.button_5);
-            button_5.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addNumber(5);
-                }
-            });
-
-            final Button button_6 = findViewById(R.id.button_6);
-            button_6.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addNumber(6);
-                }
-            });
-
-            final Button button_7 = findViewById(R.id.button_7);
-            button_7.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addNumber(7);
-                }
-            });
-
-            final Button button_8 = findViewById(R.id.button_8);
-            button_8.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addNumber(8);
-                }
-            });
-
-            final Button button_9 = findViewById(R.id.button_9);
-            button_9.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addNumber(9);
-                }
-            });
-
-            final Button button_BACK = findViewById(R.id.button_back);
-            button_BACK.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String tmp = currentInputFocus.getText().toString();
-                    if (tmp.length() != 0) {
-                        currentInputFocus.setText(tmp.subSequence(0, tmp.length() - 1));
-                        setCourser();
-
+        final Button button_0 = findViewById(R.id.button_0);
+        button_0.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addNumber(0);
                     }
-                }
-            });
+                });
 
-            final Button button_OK = findViewById(R.id.button_OK);
-            button_OK.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        final Button button_1 = findViewById(R.id.button_1);
+        button_1.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addNumber(1);
+                    }
+                });
 
-                    boolean all = true;
-                    for (int i = 0; i < 4; i++) {
-                        Map<String, Task> whatever = blocks[i];
-                        int counter = 0;
-                        for (Task task : whatever.values()) {
-                            boolean tmp = checkResult(resultMap[ i * 4 + counter], task);
-                            counter++;
-                            if (!tmp) {
-                                all = false;
-                            }
+        final Button button_2 = findViewById(R.id.button_2);
+        button_2.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addNumber(2);
+                    }
+                });
+
+        final Button button_3 = findViewById(R.id.button_3);
+        button_3.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addNumber(3);
+                    }
+                });
+
+        final Button button_4 = findViewById(R.id.button_4);
+        button_4.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addNumber(4);
+                    }
+                });
+
+        final Button button_5 = findViewById(R.id.button_5);
+        button_5.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addNumber(5);
+                    }
+                });
+
+        final Button button_6 = findViewById(R.id.button_6);
+        button_6.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addNumber(6);
+                    }
+                });
+
+        final Button button_7 = findViewById(R.id.button_7);
+        button_7.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addNumber(7);
+                    }
+                });
+
+        final Button button_8 = findViewById(R.id.button_8);
+        button_8.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addNumber(8);
+                    }
+                });
+
+        final Button button_9 = findViewById(R.id.button_9);
+        button_9.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addNumber(9);
+                    }
+                });
+
+        final Button button_BACK = findViewById(R.id.button_back);
+        button_BACK.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String tmp = currentInputFocus.getText().toString();
+                        if (tmp.length() != 0) {
+                            currentInputFocus.setText(tmp.subSequence(0, tmp.length() - 1));
+                            setCourser();
                         }
                     }
-                    if (all) {
-                        Intent finish = new Intent(MathBlockActivity.this, SuperActivity.class);
-                        startActivity(finish);
-                    }
-                }
-            });
+                });
 
+        final Button button_OK = findViewById(R.id.button_OK);
+        button_OK.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        boolean all = true;
+                        for (int i = 0; i < 4; i++) {
+                            Map<String, Task> whatever = blocks[i];
+                            int counter = 0;
+                            for (Task task : whatever.values()) {
+                                boolean tmp = checkResult(resultMap[i * 4 + counter], task);
+                                counter++;
+                                if (!tmp) {
+                                    all = false;
+                                }
+                            }
+                        }
+                        if (all) {
+                            Intent finish = new Intent(MathBlockActivity.this, SuperActivity.class);
+                            startActivity(finish);
+                        }
+                    }
+                });
     }
 
     private void addNumber(int number) {
-        currentInputFocus.setText(currentInputFocus.getText().toString()+ number);
+        currentInputFocus.setText(currentInputFocus.getText().toString() + number);
         setCourser();
     }
 
     private void setCourser() {
         currentInputFocus.setSelection(currentInputFocus.getText().toString().length());
     }
-
 }

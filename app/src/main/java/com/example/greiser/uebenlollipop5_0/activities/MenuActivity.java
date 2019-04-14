@@ -26,39 +26,42 @@ public class MenuActivity extends AppCompatActivity {
         final TextView halloName = findViewById(R.id.halloName);
         halloName.setText("Hallo " + ((Ueben) getApplication()).getUsername() + "! :)");
 
-
         final Button buttonDeutsch = findViewById(R.id.ButtonDeutsch);
-        buttonDeutsch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((Ueben) getApplication()).setSubject(Ueben.SUBJECT_GERMAN);
-                startActivity(new Intent(MenuActivity.this, MenuGermaActivity.class));
-            }
+        buttonDeutsch.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((Ueben) getApplication()).setSubject(Ueben.SUBJECT_GERMAN);
+                        startActivity(new Intent(MenuActivity.this, MenuGermaActivity.class));
+                    }
         });
 
         final Button buttonMathe = findViewById(R.id.ButtonMathe);
-        buttonMathe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((Ueben) getApplication()).setSubject(Ueben.SUBJECT_MATH);
-                startActivity(new Intent(MenuActivity.this, MenuMathActivity.class));
-            }
+        buttonMathe.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((Ueben) getApplication()).setSubject(Ueben.SUBJECT_MATH);
+                        startActivity(new Intent(MenuActivity.this, MenuMathActivity.class));
+                    }
         });
 
         final ImageButton settings = findViewById(R.id.settings);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, SettingsActivity.class));
-            }
+        settings.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MenuActivity.this, SettingsActivity.class));
+                    }
         });
 
         final ImageButton overviewScore = findViewById(R.id.overviewScore);
-        overviewScore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, ScoreActivity.class));
-            }
+        overviewScore.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MenuActivity.this, ScoreActivity.class));
+                    }
         });
     }
 }
