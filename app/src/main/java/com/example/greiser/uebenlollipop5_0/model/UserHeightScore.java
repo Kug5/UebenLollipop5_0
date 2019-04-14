@@ -139,10 +139,10 @@ public class UserHeightScore {
 
   private void insertIntoMult(int max, int points) {
     switch (max) {
-      case 100:
+      case 10:
         this.insertInto(this.bestMult100, points);
         break;
-      case 400:
+      case 20:
         this.insertInto(this.bestMult400, points);
         break;
     }
@@ -156,7 +156,7 @@ public class UserHeightScore {
       case 30:
         this.insertInto(this.bestPlusMinus30, points);
         break;
-      case 40:
+      case 100:
         this.insertInto(this.bestPlusMinus100, points);
         break;
     }

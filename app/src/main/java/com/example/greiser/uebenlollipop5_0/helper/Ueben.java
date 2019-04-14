@@ -55,6 +55,9 @@ public class Ueben extends Application {
   }
 
   public boolean canCheck(BigTask task) {
+
+    if (multTableToTrain == null) return true;
+
     if (task.getI() < 0 || task.getI() > 10 || task.getJ() < 0 || task.getJ() > 10) {
       return false;
     }
