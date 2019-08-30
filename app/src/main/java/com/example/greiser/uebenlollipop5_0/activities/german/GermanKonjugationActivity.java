@@ -203,7 +203,9 @@ public class GermanKonjugationActivity extends AppCompatActivity {
     }
 
     private boolean checkInput(EditText v, int actionId) {
-        if (actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_DONE) {
+        if (actionId == EditorInfo.IME_ACTION_GO
+                || actionId == EditorInfo.IME_ACTION_DONE
+                || actionId == EditorInfo.IME_ACTION_NEXT) {
             if (checkSolution(v)) {
                 if (!failed) {
                     points++;
@@ -221,6 +223,7 @@ public class GermanKonjugationActivity extends AppCompatActivity {
                 chooseEntry();
             } else {
                 failed = true;
+                setAllVisible();
                 v.setBackgroundColor(BACKGROUND_COLOR_FAILED);
                 String userInput = v.getText().toString();
                 v.setText(getMissing());
@@ -303,7 +306,7 @@ public class GermanKonjugationActivity extends AppCompatActivity {
                         imm.showSoftInput(v, InputMethodManager.SHOW_FORCED);
                     }
                 },
-                2500);
+                4000);
     }
 
     private void setAllInvisible() {
