@@ -111,7 +111,14 @@ public class SuperActivity extends AppCompatActivity {
         }
 
         if (!op.equals(Ueben.OPERATION_BLOCK)) {
-            output += System.lineSeparator() + ueben.lastPoints + " von " + (howMany * 10) + " Punkten";
+            int maxPoints = howMany;
+            if (op.equals(Ueben.GERMAN_SP)) {
+                maxPoints *= 3;
+            } else {
+                maxPoints *= 10;
+            }
+
+            output += System.lineSeparator() + ueben.lastPoints + " von " + maxPoints + " Punkten";
         } else {
             output = "Sehr gut";
         }

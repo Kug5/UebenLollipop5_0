@@ -87,7 +87,8 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
 
         int many = application.getHowMany();
         if (many == 0) {
-            many = 10;
+            application.setMany(10);
+            many = application.getHowMany();
         }
         this.many = many;
 

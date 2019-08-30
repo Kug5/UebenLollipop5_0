@@ -121,6 +121,7 @@ public class Ueben extends Application {
 
     public void setGermanTarget(String germanTarget) {
         this.germanTarget = germanTarget;
+        this.operation = germanTarget;
     }
 
     public String getSubject() {
