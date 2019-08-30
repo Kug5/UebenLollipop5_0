@@ -4,9 +4,9 @@ import java.io.File;
 
 public interface Storage {
 
-  Object load() throws Exception;
+    Object load() throws Exception;
 
-  File getFile();
+    File getFile();
 
-  void update(Object newValue);
+    void update(Object newValue);
 }

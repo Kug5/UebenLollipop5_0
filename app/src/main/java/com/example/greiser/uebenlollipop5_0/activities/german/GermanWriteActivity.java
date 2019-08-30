@@ -130,7 +130,7 @@ public class GermanWriteActivity extends AppCompatActivity {
 
         setStartConfigs();
         if (howMany == counter) {
-            application.lastPoints = points;
+            application.lastPoints = points * 10;
             startActivity(new Intent(GermanWriteActivity.this, SuperActivity.class));
         }
 

@@ -70,6 +70,8 @@ public class MenuMathActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        setOperationBlock();
+                        setMax(0);
                         startActivity(new Intent(MenuMathActivity.this, MathBlockActivity.class));
                     }
                 });
@@ -115,6 +117,10 @@ public class MenuMathActivity extends AppCompatActivity {
 
     private void setOperationMult() {
         ((Ueben) getApplication()).setOperation(Ueben.OPERATION_MULT);
+    }
+
+    private void setOperationBlock() {
+        ((Ueben) getApplication()).setOperation(Ueben.OPERATION_BLOCK);
     }
 
     private void setOperationDivide() {

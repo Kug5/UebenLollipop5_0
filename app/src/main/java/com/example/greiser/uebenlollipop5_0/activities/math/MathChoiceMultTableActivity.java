@@ -9,7 +9,6 @@ import android.widget.CheckBox;
 
 import com.example.greiser.uebenlollipop5_0.R;
 import com.example.greiser.uebenlollipop5_0.activities.HowManyActivity;
-import com.example.greiser.uebenlollipop5_0.activities.MenuActivity;
 import com.example.greiser.uebenlollipop5_0.helper.StorageMultTableChoice;
 import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 
@@ -21,7 +20,7 @@ public class MathChoiceMultTableActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        startActivity(new Intent(MathChoiceMultTableActivity.this, MenuActivity.class));
+        startActivity(new Intent(MathChoiceMultTableActivity.this, MenuMathActivity.class));
     }
 
     @Override
@@ -64,7 +63,7 @@ public class MathChoiceMultTableActivity extends AppCompatActivity {
                                 ((CheckBox) findViewById(R.id.checkBox8)).isChecked(),
                                 ((CheckBox) findViewById(R.id.checkBox9)).isChecked(),
                                 ((CheckBox) findViewById(R.id.checkBox10)).isChecked());
-                        es.update(choice);
+                        es.update(ueben.getMultTableToTrain());
                         startActivity(new Intent(MathChoiceMultTableActivity.this, HowManyActivity.class));
                     }
                 });

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.example.greiser.uebenlollipop5_0.R;
 import com.example.greiser.uebenlollipop5_0.activities.MenuActivity;
 import com.example.greiser.uebenlollipop5_0.activities.SuperActivity;
+import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 import com.example.greiser.uebenlollipop5_0.model.Task;
 
 import java.util.LinkedHashMap;
@@ -342,6 +343,7 @@ public class MathBlockActivity extends AppCompatActivity {
                         }
                         if (all) {
                             Intent finish = new Intent(MathBlockActivity.this, SuperActivity.class);
+                            ((Ueben) getApplication()).lastPoints = 100;
                             startActivity(finish);
                         }
                     }

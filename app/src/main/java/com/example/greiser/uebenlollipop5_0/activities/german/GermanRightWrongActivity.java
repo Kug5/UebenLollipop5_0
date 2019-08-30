@@ -123,7 +123,7 @@ public class GermanRightWrongActivity extends AppCompatActivity {
         failed = false;
 
         if (howMany == counter) {
-            application.lastPoints = points;
+            application.lastPoints = points * 10;
             startActivity(new Intent(GermanRightWrongActivity.this, SuperActivity.class));
         }
 

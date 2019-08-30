@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -132,13 +131,12 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
             storedData = (StorageData) storagePlusMinusMultDivide.load();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("Error", e.getMessage());
-            storedData = new StorageData();
-            createTasks();
         } finally {
+            if (storedData.isEmpty()) {
+                createTasks();
+            }
             fillTaskList(true);
         }
-
         chooseTask();
     }
 

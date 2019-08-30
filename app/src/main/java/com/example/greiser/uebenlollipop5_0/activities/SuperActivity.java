@@ -17,6 +17,10 @@ public class SuperActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
+        backToMenu();
+    }
+
+    private void backToMenu() {
         startActivity(new Intent(SuperActivity.this, MenuActivity.class));
     }
 
@@ -32,7 +36,7 @@ public class SuperActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(SuperActivity.this, MenuActivity.class));
+                        backToMenu();
                     }
                 });
 
@@ -55,6 +59,63 @@ public class SuperActivity extends AppCompatActivity {
         d100.setText("" + ueben.getHeightScores().getBestDivide100());
 
         final TextView points = findViewById(R.id.points);
-        points.setText("" + (ueben.lastPoints > -1 ? ueben.lastPoints : 0));
+        String op = ueben.getOperation();
+        int max = ueben.getMax();
+        int howMany = ueben.getHowMany();
+
+        String output = "";
+
+        switch (op) {
+            case Ueben.GERMAN_KO:
+                output += "Konjugation";
+                break;
+            case Ueben.GERMAN_READ:
+                output += "Lesen";
+                break;
+            case Ueben.GERMAN_SP:
+                output += "Einzahl/Mehrzahl";
+                break;
+            case Ueben.GERMAN_WRITE:
+                output += "Schreiben";
+                break;
+            case Ueben.OPERATION_DIVIDE:
+                output += "1:1";
+                break;
+            case Ueben.OPERATION_MULT:
+                if (max == 10) output += "1x1";
+                if (max == 20) output += "11x11";
+                break;
+            case Ueben.OPERATION_PLUSMINUS:
+                output += "1+1 bis";
+                if (max == 20) output += " 20";
+                if (max == 30) output += " 30";
+                if (max == 100) output += " 100";
+                break;
+        }
+
+        if (op.equals(Ueben.OPERATION_DIVIDE) || (op.equals(Ueben.OPERATION_MULT) && max == 10)) {
+            Boolean[] toTrain = ueben.getMultTableToTrain();
+            output += System.lineSeparator() + "[";
+            boolean first = true;
+            for (int i = 0; i < toTrain.length; i++) {
+                if (toTrain[i]) {
+                    if (first) {
+                        output += "" + i;
+                        first = false;
+                    } else {
+                        output += "," + i;
+                    }
+                }
+            }
+            output += "]";
+        }
+
+        if (!op.equals(Ueben.OPERATION_BLOCK)) {
+            output += System.lineSeparator() + ueben.lastPoints + " von " + (howMany * 10) + " Punkten";
+        } else {
+            output = "Sehr gut";
+        }
+
+        points.setText(output);
     }
 }

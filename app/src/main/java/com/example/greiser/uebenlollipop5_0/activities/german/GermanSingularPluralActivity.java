@@ -316,7 +316,7 @@ public class GermanSingularPluralActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             if (usedIndex.size() == howMany) {
-                                ((Ueben) getApplication()).lastPoints = points;
+                                ((Ueben) getApplication()).lastPoints = points * 10;
                                 startActivity(new Intent(GermanSingularPluralActivity.this, SuperActivity.class));
                             } else {
                                 reset();
