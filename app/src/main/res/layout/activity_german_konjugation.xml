@@ -5,21 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".activities.german.GermanKonjugationActivity">
 
     <LinearLayout
         android:id="@+id/rowInfinitive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewInfnitive"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:padding="10dp"
             android:text="Hallo"
@@ -32,21 +30,20 @@
         android:id="@+id/rowI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginTop="1dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewI"
             android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="ich" />
 
         <EditText
             android:id="@+id/editTextI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="none|textNoSuggestions"
@@ -57,22 +54,21 @@
         android:id="@+id/rowSYou"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginTop="1dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewSYou"
             android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="du" />
 
 
         <EditText
             android:id="@+id/editTextSYou"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="none|textNoSuggestions"
@@ -83,22 +79,21 @@
         android:id="@+id/rowHe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginTop="1dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewHe"
             android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="er/sie/es" />
 
 
         <EditText
             android:id="@+id/editTextHe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="none|textNoSuggestions"
@@ -109,21 +104,20 @@
         android:id="@+id/rowWe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginTop="1dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewWe"
             android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="wir" />
 
         <EditText
             android:id="@+id/editTextWe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="none|textNoSuggestions"
@@ -134,21 +128,20 @@
         android:id="@+id/rowYour"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginTop="1dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewYour"
             android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="ihr" />
 
         <EditText
             android:id="@+id/editTextYour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="none|textNoSuggestions"
@@ -159,21 +152,21 @@
         android:id="@+id/rowPYou"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="1dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewPYou"
             android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="sie" />
 
 
         <EditText
             android:id="@+id/editTextPYou"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="none|textNoSuggestions"
