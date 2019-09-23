@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">UebenLollipop5_0</string>
+    <string name="app_name">Üben</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="prop">&gt; &lt;</string>
+    <string name="lt">&lt;</string>
+    <string name="gt">&gt;</string>
+    <string name="back">Zurück</string>
     <!--<string name="prop" formatted="false">&prop;</string>-->
 </resources>

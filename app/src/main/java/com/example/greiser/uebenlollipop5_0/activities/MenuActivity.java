@@ -62,6 +62,15 @@ public class MenuActivity extends AppCompatActivity {
                     }
                 });
 
+        final ImageButton resultOverview = findViewById(R.id.result_overview);
+        resultOverview.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MenuActivity.this, ResultOverview.class));
+                    }
+                });
+
         final ImageButton overviewScore = findViewById(R.id.overviewScore);
         overviewScore.setOnClickListener(
                 new View.OnClickListener() {

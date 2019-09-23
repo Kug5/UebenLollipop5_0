@@ -596,7 +596,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
                 chooseTask();
             } else {
                 application.lastPoints = points;
-                this.heightScores.setNewScore(operation, max, points);
+                this.heightScores.setNewScore(operation, max, points, many * 10);
                 storageHeightScore = new StorageHeightScore(getApplicationContext(), name);
                 storageHeightScore.update(this.heightScores);
                 storagePlusMinusMultDivide.update(storedData);

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.greiser.uebenlollipop5_0.R;
+import com.example.greiser.uebenlollipop5_0.helper.StorageToday;
 import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 
 public class SuperActivity extends AppCompatActivity {
@@ -41,22 +42,22 @@ public class SuperActivity extends AppCompatActivity {
                 });
 
         final TextView p020 = findViewById(R.id.p020);
-        p020.setText("" + ueben.getHeightScores().getBestPlusMinus20());
+        p020.setText("" + ueben.getHeightScores().getBestPlusMinus20() + "%");
 
         final TextView p030 = findViewById(R.id.p030);
-        p030.setText("" + ueben.getHeightScores().getBestPlusMinus30());
+        p030.setText("" + ueben.getHeightScores().getBestPlusMinus30() + "%");
 
         final TextView p100 = findViewById(R.id.p100);
-        p100.setText("" + ueben.getHeightScores().getBestPlusMinus100());
+        p100.setText("" + ueben.getHeightScores().getBestPlusMinus100() + "%");
 
         final TextView m100 = findViewById(R.id.m100);
-        m100.setText("" + ueben.getHeightScores().getBestMult100());
+        m100.setText("" + ueben.getHeightScores().getBestMult100() + "%");
 
         final TextView m400 = findViewById(R.id.m400);
-        m400.setText("" + ueben.getHeightScores().getBestMult400());
+        m400.setText("" + ueben.getHeightScores().getBestMult400() + "%");
 
         final TextView d100 = findViewById(R.id.d100);
-        d100.setText("" + ueben.getHeightScores().getBestDivide100());
+        d100.setText("" + ueben.getHeightScores().getBestDivide100() + "%");
 
         final TextView points = findViewById(R.id.points);
         String op = ueben.getOperation();
@@ -118,11 +119,15 @@ public class SuperActivity extends AppCompatActivity {
                 maxPoints *= 10;
             }
 
-            output += System.lineSeparator() + ueben.lastPoints + " von " + maxPoints + " Punkten";
+            output += System.lineSeparator() + ueben.lastPoints + " von " + maxPoints + " Punkten " +
+                    "(" + (100*ueben.lastPoints)/maxPoints + "%)";
         } else {
             output = "Sehr gut";
         }
 
         points.setText(output);
+
+        StorageToday storageToday = new StorageToday(getApplicationContext(), ueben.getUsername());
+        storageToday.update(output);
     }
 }

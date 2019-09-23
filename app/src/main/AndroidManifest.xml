@@ -13,19 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden">
-        <activity
+        <activityv
             android:name=".activities.NameActivity"
-            android:label="@string/app_name"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
-        </activity>
+        </activityv>
         <activity
             android:name=".activities.MenuActivity"
-            android:label="@string/app_name"
             android:screenOrientation="landscape" />
         <activity
             android:name=".activities.math.MathePlusMinusMultDivideActivity"
@@ -66,6 +64,10 @@
         <activity
             android:name=".activities.math.MathChoiceMultTableActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.ResultOverview"
+            android:screenOrientation="landscape" />
     </application>
+
 
 </manifest>

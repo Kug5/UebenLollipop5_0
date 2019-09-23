@@ -119,18 +119,25 @@ public class UserHeightScore {
         }
     }
 
-    public void setNewScore(String operation, int max, int points) {
+    public void setNewScore(String operation, int max, int points, int maxPoints) {
+
+        int percent = percent(points, maxPoints);
+
         switch (operation) {
             case Ueben.OPERATION_DIVIDE:
-                insertIntoDivide(max, points);
+                insertIntoDivide(max, percent);
                 break;
             case Ueben.OPERATION_MULT:
-                insertIntoMult(max, points);
+                insertIntoMult(max, percent);
                 break;
             case Ueben.OPERATION_PLUSMINUS:
-                insertPlusMinus(max, points);
+                insertPlusMinus(max, percent);
                 break;
         }
+    }
+
+    private int percent (int points, int maxPoints) {
+        return 100 * points / maxPoints;
     }
 
     private void insertIntoDivide(int max, int points) {
