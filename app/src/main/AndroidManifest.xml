@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden">
-        <activityv
+        <activity
             android:name=".activities.NameActivity"
             android:screenOrientation="landscape">
             <intent-filter>
@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
-        </activityv>
+        </activity>
         <activity
             android:name=".activities.MenuActivity"
             android:screenOrientation="landscape" />

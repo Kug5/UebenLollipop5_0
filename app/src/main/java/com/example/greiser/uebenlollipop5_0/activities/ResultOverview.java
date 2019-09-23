@@ -1,9 +1,8 @@
 package com.example.greiser.uebenlollipop5_0.activities;
 
-import android.app.AutomaticZenRule;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,7 +13,6 @@ import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 import com.example.greiser.uebenlollipop5_0.model.Result;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class ResultOverview extends AppCompatActivity {
 
@@ -73,20 +71,27 @@ public class ResultOverview extends AppCompatActivity {
         this.dateView = findViewById(R.id.dateView);
         this.resultView = findViewById(R.id.resultView);
 
-        StorageToday st = new StorageToday(getApplicationContext(), ((Ueben)getApplication()).getUsername());
+        StorageToday st = new StorageToday(getApplicationContext(), ((Ueben) getApplication()).getUsername());
         try {
             this.data = (ArrayList<Result>) st.load();
             this.index = this.getIndexOfTheDay(StorageToday.getDateOfTheDay());
             setData(index);
             toggleLeftRightButtons();
         } catch (Exception e) {
-            this.dateView.setText("Error");
+            this.dateView.setText("Fehler");
             this.resultView.setText(e.getMessage());
         }
     }
 
     private void toggleLeftRightButtons() {
-        if (index == 0 ) {
+
+        if (data.size() == 0) {
+            button_left.setEnabled(false);
+            button_right.setEnabled(false);
+            return;
+        }
+
+        if (index == 0) {
             button_left.setEnabled(false);
         } else {
             button_left.setEnabled(true);
@@ -108,6 +113,13 @@ public class ResultOverview extends AppCompatActivity {
     }
 
     private void setData(int index) {
+
+        if (this.data.size() == 0) {
+            this.dateView.setText("");
+            this.resultView.setText(((Ueben) getApplication()).getUsername() + " hat noch keine Aufgabe beendet.");
+            return;
+        }
+
         Result result = this.data.get(index);
 
         String date = result.getDate();

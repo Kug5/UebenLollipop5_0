@@ -33,7 +33,7 @@ public class StorageToday extends UebenStorage implements Storage {
 
         ArrayList<Result> resultsPerDay = new ArrayList<>();
 
-        for (File result:getAllFiles()) {
+        for (File result:getAllFiles(this.username)) {
             String date = result.getName().substring(ROTD_.length(), ROTD_.length() + 8);
             BufferedReader reader = new BufferedReader(new FileReader(result));
             String line = reader.readLine();
@@ -56,19 +56,19 @@ public class StorageToday extends UebenStorage implements Storage {
                 ROTD_ + getDateOfTheDay() + "_" + username + ".txt");
     }
 
-    private List<File> getAllFiles () {
+    private List<File> getAllFiles (String username) {
         List returnList = new ArrayList<File>();
         File folder = getContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
         File[] listOfFiles = folder.listFiles();
         for (File one: listOfFiles) {
-            if (one.getName().startsWith(ROTD_)) {
+            if (one.getName().startsWith(ROTD_) && one.getName().contains(username)) {
                 returnList.add(one);
             }
         }
         return returnList;
     }
 
-    private List<File> getAllFilesOfTheDay() {
+    /*private List<File> getAllFilesOfTheDay() {
         List<File> today = new ArrayList<>();
         String dateToday = getDateOfTheDay().toString();
         for (File one: getAllFiles()) {
@@ -77,7 +77,7 @@ public class StorageToday extends UebenStorage implements Storage {
             }
         }
         return today;
-    }
+    }*/
 
     public static String getDateOfTheDay() {
         @SuppressLint("SimpleDateFormat")
