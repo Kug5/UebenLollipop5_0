@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -74,6 +75,7 @@ public class NameActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         inputName.setVisibility(View.VISIBLE);
                         inputName.requestFocus();
+                        inputName.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                         InputMethodManager imm =
                                 (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.showSoftInput(inputName, InputMethodManager.SHOW_FORCED);

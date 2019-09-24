@@ -281,7 +281,7 @@ public class GermanKonjugationActivity extends AppCompatActivity {
                         toTest.setBackgroundColor(BACKGROUND_COLOR_INIT);
                         toTest.setVisibility(View.VISIBLE);
                         toTest.requestFocus();
-                        toTest.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+                        toTest.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                         InputMethodManager imm =
                                 (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.showSoftInput(toTest, InputMethodManager.SHOW_FORCED);
@@ -300,7 +300,7 @@ public class GermanKonjugationActivity extends AppCompatActivity {
                         v.setText(userInput);
                         v.setSelection(userInput.length());
                         v.requestFocus();
-                        v.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+                        v.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                         InputMethodManager imm =
                                 (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.showSoftInput(v, InputMethodManager.SHOW_FORCED);

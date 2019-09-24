@@ -47,7 +47,7 @@
             android:digits="qwertzuiopüäölkjhgfdsayxcvbnmQWERTZUIOPÜÄÖLKJHGFDSAYXCVBNMß"
             android:ems="10"
             android:importantForAccessibility="no"
-            android:inputType="textNoSuggestions|textWebEmailAddress"
+            android:inputType="textNoSuggestions|textVisiblePassword"
             android:text="Name" />
 
     </LinearLayout>

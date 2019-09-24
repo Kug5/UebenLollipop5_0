@@ -168,7 +168,7 @@ public class GermanWriteActivity extends AppCompatActivity {
                         preset.setVisibility(View.INVISIBLE);
                         layoutInput.setVisibility(View.VISIBLE);
                         userInput.requestFocus();
-                        userInput.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+                        userInput.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                         InputMethodManager imm =
                                 (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.showSoftInput(userInput, InputMethodManager.SHOW_FORCED);
