@@ -5,8 +5,8 @@ android {
     defaultConfig {
         applicationId "com.example.greiser.uebenlollipop5_0"
         minSdkVersion 21
-        versionCode 5
-        versionName "2.2.2"
+        versionCode 6
+        versionName "3.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
