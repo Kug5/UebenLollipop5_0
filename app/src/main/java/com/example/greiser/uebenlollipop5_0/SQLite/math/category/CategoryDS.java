@@ -10,11 +10,11 @@ public class CategoryDS {
         dbHelper = new CategoryDBHelper(context);
     }
 
-    long getID(String operation) {
+    public long getID(String operation) {
         return dbHelper.getID(operation);
     }
 
-    String getOperation(long ID) {
+    public String getOperation(long ID) {
         return dbHelper.getOperation(ID);
     }
 }

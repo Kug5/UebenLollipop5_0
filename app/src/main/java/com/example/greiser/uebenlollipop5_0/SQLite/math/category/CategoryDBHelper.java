@@ -8,6 +8,11 @@ import android.util.Log;
 
 import com.example.greiser.uebenlollipop5_0.SQLite.UebenDBHelper;
 
+import static com.example.greiser.uebenlollipop5_0.SQLite.Constants.OPERATION_SIGN_DIVIDE;
+import static com.example.greiser.uebenlollipop5_0.SQLite.Constants.OPERATION_SIGN_MINUS;
+import static com.example.greiser.uebenlollipop5_0.SQLite.Constants.OPERATION_SIGN_MULT;
+import static com.example.greiser.uebenlollipop5_0.SQLite.Constants.OPERATION_SIGN_PLUS;
+
 public class CategoryDBHelper extends UebenDBHelper {
 
     private static final String LOG_TAG = CategoryDBHelper.class.getSimpleName();
@@ -29,19 +34,17 @@ public class CategoryDBHelper extends UebenDBHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         super.onCreate(db, SQL_CREATE, LOG_TAG);
-        fillTable();
+        fillTable(db);
     }
 
-    private void fillTable() {
-        String[] operations = {"+", "-", "*", ":"};
-        SQLiteDatabase writable = this.getWritableDatabase();
+    private void fillTable(SQLiteDatabase db) {
+        String[] operations = {OPERATION_SIGN_PLUS, OPERATION_SIGN_MINUS, OPERATION_SIGN_MULT, OPERATION_SIGN_DIVIDE};
         for (String op: operations) {
             ContentValues values = new ContentValues();
             values.put(COLUMN_OPERATION, op);
-            long rowID = writable.insert(TABLE_CATEGORY, null, values);
+            long rowID = db.insert(TABLE_CATEGORY, null, values);
             Log.i("", "Newly inserted row id: " + rowID);
         }
-        writable.close();
     }
 
     @Override
@@ -51,21 +54,23 @@ public class CategoryDBHelper extends UebenDBHelper {
 
     long getID(String operation) {
         SQLiteDatabase readable = this.getReadableDatabase();
-        Cursor cursor = readable.rawQuery(SQL_GET +  "WHERE " + COLUMN_OPERATION + "=" + operation + ";", null);
+        Cursor cursor = readable.rawQuery(SQL_GET +  " WHERE " + COLUMN_OPERATION + "=\"" + operation + "\";", null);
+        long id = -1;
         while (cursor.moveToNext()) {
-            long id = cursor.getLong(cursor.getColumnIndex(COLUMN_ID));
-            return id;
+            id = cursor.getLong(cursor.getColumnIndex(COLUMN_ID));
         }
-        return -1;
+        readable.close();
+        return id;
     }
 
     String getOperation(long id) {
         SQLiteDatabase readable = this.getReadableDatabase();
-        Cursor cursor = readable.rawQuery(SQL_GET +  "WHERE " + COLUMN_ID + "=" + id + ";", null);
+        Cursor cursor = readable.rawQuery(SQL_GET +  " WHERE " + COLUMN_ID + "=" + id + ";", null);
+        String operation = null;
         while (cursor.moveToNext()) {
-            String operation = cursor.getString(cursor.getColumnIndex(COLUMN_OPERATION));
-            return operation;
+            operation = cursor.getString(cursor.getColumnIndex(COLUMN_OPERATION));
         }
-        return null;
+        readable.close();
+        return operation;
     }
 }
