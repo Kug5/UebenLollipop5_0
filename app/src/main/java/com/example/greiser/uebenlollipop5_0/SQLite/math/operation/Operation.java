@@ -1,11 +1,11 @@
-package com.example.greiser.uebenlollipop5_0.SQLite.math.category;
+package com.example.greiser.uebenlollipop5_0.SQLite.math.operation;
 
-public class Category {
+public class Operation {
 
     private long id;
     private String operation;
 
-    public Category(long id, String operation) {
+    public Operation(long id, String operation) {
         this.id = id;
         this.operation = operation;
     }

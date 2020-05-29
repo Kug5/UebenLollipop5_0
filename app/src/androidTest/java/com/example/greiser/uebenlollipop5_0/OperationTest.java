@@ -3,7 +3,7 @@ package com.example.greiser.uebenlollipop5_0;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.example.greiser.uebenlollipop5_0.SQLite.math.category.CategoryDS;
+import com.example.greiser.uebenlollipop5_0.SQLite.math.operation.OperationDS;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,12 +18,12 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
 
 @RunWith(AndroidJUnit4.class)
-public class CategoryTest {
-    private CategoryDS ds;
+public class OperationTest {
+    private OperationDS ds;
 
     @Before
     public void setUp() {
-        ds = new CategoryDS(InstrumentationRegistry.getTargetContext());
+        ds = new OperationDS(InstrumentationRegistry.getTargetContext());
     }
 
     @After
