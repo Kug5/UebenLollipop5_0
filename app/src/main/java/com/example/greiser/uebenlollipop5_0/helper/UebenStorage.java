@@ -27,15 +27,7 @@ public abstract class UebenStorage {
     }
 
     public static String getStringBigTask(BigTask bt) {
-        return bt.getDisplayTask()
-                + ","
-                + bt.getI()
-                + ","
-                + bt.getJ()
-                + ","
-                + bt.getResult()
-                + ","
-                + bt.box;
+        return bt.getDisplayTask()+bt.getResult()+","+bt.getBox();
     }
 
     private static void store() {

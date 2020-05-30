@@ -63,7 +63,6 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
     private int seconds;
     private int nextPoint;
     private StoragePlusMinusMultDivide storagePlusMinusMultDivide;
-    private StorageHeightScore storageHeightScore;
 
 
     @Override
@@ -122,7 +121,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
             help.setVisibility(View.INVISIBLE);
         }
 
-        usedIndex = new ArrayList<Integer>();
+        usedIndex = new ArrayList<>();
 
         createKeybord();
 
@@ -136,69 +135,57 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
             if (storedData.isEmpty()) {
                 createTasks();
             }
-            fillTaskList(true);
+            fillTaskList();
         }
         chooseTask();
     }
 
-    private void fillTaskList(boolean withCounter) {
-        if (withCounter) {
-            int counter = storedData.getCounter();
+    private void fillTaskList() {
+        int counter = storedData.getCounter();
 
-            if (counter != 3 && counter != 6 && counter != 8) { // 0 && 1 && 2 && 4 && 5 && 7
-                taskList = storedData.getStep1();
-                if (taskList.size() < this.many) {
-                    taskList.addAll(getXFromBox2(many - taskList.size()));
-                }
-                if (taskList.size() < this.many) {
-                    taskList.addAll(getXFromBox3(many - taskList.size()));
-                }
-            } else if (counter == 3 || counter == 6) {
-                taskList = storedData.getStep2();
-                if (taskList.size() < this.many) {
-                    taskList.addAll(getXFromBox3(many - taskList.size()));
-                }
-                if (taskList.size() < this.many) {
-                    taskList.addAll(getXFromBox1(many - taskList.size()));
-                }
-            } else if (counter == 8) { // 8
-                taskList = storedData.getStep3();
-                if (taskList.size() < this.many) {
-                    taskList.addAll(getXFromBox2(many - taskList.size()));
-                }
-                if (taskList.size() < this.many) {
-                    taskList.addAll(getXFromBox1(many - taskList.size()));
-                }
-            }
-        } else {
+        if (counter != 3 && counter != 6 && counter != 8) { // 0 && 1 && 2 && 4 && 5 && 7
             taskList = storedData.getStep1();
-            taskList.addAll(storedData.getStep2());
-            taskList.addAll(storedData.getStep3());
+            if (taskList.size() < this.many) {
+                taskList.addAll(getXFromBox(many - taskList.size(), 2));
+            }
+            if (taskList.size() < this.many) {
+                taskList.addAll(getXFromBox(many - taskList.size(),3));
+            }
+        } else if (counter == 3 || counter == 6) {
+            taskList = storedData.getStep2();
+            if (taskList.size() < this.many) {
+                taskList.addAll(getXFromBox(many - taskList.size(),3));
+            }
+            if (taskList.size() < this.many) {
+                taskList.addAll(getXFromBox(many - taskList.size(),1));
+            }
+        } else { // 8
+            taskList = storedData.getStep3();
+            if (taskList.size() < this.many) {
+                taskList.addAll(getXFromBox(many - taskList.size(),2));
+            }
+            if (taskList.size() < this.many) {
+                taskList.addAll(getXFromBox(many - taskList.size(),1));
+            }
         }
 
-        if (application.getOperation().equals(Ueben.OPERATION_MULT)) {
+        if (application.getOperation().equals(Ueben.OPERATION_MULT) || application.getOperation().equals(Ueben.OPERATION_DIVIDE)) {
             List<BigTask> tmp = new ArrayList<>();
             for (BigTask task : taskList) {
-                if (application.canCheck(task)) {
+                if ((application.getOperation().equals(Ueben.OPERATION_MULT) && application.canCheck(task))
+                        || (application.getOperation().equals(Ueben.OPERATION_DIVIDE) && application.canCheckDivide(task))) {
                     tmp.add(task);
                 }
             }
             taskList = tmp;
-            if (taskList.size() < many) {
-                fillTaskList(false);
-            }
         }
-        if (application.getOperation().equals(Ueben.OPERATION_DIVIDE)) {
-            List<BigTask> tmp = new ArrayList<>();
-            for (BigTask task : taskList) {
-                if (application.canCheckDivide(task)) {
-                    tmp.add(task);
-                }
-            }
-            taskList = tmp;
-            if (taskList.size() < many) {
-                fillTaskList(false);
-            }
+        checkMany();
+    }
+
+    private void checkMany() {
+        if (taskList.size() < many) {
+            this.many = taskList.size();
+            application.setMany(this.many);
         }
     }
 
@@ -212,7 +199,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
 
                         int diff = seconds - 5;
                         nextPoint = diff < 0 ? 10 : (10 - diff);
-                        nextPoint = nextPoint > 0 ? nextPoint : 0;
+                        nextPoint = Math.max(nextPoint, 0);
                         updateTimeAndPoints();
 
                         timerHandler.postDelayed(timerRunnable, 1000);
@@ -224,90 +211,53 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
         timeAndPoints.setText("Your points: " + points + " (+ " + nextPoint + ") Time: " + seconds);
     }
 
-    private List<BigTask> getXFromBox2(int count) {
-
+    private List<BigTask> getXFromBox(int count, int boxNumber) {
+        List<BigTask> box;
+        switch (boxNumber) {
+            case 1: box = storedData.getStep1(); break;
+            case 2: box = storedData.getStep2(); break;
+            case 3: box = storedData.getStep3(); break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + boxNumber);
+        }
         ArrayList<BigTask> returnValue = new ArrayList<>();
-
-        if (count <= 0 || storedData.getStep2() == null || storedData.getStep2().size() == 0) {
+        if (count <= 0 || box == null || box.size() == 0) {
             return returnValue;
         }
 
-        if (storedData.getStep2().size() <= count) {
-            returnValue.addAll(storedData.getStep2());
+        if (box.size() <= count) {
+            returnValue.addAll(box);
             return returnValue;
         }
 
-        int indexRandom;
-        List<Integer> tmpIndexes = new ArrayList<>();
-        do {
-            indexRandom = (int) (Math.random() * storedData.getStep2().size());
-            if (!tmpIndexes.contains(indexRandom)) {
-                returnValue.add(storedData.getStep2().get(indexRandom));
-                tmpIndexes.add(indexRandom);
-            }
-        } while (returnValue.size() < count);
-
+        addCountBigTaskFromThirdToSecondParamter(count, returnValue, box);
         return returnValue;
     }
 
-    private List<BigTask> getXFromBox3(int count) {
-        ArrayList<BigTask> returnValue = new ArrayList<>();
-
-        if (count <= 0 || storedData.getStep3() == null || storedData.getStep3().size() == 0) {
-            return returnValue;
-        }
-
-        if (storedData.getStep3().size() <= count) {
-            returnValue.addAll(storedData.getStep3());
-            return returnValue;
-        }
-
+    private void addCountBigTaskFromThirdToSecondParamter(int count, ArrayList<BigTask> to, List<BigTask> from) {
         int indexRandom;
         List<Integer> tmpIndexes = new ArrayList<>();
         do {
-            indexRandom = (int) (Math.random() * storedData.getStep3().size());
-            if (!tmpIndexes.contains(indexRandom)) {
-                returnValue.add(storedData.getStep3().get(indexRandom));
+            indexRandom = (int) (Math.random() * from.size());
+            if (!tmpIndexes.contains(indexRandom) && indexRandom < from.size()) {
+                to.add(from.get(indexRandom));
                 tmpIndexes.add(indexRandom);
             }
-        } while (returnValue.size() < count);
-
-        return returnValue;
-    }
-
-    private List<BigTask> getXFromBox1(int count) {
-        ArrayList<BigTask> returnValue = new ArrayList<>();
-
-        if (count <= 0 || storedData.getStep1() == null || storedData.getStep1().size() == 0) {
-            return returnValue;
-        }
-
-        if (storedData.getStep1().size() <= count) {
-            returnValue.addAll(storedData.getStep1());
-            return returnValue;
-        }
-
-        int indexRandom;
-        List<Integer> tmpIndexes = new ArrayList<>();
-        do {
-            indexRandom = (int) (Math.random() * storedData.getStep1().size());
-            if (!tmpIndexes.contains(indexRandom)) {
-                returnValue.add(storedData.getStep1().get(indexRandom));
-                tmpIndexes.add(indexRandom);
-            }
-        } while (returnValue.size() < count);
-
-        return returnValue;
+        } while (to.size() < count);
     }
 
     private void createTasks() {
 
-        if (operation.equals(Ueben.OPERATION_PLUSMINUS)) {
-            createPlusMinusTasks();
-        } else if (operation.equals(Ueben.OPERATION_MULT)) {
-            createMultTasks();
-        } else if (operation.equals(Ueben.OPERATION_DIVIDE)) {
-            createDivideTasks();
+        switch (operation) {
+            case Ueben.OPERATION_PLUSMINUS:
+                createPlusMinusTasks();
+                break;
+            case Ueben.OPERATION_MULT:
+                createMultTasks();
+                break;
+            case Ueben.OPERATION_DIVIDE:
+                createDivideTasks();
+                break;
         }
     }
 
@@ -468,8 +418,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
     }
 
     private void addNumber(int number) {
-        viewResult.setText(
-                new StringBuilder().append(viewResult.getText().toString()).append(number).toString());
+        viewResult.setText(viewResult.getText().toString() + number);
         setCourser();
     }
 
@@ -597,7 +546,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
             } else {
                 application.lastPoints = points;
                 this.heightScores.setNewScore(operation, max, points, many * 10);
-                storageHeightScore = new StorageHeightScore(getApplicationContext(), name);
+                StorageHeightScore storageHeightScore = new StorageHeightScore(getApplicationContext(), name);
                 storageHeightScore.update(this.heightScores);
                 storagePlusMinusMultDivide.update(storedData);
                 startActivity(new Intent(MathePlusMinusMultDivideActivity.this, SuperActivity.class));
