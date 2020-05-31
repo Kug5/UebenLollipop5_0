@@ -19,6 +19,7 @@ public class Ueben extends Application {
     public static final String GERMAN_MIX = "mix";
     public static final String SUBJECT_MATH = "math";
     public static final String SUBJECT_GERMAN = "german";
+    public static final String OPERATION_PLUS = "plus";
     public int lastPoints = -1;
     private String subject;
     private String username;
@@ -133,6 +134,7 @@ public class Ueben extends Application {
     }
 
     public enum Operations {
+        plus,
         plusminus,
         mult,
         divide

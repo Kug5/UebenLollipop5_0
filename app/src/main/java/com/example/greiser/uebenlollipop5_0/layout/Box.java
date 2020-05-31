@@ -3,6 +3,7 @@ package com.example.greiser.uebenlollipop5_0.layout;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.widget.TextView;
@@ -48,6 +49,7 @@ public class Box extends ConstraintLayout {
         this.boxnr = boxnr;
 
         TextView box_number = findViewById(R.id.boxnr);
+        box_number.setTextColor(Color.BLACK);
         if (box_number != null && boxnr != null) {
             box_number.setText(boxnr);
         }
@@ -59,6 +61,7 @@ public class Box extends ConstraintLayout {
         this.counter = counter;
 
         TextView counter_text = findViewById(R.id.counter);
+        counter_text.setTextColor(Color.BLACK);
         if (counter_text != null && counter != null) {
             counter_text.setText(counter);
         }

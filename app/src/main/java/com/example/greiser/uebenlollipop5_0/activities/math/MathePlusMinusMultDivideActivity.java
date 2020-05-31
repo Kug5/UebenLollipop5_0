@@ -115,7 +115,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
 
         timeAndPoints = findViewById(R.id.timeAndPoints);
 
-        if (operation.equals(Ueben.OPERATION_PLUSMINUS)) {
+        if (operation.contains(Ueben.OPERATION_PLUS)) {
             help.setVisibility(View.VISIBLE);
         } else {
             help.setVisibility(View.INVISIBLE);
@@ -249,6 +249,9 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
     private void createTasks() {
 
         switch (operation) {
+            case Ueben.OPERATION_PLUS:
+                createPlusTasks();
+                break;
             case Ueben.OPERATION_PLUSMINUS:
                 createPlusMinusTasks();
                 break;
@@ -298,6 +301,16 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
 
                 if (i - k >= 0) {
                     storedData.setTask(i + " - " + k + " = ", i, k, i - k, 1);
+                }
+            }
+        }
+    }
+    private void createPlusTasks() {
+
+        for (int i = 0; i <= max; i++) {
+            for (int k = 0; k <= max; k++) {
+                if (i + k <= max) {
+                    storedData.setTask(i + " + " + k + " = ", i, k, i + k, 1);
                 }
             }
         }

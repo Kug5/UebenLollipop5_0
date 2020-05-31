@@ -32,6 +32,17 @@ public class MenuMathActivity extends AppCompatActivity {
         final TextView halloName = findViewById(R.id.halloName);
         halloName.setText("Hallo " + ((Ueben) getApplication()).getUsername() + "! :)");
 
+        final Button level_plus10 = findViewById(R.id.level_plus10);
+        level_plus10.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setOperationPlus();
+                        setMax(10);
+                        startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
+                    }
+                });
+
         final Button level_plusMinus20 = findViewById(R.id.level_plusMinus20);
         level_plusMinus20.setOnClickListener(
                 new View.OnClickListener() {
@@ -113,6 +124,9 @@ public class MenuMathActivity extends AppCompatActivity {
 
     private void setOperationPlusMinus() {
         ((Ueben) getApplication()).setOperation(Ueben.OPERATION_PLUSMINUS);
+    }
+    private void setOperationPlus() {
+        ((Ueben) getApplication()).setOperation(Ueben.OPERATION_PLUS);
     }
 
     private void setOperationMult() {
