@@ -45,8 +45,11 @@ public class ScoreActivity extends AppCompatActivity {
             for (Ueben.Operations op : Ueben.Operations.values()) {
                 int[] max = new int[0];
                 String sign = "";
-                if (op.name().equals(Ueben.OPERATION_PLUS)) {
-                    max = new int[]{10};
+                if (op.name().equals(Ueben.OPERATION_MINUS)) {
+                    max = new int[]{10, 20, 30, 100};
+                    sign = "-";
+                } else if (op.name().equals(Ueben.OPERATION_PLUS)) {
+                    max = new int[]{10, 20, 30, 100};
                     sign = "+";
                 } else if (op.name().equals(Ueben.OPERATION_PLUSMINUS)) {
                     max = new int[]{20, 30, 100};

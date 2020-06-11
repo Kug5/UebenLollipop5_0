@@ -126,7 +126,9 @@ public class StoragePlusMinusMultDivide extends UebenStorage implements Storage 
             String [] taskSplit = splittedLine[index].split(",");
             String taskComplete = taskSplit[0];
             int equalsSignIndex = taskComplete.indexOf("=");
-            Matcher matcher = Pattern.compile(operation.equals(Ueben.OPERATION_PLUS) ? "[\\+]" : "[\\+\\-*:]{1}").matcher(taskComplete);
+            Matcher matcher = Pattern.compile(operation.equals(Ueben.OPERATION_PLUS) ?
+                    "[\\+]" : operation.equals(Ueben.OPERATION_MINUS) ?
+                    "[-]" : "[\\+\\-*:]{1}").matcher(taskComplete);
             int opSignIndex = matcher.find() ? matcher.start() : -1;
             String taskWithoutResult = taskComplete.substring(0, equalsSignIndex + 1);
             int i = Integer.parseInt(taskComplete.substring(0, opSignIndex).trim());

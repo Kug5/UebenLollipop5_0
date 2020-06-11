@@ -14,8 +14,6 @@ import com.example.greiser.uebenlollipop5_0.R;
  * TODO: document your custom view class.
  */
 public class Box extends ConstraintLayout {
-    private String boxnr;
-    private String counter;
 
     public Box(Context context) {
         super(context);
@@ -46,11 +44,10 @@ public class Box extends ConstraintLayout {
     }
 
     public void setBoxnr(String boxnr) {
-        this.boxnr = boxnr;
 
         TextView box_number = findViewById(R.id.boxnr);
         box_number.setTextColor(Color.BLACK);
-        if (box_number != null && boxnr != null) {
+        if (boxnr != null) {
             box_number.setText(boxnr);
         }
 
@@ -58,11 +55,10 @@ public class Box extends ConstraintLayout {
     }
 
     public void setCounter(String counter) {
-        this.counter = counter;
 
         TextView counter_text = findViewById(R.id.counter);
         counter_text.setTextColor(Color.BLACK);
-        if (counter_text != null && counter != null) {
+        if (counter != null) {
             counter_text.setText(counter);
         }
 
@@ -72,7 +68,7 @@ public class Box extends ConstraintLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
+/*
         //        // TODO: consider storing these as member variables to reduce
         //        // allocations per draw cycle.
         int paddingLeft = getPaddingLeft();
@@ -82,5 +78,6 @@ public class Box extends ConstraintLayout {
 
         int contentWidth = getWidth() - paddingLeft - paddingRight;
         int contentHeight = getHeight() - paddingTop - paddingBottom;
+ */
     }
 }

@@ -41,14 +41,40 @@ public class SuperActivity extends AppCompatActivity {
                     }
                 });
 
+        final TextView p010 = findViewById(R.id.p010);
+        p010.setText("" + ueben.getHeightScores().getBestPlus(10) + "%");
+
         final TextView p020 = findViewById(R.id.p020);
-        p020.setText("" + ueben.getHeightScores().getBestPlusMinus20() + "%");
+        p020.setText("" + ueben.getHeightScores().getBestPlus(20) + "%");
 
         final TextView p030 = findViewById(R.id.p030);
-        p030.setText("" + ueben.getHeightScores().getBestPlusMinus30() + "%");
+        p030.setText("" + ueben.getHeightScores().getBestPlus(30) + "%");
 
-        final TextView p100 = findViewById(R.id.p100);
-        p100.setText("" + ueben.getHeightScores().getBestPlusMinus100() + "%");
+        final TextView p100 = findViewById(R.id.p010);
+        p100.setText("" + ueben.getHeightScores().getBestPlus(100) + "%");
+
+        final TextView mi010 = findViewById(R.id.mi010);
+        mi010.setText("" + ueben.getHeightScores().getBestMinus(10) + "%");
+
+        final TextView mi020 = findViewById(R.id.mi020);
+        mi020.setText("" + ueben.getHeightScores().getBestMinus(20) + "%");
+        final TextView mi030 = findViewById(R.id.mi030);
+        mi030.setText("" + ueben.getHeightScores().getBestMinus(30) + "%");
+        final TextView mi100 = findViewById(R.id.mi100);
+        mi100.setText("" + ueben.getHeightScores().getBestMinus(100) + "%");
+
+
+        final TextView pm010 = findViewById(R.id.pm010);
+        pm010.setText("" + ueben.getHeightScores().getBestPlusMinus(10) + "%");
+
+        final TextView pm020 = findViewById(R.id.pm020);
+        pm020.setText("" + ueben.getHeightScores().getBestPlusMinus(20) + "%");
+
+        final TextView pm030 = findViewById(R.id.pm030);
+        pm030.setText("" + ueben.getHeightScores().getBestPlusMinus(30) + "%");
+
+        final TextView pm100 = findViewById(R.id.pm100);
+        pm100.setText("" + ueben.getHeightScores().getBestPlusMinus(100) + "%");
 
         final TextView m100 = findViewById(R.id.m100);
         m100.setText("" + ueben.getHeightScores().getBestMult100() + "%");
@@ -87,7 +113,22 @@ public class SuperActivity extends AppCompatActivity {
                 if (max == 20) output += "11x11";
                 break;
             case Ueben.OPERATION_PLUSMINUS:
+                output += "1(+-)1 bis";
+                if (max == 10) output += " 10";
+                if (max == 20) output += " 20";
+                if (max == 30) output += " 30";
+                if (max == 100) output += " 100";
+                break;
+            case Ueben.OPERATION_PLUS:
                 output += "1+1 bis";
+                if (max == 10) output += " 10";
+                if (max == 20) output += " 20";
+                if (max == 30) output += " 30";
+                if (max == 100) output += " 100";
+                break;
+            case Ueben.OPERATION_MINUS:
+                output += "1-1 bis";
+                if (max == 10) output += " 10";
                 if (max == 20) output += " 20";
                 if (max == 30) output += " 30";
                 if (max == 100) output += " 100";
@@ -120,7 +161,7 @@ public class SuperActivity extends AppCompatActivity {
             }
 
             output += System.lineSeparator() + ueben.lastPoints + " von " + maxPoints + " Punkten " +
-                    "(" + (100*ueben.lastPoints)/maxPoints + "%)";
+                    "(" + (100 * ueben.lastPoints) / maxPoints + "%)";
         } else {
             output = "Sehr gut";
         }

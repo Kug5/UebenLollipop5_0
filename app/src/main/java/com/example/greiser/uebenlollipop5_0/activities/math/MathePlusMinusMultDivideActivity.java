@@ -115,7 +115,7 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
 
         timeAndPoints = findViewById(R.id.timeAndPoints);
 
-        if (operation.contains(Ueben.OPERATION_PLUS)) {
+        if (operation.contains(Ueben.OPERATION_PLUS) || operation.contains(Ueben.OPERATION_MINUS)) {
             help.setVisibility(View.VISIBLE);
         } else {
             help.setVisibility(View.INVISIBLE);
@@ -249,6 +249,9 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
     private void createTasks() {
 
         switch (operation) {
+            case Ueben.OPERATION_MINUS:
+                createMinusTasks();
+                break;
             case Ueben.OPERATION_PLUS:
                 createPlusTasks();
                 break;
@@ -311,6 +314,17 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
             for (int k = 0; k <= max; k++) {
                 if (i + k <= max) {
                     storedData.setTask(i + " + " + k + " = ", i, k, i + k, 1);
+                }
+            }
+        }
+    }
+
+    private void createMinusTasks() {
+
+        for (int i = 0; i <= max; i++) {
+            for (int k = 0; k <= max; k++) {
+                if (i-k>=0) {
+                    storedData.setTask(i + " - " + k + " = ", i, k, i - k, 1);
                 }
             }
         }
@@ -453,11 +467,10 @@ public class MathePlusMinusMultDivideActivity extends AppCompatActivity {
         currentAufgabe = taskList.get(indexRandom).getDisplayTask();
         currentErgebnis = "" + taskList.get(indexRandom).getResult();
 
-        if (operation.equals(Ueben.OPERATION_PLUSMINUS)
-                && taskList.get(indexRandom).getDisplayTask().contains(" + ")) {
+        if (operation.contains(Ueben.OPERATION_PLUS)) {
             createAbakusPlus(taskList.get(indexRandom));
-        } else if (operation.equals(Ueben.OPERATION_PLUSMINUS)
-                && taskList.get(indexRandom).getDisplayTask().contains(" - ")) {
+        } else
+        if (operation.contains(Ueben.OPERATION_MINUS)) {
             createAbakusMinus(taskList.get(indexRandom));
         }
 

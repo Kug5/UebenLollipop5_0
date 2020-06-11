@@ -44,6 +44,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <!-- plus -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textp010"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:text="+ 10" />
+
+                    <TextView
+                        android:id="@+id/p010"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:gravity="end"
+                        android:text="TextView" />
+
+                </TableRow>
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -55,10 +79,199 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="#dddddd"
-                        android:text="+- 20" />
+                        android:text="+ 20" />
 
                     <TextView
                         android:id="@+id/p020"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:gravity="end"
+                        android:text="TextView" />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textp030"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:text="+ 30" />
+
+                    <TextView
+                        android:id="@+id/p030"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:gravity="end"
+                        android:text="TextView" />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textp100"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:text="+ 100" />
+
+                    <TextView
+                        android:id="@+id/p100"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:gravity="end"
+                        android:text="TextView" />
+
+                </TableRow>
+                <!-- end plus-->
+                <!-- minus -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textmi010"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:text="- 10" />
+
+                    <TextView
+                        android:id="@+id/mi010"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:gravity="end"
+                        android:text="TextView" />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textmi020"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:text="- 20" />
+
+                    <TextView
+                        android:id="@+id/mi020"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:gravity="end"
+                        android:text="TextView" />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textmi030"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:text="- 30" />
+
+                    <TextView
+                        android:id="@+id/mi030"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:gravity="end"
+                        android:text="TextView" />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textmi100"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:text="- 100" />
+
+                    <TextView
+                        android:id="@+id/mi100"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:gravity="end"
+                        android:text="TextView" />
+
+                </TableRow>
+
+                <!-- end minus-->
+                <!-- plusminus -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textpm010"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:text="+- 10" />
+
+                    <TextView
+                        android:id="@+id/pm010"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:gravity="end"
+                        android:text="TextView" />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textpm020"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:text="+- 20" />
+
+                    <TextView
+                        android:id="@+id/pm020"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -74,14 +287,14 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:id="@+id/textp030"
+                        android:id="@+id/textpm030"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="+- 30" />
 
                     <TextView
-                        android:id="@+id/p030"
+                        android:id="@+id/pm030"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -89,7 +302,28 @@
                         android:text="TextView" />
 
                 </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
+                    <TextView
+                        android:id="@+id/textpm100"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="+- 100" />
+
+                    <TextView
+                        android:id="@+id/pm100"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="TextView" />
+
+                </TableRow>
+                <!-- end plusminus -->
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -114,27 +348,7 @@
 
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/textp100"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="+- 100" />
-
-                    <TextView
-                        android:id="@+id/p100"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="end"
-                        android:text="TextView" />
-
-                </TableRow>
 
                 <TableRow android:layout_weight="1">
 

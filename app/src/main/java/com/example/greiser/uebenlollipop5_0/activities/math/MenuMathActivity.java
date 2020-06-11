@@ -42,6 +42,87 @@ public class MenuMathActivity extends AppCompatActivity {
                         startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
                     }
                 });
+final Button level_plus20 = findViewById(R.id.level_plus20);
+        level_plus20.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setOperationPlus();
+                        setMax(20);
+                        startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
+                    }
+                });
+final Button level_plus30 = findViewById(R.id.level_plus30);
+        level_plus30.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setOperationPlus();
+                        setMax(30);
+                        startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
+                    }
+                });
+final Button level_plus100 = findViewById(R.id.level_plus100);
+        level_plus100.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setOperationPlus();
+                        setMax(100);
+                        startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
+                    }
+                });
+        final Button level_minus10 = findViewById(R.id.level_minus10);
+        level_minus10.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setOperationMinus();
+                        setMax(10);
+                        startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
+                    }
+                });
+final Button level_minus20 = findViewById(R.id.level_minus20);
+        level_minus20.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setOperationMinus();
+                        setMax(20);
+                        startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
+                    }
+                });
+final Button level_minus30 = findViewById(R.id.level_minus30);
+        level_minus30.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setOperationMinus();
+                        setMax(30);
+                        startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
+                    }
+                });
+final Button level_minus100 = findViewById(R.id.level_minus100);
+        level_minus100.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setOperationMinus();
+                        setMax(100);
+                        startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
+                    }
+                });
+
+        final Button level_plusMinus10 = findViewById(R.id.level_plusMinus10);
+        level_plusMinus10.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setOperationPlusMinus();
+                        setMax(10);
+                        startActivity(new Intent(MenuMathActivity.this, HowManyActivity.class));
+                    }
+                });
 
         final Button level_plusMinus20 = findViewById(R.id.level_plusMinus20);
         level_plusMinus20.setOnClickListener(
@@ -120,6 +201,10 @@ public class MenuMathActivity extends AppCompatActivity {
                                 new Intent(MenuMathActivity.this, MathePlusMinusMultDivideActivity.class));
                     }
                 });
+    }
+
+    private void setOperationMinus() {
+        ((Ueben) getApplication()).setOperation(Ueben.OPERATION_MINUS);
     }
 
     private void setOperationPlusMinus() {
