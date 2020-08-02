@@ -50,7 +50,7 @@ public class SuperActivity extends AppCompatActivity {
         final TextView p030 = findViewById(R.id.p030);
         p030.setText("" + ueben.getHeightScores().getBestPlus(30) + "%");
 
-        final TextView p100 = findViewById(R.id.p010);
+        final TextView p100 = findViewById(R.id.p100);
         p100.setText("" + ueben.getHeightScores().getBestPlus(100) + "%");
 
         final TextView mi010 = findViewById(R.id.mi010);
