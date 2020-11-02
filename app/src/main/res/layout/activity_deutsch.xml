@@ -35,6 +35,7 @@
             android:layout_width="110dp"
             android:layout_height="134dp"
             android:layout_weight="1"
+            android:tint="#0D011C"
             app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
 
     </LinearLayout>

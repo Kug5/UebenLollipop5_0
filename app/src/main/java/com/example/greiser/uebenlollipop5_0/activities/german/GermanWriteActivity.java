@@ -3,8 +3,10 @@ package com.example.greiser.uebenlollipop5_0.activities.german;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -13,6 +15,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,7 +25,10 @@ import com.example.greiser.uebenlollipop5_0.helper.StorageGermanTemplate;
 import com.example.greiser.uebenlollipop5_0.helper.Ueben;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 public class GermanWriteActivity extends AppCompatActivity {
 
@@ -38,6 +44,11 @@ public class GermanWriteActivity extends AppCompatActivity {
     private int points = 0;
     private Button startButton;
     private TextView merke;
+    private ImageView play;
+    private TextToSpeech textToSpeach;
+
+    HashMap<String, String> hash = new HashMap<String, String>();
+
 
 
     @Override
@@ -83,7 +94,35 @@ public class GermanWriteActivity extends AppCompatActivity {
                     }
                 });
 
+        textToSpeach =
+                new TextToSpeech(
+                        getApplicationContext(),
+                        new TextToSpeech.OnInitListener() {
+                            @Override
+                            public void onInit(int status) {
+                                if (status != TextToSpeech.ERROR) {
+                                    textToSpeach.setLanguage(Locale.GERMAN);
+                                }
+                            }
+                        });
+
+        hash.put(
+                TextToSpeech.Engine.KEY_PARAM_STREAM,
+                String.valueOf(AudioManager.STREAM_NOTIFICATION));
+        play = findViewById(R.id.playWrite);
+        play.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        speak();
+                    }
+                });
+
         setPreStartConfigs();
+    }
+
+    private void speak() {
+        textToSpeach.speak(preset.getText().toString(), TextToSpeech.QUEUE_ADD, hash);
     }
 
     private void reset() {
@@ -95,17 +134,33 @@ public class GermanWriteActivity extends AppCompatActivity {
     private void setPreStartConfigs() {
         merke.setVisibility(View.VISIBLE);
         startButton.setVisibility(View.VISIBLE);
-        preset.setVisibility(View.INVISIBLE);
+        preset.setVisibility(View.GONE);
+        play.setVisibility(View.GONE);
         layoutInput.setVisibility(View.INVISIBLE);
     }
 
     private void setStartConfigs() {
         merke.setVisibility(View.INVISIBLE);
         startButton.setVisibility(View.INVISIBLE);
+        preset.setVisibility(View.GONE);
+        play.setVisibility(View.GONE);
 
         failed = false;
-        preset.setVisibility(View.VISIBLE);
-        preset.setBackgroundColor(Color.WHITE);
+        if (new Random().nextBoolean()) {
+            preset.setVisibility(View.VISIBLE);
+            preset.setBackgroundColor(Color.WHITE);
+        } else {
+            play.setVisibility(View.VISIBLE);
+            Handler handler = new Handler();
+            handler.postDelayed(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                           speak();
+                        }
+                    },
+                    500);
+        }
         layoutInput.setVisibility(View.INVISIBLE);
         userInput.setText("");
     }
@@ -116,7 +171,12 @@ public class GermanWriteActivity extends AppCompatActivity {
                 points++;
             }
             counter++;
-            chooseEntry();
+            if (howMany == counter) {
+                application.lastPoints = points * 10;
+                startActivity(new Intent(GermanWriteActivity.this, SuperActivity.class));
+            } else {
+                chooseEntry();
+            }
         } else {
             failed = true;
             preset.setVisibility(View.VISIBLE);
@@ -129,11 +189,6 @@ public class GermanWriteActivity extends AppCompatActivity {
     private void chooseEntry() {
 
         setStartConfigs();
-        if (howMany == counter) {
-            application.lastPoints = points * 10;
-            startActivity(new Intent(GermanWriteActivity.this, SuperActivity.class));
-        }
-
         int index = -1;
 
         do {
@@ -166,6 +221,7 @@ public class GermanWriteActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         preset.setVisibility(View.INVISIBLE);
+                        play.setVisibility(View.INVISIBLE);
                         layoutInput.setVisibility(View.VISIBLE);
                         userInput.requestFocus();
                         userInput.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);

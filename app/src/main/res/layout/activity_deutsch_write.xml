@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,15 +23,30 @@
         android:background="@android:color/holo_green_dark"
         android:text="Start" />
 
-    <TextView
-        android:id="@+id/preset"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/playWrite"
+            android:layout_width="110dp"
+            android:layout_height="134dp"
+            android:layout_weight="1"
+            android:tint="#0D011C"
+            app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
+
+        <TextView
+            android:id="@+id/preset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/layoutInput"
@@ -49,6 +65,7 @@
             android:importantForAccessibility="no"
             android:inputType="textNoSuggestions|textVisiblePassword"
             android:text="Name" />
+
 
     </LinearLayout>
 </LinearLayout>
